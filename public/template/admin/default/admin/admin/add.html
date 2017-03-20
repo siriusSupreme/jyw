@@ -1,0 +1,57 @@
+<title>添加管理员</title>
+
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <form action="{:url('admin/admin/add')}" class="form-horizontal" role="form" method="post" >
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 用户名 </label>
+        <div class="col-xs-12 col-sm-5">
+          <input type="text" placeholder="用户名" name="username" data-rule="required" data-tip="用户名必填，中英文均可" class="form-control input-sm">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom ">  </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 密码 </label>
+        <div class="col-xs-12 col-sm-5">
+          <input type="password" placeholder="密码长度在6~18位" name="password" data-rule="required;length(6~18)" data-tip="密码长度在6~18位,英文、数字、_等合法字符" class="form-control input-sm">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom ">  </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 确认密码 </label>
+        <div class="col-xs-12 col-sm-5">
+          <input type="password" placeholder="请和第一次输入密码保持一致" name="repassword" data-rule="required;length(6~18);match(password)" data-tip="请和第一次输入密码保持一致" data-msg="两次输入密码不一致" class="form-control input-sm">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom ">  </div>
+      </div>
+
+      <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+          <button class="btn btn-info" type="submit">
+            <i class="ace-icon fa fa-check bigger-110"></i>
+            Submit
+          </button>
+
+          <button class="btn" type="reset">
+            <i class="ace-icon fa fa-undo bigger-110"></i>
+            Reset
+          </button>
+        </div>
+      </div>
+    </form >
+    <!-- PAGE CONTENT ENDS -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+    var scripts = [null, null]
+    $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
+        //inline scripts related to this page
+    });
+</script>
