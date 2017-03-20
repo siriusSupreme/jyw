@@ -12,7 +12,7 @@
   <!--单文件上传-->
   <input type="file" name="upfile"><br>
   <!--多文件上传-->
-  <!--<input type="file" name="upfiles" multiple><br>-->
+  <input type="file" name="upfiles[]" multiple><br>
   <!--多文件上传-->
   <!--<input type="file" name="upfilec[]">
   <input type="file" name="upfilec[]"><br>-->
@@ -22,20 +22,26 @@
 </body>
 </html>
 <?php
-/**
- * Created by PhpStorm.
- * User: lenovo
- * Date: 2017/3/17
- * Time: 14:40
- */
-
 
 if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
   var_dump( $_FILES);
 
-  $file=new SplFileObject( $_FILES['upfile']['tmp_name'],'r');
-  var_dump( $file->getRealPath());
-  var_dump( $file->getPathname() );
+  var_dump( '<br><br>');
+
+  if ( $_FILES[ 'upfile' ][ 'tmp_name' ]){
+    $file = new SplFileObject( $_FILES[ 'upfile' ][ 'tmp_name' ], 'r' );
+    var_dump( $file->getRealPath() );
+    var_dump( '<br>' );
+    var_dump( $file->getPathname() );
+    var_dump( '<br>' );
+    var_dump( pathinfo( $_FILES[ 'upfile' ][ 'name' ]));
+    var_dump( '<br>' );
+    var_dump( finfo_file($finfo=finfo_open(FILEINFO_MIME_TYPE ),$_FILES[ 'upfile' ][ 'tmp_name' ] ) );
+    finfo_close( $finfo);
+    var_dump( '<br>' );
+    var_dump( pathinfo( $_FILES[ 'upfile' ][ 'tmp_name' ] ) );
+  }
+
 }
 
 ?>
