@@ -14,16 +14,21 @@
   <!--多文件上传-->
   <input type="file" name="upfiles[]" multiple><br>
   <!--多文件上传-->
-  <!--<input type="file" name="upfilec[]">
-  <input type="file" name="upfilec[]"><br>-->
+  <input type="file" name="upfilec[]">
+  <input type="file" name="upfilec[]"><br>
 
   <input type="submit" value="上传">
 </form>
 </body>
 </html>
 <?php
+use vendor\Upload;
 
+require_once __DIR__ . '/../extend/vendor/Upload.php';
 if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
+  $rrr=new Upload();
+  $rrr->files('upfile,upfiles');
+
   var_dump( $_FILES);
 
   var_dump( '<br><br>');
@@ -39,8 +44,21 @@ if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
     var_dump( finfo_file($finfo=finfo_open(FILEINFO_MIME_TYPE ),$_FILES[ 'upfile' ][ 'tmp_name' ] ) );
     finfo_close( $finfo);
     var_dump( '<br>' );
-    var_dump( pathinfo( $_FILES[ 'upfile' ][ 'tmp_name' ] ) );
+    var_dump( pathinfo( $_FILES[ 'upfile' ][ 'tmp_name' ],PATHINFO_EXTENSION ) );
+    var_dump( '<br>' );
   }
+
+  function test($fn){
+    var_dump( $fn instanceof Closure);
+  }
+
+  test(function (){});
+
+
+
+  var_dump( empty( [[[]],[]]));
+
+
 
 }
 
