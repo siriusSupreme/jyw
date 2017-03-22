@@ -22,12 +22,12 @@
 </body>
 </html>
 <?php
-use vendor\Upload;
+use vendor\upload\Upload;
 
-require_once __DIR__ . '/../extend/vendor/Upload.php';
+require_once __DIR__.'/../extend/vendor/upload/Upload.php';
 if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
-  $rrr=new Upload();
-  $rrr->files('upfile,upfiles');
+  /*$rrr=new Upload();
+  $rrr->files('upfile,upfiles');*/
 
   var_dump( $_FILES);
 
@@ -51,6 +51,23 @@ if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
   $arr=['.jpg','.JpEg','.png.jpg','.png','bmp'];
   print_r(array_map( function ($val){return ltrim( strtolower( $val),'.');}, $arr));
   var_dump( '<br>');
+  var_dump( '<br>' );
+  var_dump( '<br>' );
+  var_dump( '<br>' );
+
+  function getImageType( $image ) {
+    if ( function_exists( 'exif_imagetype' ) ) {
+      return exif_imagetype( $image );
+    } else {
+      $info = getimagesize( $image );
+
+      return $info[ 2 ];
+    }
+  }
+
+  var_dump( exif_imagetype( $_FILES[ 'upfile' ][ 'tmp_name' ] ));
+  var_dump( '<br>' );
+  var_dump( getimagesize( $_FILES[ 'upfile' ][ 'tmp_name' ] ) );
 
 
 
