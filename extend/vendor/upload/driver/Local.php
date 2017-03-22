@@ -6,7 +6,7 @@
  * Time: 9:47
  */
 
-namespace vendor\upload;
+namespace vendor\upload\driver;
 
 
 class Local {

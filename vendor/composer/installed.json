@@ -94,5 +94,57 @@
             "orm",
             "thinkphp"
         ]
+    },
+    {
+        "name": "riverslei/payment",
+        "version": "v3.0.6",
+        "version_normalized": "3.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/helei112g/payment.git",
+            "reference": "cf80f5afad798d527c3caff5449502f377d88c8a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/helei112g/payment/zipball/cf80f5afad798d527c3caff5449502f377d88c8a",
+            "reference": "cf80f5afad798d527c3caff5449502f377d88c8a",
+            "shasum": ""
+        },
+        "require": {
+            "ext-bcmath": "*",
+            "ext-mbstring": "*",
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "endroid/qrcode": "~1.9"
+        },
+        "time": "2017-03-18T16:12:55+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Payment\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "helei",
+                "email": "dayugog@gmail.com",
+                "homepage": "https://helei112g.github.io/"
+            }
+        ],
+        "description": "支付宝支付、微信支付集成SDK。整合集成快速接入，支持支付宝最新接口",
+        "homepage": "https://helei112g.github.io/",
+        "keywords": [
+            "alipay",
+            "weixin",
+            "微信支付",
+            "支付宝支付",
+            "集成支付接口SDK"
+        ]
     }
 ]

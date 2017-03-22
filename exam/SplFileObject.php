@@ -48,15 +48,9 @@ if (strtolower($_SERVER['REQUEST_METHOD'])=='post'){
     var_dump( '<br>' );
   }
 
-  function test($fn){
-    var_dump( $fn instanceof Closure);
-  }
-
-  test(function (){});
-
-
-
-  var_dump( empty( [[[]],[]]));
+  $arr=['.jpg','.JpEg','.png.jpg','.png','bmp'];
+  print_r(array_map( function ($val){return ltrim( strtolower( $val),'.');}, $arr));
+  var_dump( '<br>');
 
 
 
