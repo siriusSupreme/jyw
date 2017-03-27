@@ -169,6 +169,7 @@ class Upload {
       }
       /*6、创建文件保存路径*/
       if ( !self::$uploader->checkPath() ) {
+        $this->error = self::$uploader->getError();
         continue;
       }
       /*7、生成文件保存名*/
@@ -177,7 +178,7 @@ class Upload {
       if ( move_uploaded_file( $filename, '' ) ) {/*上传成功*/
 
       } else {/*上传失败*/
-
+        $this->error = '文件上传失败';
       }
     }
 
@@ -193,8 +194,8 @@ class Upload {
       return false;
     }
 
-    if ( empty( $file[ 'tmp_name' ] ) || !is_file( $file[ 'tmp_name' ] ) ) {
-      $this->error = '没有文件被上传！';
+    if ( empty( $file[ 'tmp_name' ] ) || !is_file( $file[ 'tmp_name' ] ) || empty( $file[ 'name' ] ) ) {
+      $this->error = '没有文件被上传';
 
       return false;
     }
@@ -374,7 +375,7 @@ class Upload {
    * @return string
    */
   protected
-  function buildSaveName( $savename ) {
+  function buildSaveName( $savename=true ) {
     if ( true === $savename ) {
       // 自动生成文件名
       if ( $this->rule instanceof \Closure ) {
