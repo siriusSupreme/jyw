@@ -9,6 +9,12 @@
 namespace app\admin\model;
 
 
-class AdminGroupModel {
+use app\common\model\AdminBaseModel;
+
+class AdminGroupModel extends AdminBaseModel {
+
+  public function admins(){
+    return $this->belongsToMany( 'Admin', 'admin_group_access');
+  }
 
 }

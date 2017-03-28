@@ -12,10 +12,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
             'think\\composer\\' => 15,
             'think\\' => 6,
         ),
-        'P' => 
-        array (
-            'Payment\\' => 8,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -26,10 +22,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'think\\' => 
         array (
             0 => __DIR__ . '/../..' . '/thinkphp/library/think',
-        ),
-        'Payment\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/riverslei/payment/src',
         ),
     );
 

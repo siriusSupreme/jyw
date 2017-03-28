@@ -17,8 +17,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "topthink/framework": "^5.0",
-        "riverslei/payment": "~3.0"
+        "topthink/framework": "^5.0"
     },
     "extra": {
         "think-path": "thinkphp"

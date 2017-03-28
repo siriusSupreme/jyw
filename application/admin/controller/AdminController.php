@@ -1,35 +1,18 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\model\AdminGroupModel;
+use app\admin\model\AdminModel;
 use app\common\controller\AdminBaseController;
+use think\Loader;
 
 class AdminController extends AdminBaseController {
-
-  public function lists() {
-    $menu=db('auth_rule')->select();
-    $this->assign('menu',$menu);
-    return $this->fetch();
-  }
-
-  public function add() {
-    if ($this->request->isPost()){
-      $res=db('admin')->insert(input('post.'));
-      if ($res==1){
-        $this->success('添加菜单成功',url('admin/admin/lists'));
-      }else{
-        $this->error('添加菜单失败',url('admin/admin/lists'));
-      }
-    }else{
-      return $this->fetch();
-    }
-
-  }
-
-  public function edit() {
-    return $this->fetch();
-  }
-
-  public function del() {
-    return $this->fetch();
+  public function index(){
+    echo '111';
+    $model=new AdminModel();
+    $model->adminGroups();
+    $model2=new AdminGroupModel();
+    $model2->admins();
+    var_dump( Loader::model('admin'));
   }
 }
