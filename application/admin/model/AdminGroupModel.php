@@ -14,7 +14,7 @@ use app\common\model\AdminBaseModel;
 class AdminGroupModel extends AdminBaseModel {
 
   public function admins(){
-    return $this->belongsToMany( 'Admin', 'admin_group_access');
+    return $this->belongsToMany( 'AdminModel', 'admin_group_access','admin_group_id','id');
   }
 
 }
