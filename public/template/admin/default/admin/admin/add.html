@@ -17,7 +17,7 @@
       <div class="form-group">
         <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 密码 </label>
         <div class="col-xs-12 col-sm-5">
-          <input type="password" placeholder="密码长度在6~18位" name="password" data-rule="required;length(6~18)" data-tip="密码长度在6~18位,英文、数字、_等合法字符" class="form-control input-sm">
+          <input type="password" placeholder="密码长度在6~18位" name="password" data-rule="密码:required;length(6~18)" data-tip="密码长度在6~18位,英文、数字、_等合法字符" class="form-control input-sm">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom ">  </div>
       </div>
@@ -25,7 +25,7 @@
       <div class="form-group">
         <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 确认密码 </label>
         <div class="col-xs-12 col-sm-5">
-          <input type="password" placeholder="请和第一次输入密码保持一致" name="repassword" data-rule="required;length(6~18);match(password)" data-tip="请和第一次输入密码保持一致" data-msg="两次输入密码不一致" class="form-control input-sm">
+          <input type="password" placeholder="请和第一次输入密码保持一致" name="repassword" data-rule="确认密码:required;length(6~18);match(password)" data-tip="请和第一次输入密码保持一致" data-msg="两次输入密码不一致" class="form-control input-sm">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom ">  </div>
       </div>
