@@ -20,7 +20,8 @@
 
         <th class="hidden-480">Status</th>
 
-        <th></th>
+        <th>订单</th>
+        <th>方法</th>
       </tr>
       </thead>
 
@@ -55,7 +56,7 @@
 
         <td>
           <div class="hidden-sm hidden-xs btn-group">
-            <button class="btn btn-xs btn-success">
+            <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".modal" href="{:url('admin/admin/edit')}">
               <i class="ace-icon fa fa-check bigger-120"></i>
             </button>
 
@@ -113,11 +114,29 @@
   </div><!-- /.col -->
 </div><!-- /.row -->
 
+<!--模态对话框-->
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
     var scripts = [null, null]
     $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
         //inline scripts related to this page
+      $('.modal').on('show.bs.modal',function ( e ) {
+        var href=$(e.relatedTarget).attr('href');
+        console.log( href);
+        /*$.get( href,{},function ( data ) {
+          $('.modal-dialog').html( data);
+        },'json');*/
+
+        $( '.modal-dialog').load( href, {}, function ( data ) {
+          console.log( data );
+        });
+      });
     });
 </script>
 

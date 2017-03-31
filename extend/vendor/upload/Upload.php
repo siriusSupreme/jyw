@@ -15,9 +15,11 @@ use think\exception\ClassNotFoundException;
 class Upload {
   /*上传配置项*/
   private $config = [
-    'root_path'     => '/public',/*上传根目录*/
-    'save_path'     => '',/*保存路径*/
-    'save_name'     => [ 'date' ],/*保存文件名*/
+    'root_path'     => './public/uploads/',/*上传根目录，必须以 / 结尾*/
+    'save_path'     => '',/*保存路径，必须以 / 结尾*/
+    'save_name'     => 'date',/*保存文件名，函数名或者闭包，*/
+    'hash'          => 'md5',/*文件 hash*/
+    'replace'       => true,/*是否覆盖同名文件*/
     'allowed_exts'  => [],/*允许上传的后缀*/
     'allowed_mimes' => [],/*允许上传的类型*/
     'max_size'      => '',/*允许上传最大大小*/
@@ -164,22 +166,36 @@ class Upload {
     }
     /*文件上传流程*/
     foreach ( $this->upfiles as $file ) {
-      if ( !$this->check( $file ) ) {
-        continue;
-      }
-      /*6、创建文件保存路径*/
-      if ( !self::$uploader->checkPath() ) {
-        $this->error = self::$uploader->getError();
-        continue;
-      }
-      /*7、生成文件保存名*/
-      $filename = $this->buildSaveName();
-      /*8、开始上传*/
-      if ( move_uploaded_file( $filename, '' ) ) {/*上传成功*/
 
-      } else {/*上传失败*/
-        $this->error = '文件上传失败';
-      }
+      do{
+        if ( !$this->check( $file ) ) {
+          $file[ 'error_msg' ] = $this->error;
+          break;
+        }
+        /*6、创建文件保存路径*/
+        $file[ 'root_path' ] = rtrim( $this->config[ 'root_path' ], '/' ) . '/';
+        $file[ 'save_path' ] = !empty( $this->config[ 'save_path' ] ) ?
+          trim( $this->config[ 'save_path' ], '/' ) . '/' :
+          '';
+        if ( !self::$uploader->checkPath( $file ) ) {
+          $this->error = self::$uploader->getError();
+          $file[ 'error_msg' ] = $this->error;
+          break;
+        }
+        /*7、生成文件保存名*/
+        $file[ 'hash' ]=$this->hash( $file[ 'tmp_name' ]);
+        $file[ 'save_name' ] = $this->buildSaveName( $file );
+        /*8、开始上传*/
+        if ( self::$uploader->save( $file, $this->config[ 'replace' ] ) ) {/*上传成功*/
+          $file[ 'error_msg' ] = '';
+        } else {/*上传失败*/
+          $this->error = self::$uploader->getError();
+          $file[ 'error_msg' ] = $this->error;
+        }
+      }while(false);
+
+
+      $resultArray[]=$file;
     }
 
     return $resultArray;
@@ -206,19 +222,19 @@ class Upload {
       return false;
     }
     /*2、文件大小检测*/
-    if ( $this->checkSize( $file ) ) {
+    if ( $this->checkSize( $file['size'] ) ) {
       $this->error = '文件大小超出限制';
 
       return false;
     }
     /*3、文件后缀检测*/
-    if ( $this->checkExt( $file ) ) {
+    if ( $this->checkExt( strtolower( pathinfo( $file[ 'name' ], PATHINFO_EXTENSION ) ) ) ) {
       $this->error = '文件后缀不被允许';
 
       return false;
     }
     /*4、文件类型检测*/
-    if ( $this->checkMime( $file ) ) {
+    if ( $this->checkMime( $file['type'] ) ) {
       $this->error = '文件类型不被允许';
 
       return false;
@@ -272,8 +288,8 @@ class Upload {
    * @return bool
    */
   private
-  function checkSize( $file ) {
-    if ( $this->config[ 'max_size' ] != 0 && $file[ 'size' ] > $this->config[ 'max_size' ] ) {
+  function checkSize( $size ) {
+    if ( $this->config[ 'max_size' ] != 0 && $size > $this->config[ 'max_size' ] ) {
       return false;
     }
 
@@ -288,8 +304,7 @@ class Upload {
    * @return bool
    */
   private
-  function checkExt( $file ) {
-    $extension = strtolower( pathinfo( $file[ 'name' ], PATHINFO_EXTENSION ) );
+  function checkExt( $extension ) {
     if ( !in_array( $extension, $this->config[ 'allowed_exts' ] ) && !empty( $this->config[ 'allowed_exts' ] ) ) {
       return false;
     }
@@ -305,8 +320,8 @@ class Upload {
    * @return bool
    */
   private
-  function checkMime( $file ) {
-    if ( !in_array( strtolower( $file[ 'type' ] ), $this->config[ 'allowed_mimes' ] )
+  function checkMime( $mime ) {
+    if ( !in_array( $mime, $this->config[ 'allowed_mimes' ] )
          && !empty( $this->config[ 'allowed_mimes' ] )
     ) {
       return false;
@@ -353,17 +368,8 @@ class Upload {
    * @return $string
    */
   private
-  function hash( $type = 'sha1' ) {
-    if ( !isset( $this->hash[ $type ] ) ) {
-      $this->hash[ $type ] = hash_file( $type, $this->filename );
-    }
-
-    return $this->hash[ $type ];
-  }
-
-  public
-  function __call( $method, $args ) {
-    return $this->hash( $method );
+  function hash( $filename ) {
+    return hash_file( in_array( $this->config[ 'hash' ], hash_algos()) ? $this->config[ 'hash' ] : 'sha1', $filename );
   }
 
 
@@ -375,32 +381,28 @@ class Upload {
    * @return string
    */
   protected
-  function buildSaveName( $savename=true ) {
-    if ( true === $savename ) {
-      // 自动生成文件名
-      if ( $this->rule instanceof \Closure ) {
-        $savename = call_user_func_array( $this->rule, [ $this ] );
-      } else {
-        switch ( $this->rule ) {
-          case 'date':
-            $savename = date( 'Ymd' ) . DS . md5( microtime( true ) );
-            break;
-          default:
-            if ( in_array( $this->rule, hash_algos() ) ) {
-              $hash = $this->hash( $this->rule );
-              $savename = substr( $hash, 0, 2 ) . DS . substr( $hash, 2 );
-            } elseif ( is_callable( $this->rule ) ) {
-              $savename = call_user_func( $this->rule );
-            } else {
-              $savename = date( 'Ymd' ) . DS . md5( microtime( true ) );
-            }
-        }
+  function buildSaveName( $file ) {
+    // 自动生成文件名
+    if ( $this->config[ 'save_name' ] instanceof \Closure ) {
+      $savename = call_user_func_array( $this->config[ 'save_name' ], [ $this, $file ] );
+    } else {
+      switch ( $this->config[ 'save_name' ] ) {
+        case 'date':
+          $savename = date( 'Y' ) . DS . date( 'm-d' ) . DS . md5( microtime( true ) );
+          break;
+        default:
+          if ( in_array( $this->config[ 'save_name' ], hash_algos() ) ) {
+            $hash = isset( $file['hash'])? $file[ 'hash' ]:$this->hash( $file[ 'tmp_name' ] );
+            $savename = substr( $hash, 0, 2 ) . DS . substr( $hash, 2 );
+          } elseif ( is_callable( $this->config[ 'save_name' ] ) ) {
+            $savename = call_user_func( $this->config[ 'save_name' ] );
+          } else {
+            $savename = date( 'Y' ) . DS . date( 'm-d' ) . DS . md5( microtime( true ) );
+          }
       }
-    } elseif ( '' === $savename ) {
-      $savename = $this->getInfo( 'name' );
     }
     if ( !strpos( $savename, '.' ) ) {
-      $savename .= '.' . pathinfo( $this->getInfo( 'name' ), PATHINFO_EXTENSION );
+      $savename .= '.' . pathinfo( $file[ 'name' ], PATHINFO_EXTENSION );
     }
 
     return $savename;
