@@ -60,7 +60,7 @@
               <i class="ace-icon fa fa-check bigger-120"></i>
             </button>
 
-            <button class="btn btn-xs btn-info">
+            <button class="btn btn-xs btn-info test">
               <i class="ace-icon fa fa-pencil bigger-120"></i>
             </button>
 
@@ -133,10 +133,20 @@
           $('.modal-dialog').html( data);
         },'json');*/
 
-        $( '.modal-dialog').load( href, {}, function ( data ) {
+        $.get( href,{},function ( data ) {
+          layer.open( { type: 3, content: data } )
+         /*$('.modal-dialog').html( data);*/
+         },'json');
+
+        /*$( '.modal-dialog').load( href, {}, function ( data ) {
           console.log( data );
-        });
+        });*/
       });
+
+      $( '.test' ).click( function ( e ) {
+        var index = layer.open( { type: 2, content: ["{:url( 'admin/Admin/test')}",'no'],area:['500px','500px']});
+      } );
+
     });
 </script>
 

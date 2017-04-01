@@ -35,4 +35,9 @@ class AdminController extends AdminBaseController {
   function sort() {
     return $this->fetch();
   }
+
+  public
+  function test() {
+    return $this->fetch('public@html/index');
+  }
 }
