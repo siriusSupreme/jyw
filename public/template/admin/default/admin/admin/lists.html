@@ -134,7 +134,7 @@
         },'json');*/
 
         $.get( href,{},function ( data ) {
-          layer.open( { type: 3, content: data } )
+          layer.open( { type: 1, content: data, maxmin: true} )
          /*$('.modal-dialog').html( data);*/
          },'json');
 
@@ -144,7 +144,7 @@
       });
 
       $( '.test' ).click( function ( e ) {
-        var index = layer.open( { type: 2, content: ["{:url( 'admin/Admin/test')}",'no'],area:['500px','500px']});
+        var index = layer.open( { type: 2, content: ["{:url( 'admin/Admin/test')}"],maxmin:true});
       } );
 
     });
