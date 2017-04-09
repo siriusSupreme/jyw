@@ -931,76 +931,6 @@
         "abandoned": "phpoffice/phppresentation"
     },
     {
-        "name": "phpoffice/phppresentation",
-        "version": "0.7.0",
-        "version_normalized": "0.7.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/PHPOffice/PHPPresentation.git",
-            "reference": "4f40d936954f41193c901f77e8a3547455228df1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/PHPOffice/PHPPresentation/zipball/4f40d936954f41193c901f77e8a3547455228df1",
-            "reference": "4f40d936954f41193c901f77e8a3547455228df1",
-            "shasum": ""
-        },
-        "require": {
-            "ext-xml": "*",
-            "ext-zip": "*",
-            "php": ">=5.3.0",
-            "phpoffice/common": "0.2.*"
-        },
-        "require-dev": {
-            "codeclimate/php-test-reporter": "dev-master",
-            "phpdocumentor/phpdocumentor": "2.*",
-            "phploc/phploc": "2.*",
-            "phpmd/phpmd": "2.*",
-            "phpunit/phpunit": "3.7.*",
-            "sebastian/phpcpd": "2.*",
-            "squizlabs/php_codesniffer": "2.*"
-        },
-        "suggest": {
-            "ext-gd2": "Required to add images"
-        },
-        "time": "2016-09-12T10:20:47+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "PhpOffice\\PhpPresentation\\": "src/PhpPresentation/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL"
-        ],
-        "authors": [
-            {
-                "name": "Mark Baker"
-            },
-            {
-                "name": "Ivan Lanin",
-                "homepage": "http://ivan.lanin.org"
-            },
-            {
-                "name": "Franck Lefevre",
-                "homepage": "http://rootslabs.net"
-            }
-        ],
-        "description": "PHPPresentation - Read, Create and Write Presentations documents in PHP",
-        "homepage": "http://phpoffice.github.io",
-        "keywords": [
-            "LibreOffice",
-            "PowerPoint",
-            "odp",
-            "php",
-            "ppt",
-            "pptx",
-            "presentations"
-        ]
-    },
-    {
         "name": "phpoffice/phpproject",
         "version": "0.2.0",
         "version_normalized": "0.2.0.0",
@@ -4016,5 +3946,76 @@
         ],
         "description": "Symfony Yaml Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "phpoffice/phppresentation",
+        "version": "0.8.0",
+        "version_normalized": "0.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/PHPPresentation.git",
+            "reference": "14b52bd474ea473e0cb108f533452ee246f1345e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/PHPPresentation/zipball/14b52bd474ea473e0cb108f533452ee246f1345e",
+            "reference": "14b52bd474ea473e0cb108f533452ee246f1345e",
+            "shasum": ""
+        },
+        "require": {
+            "ext-xml": "*",
+            "ext-zip": "*",
+            "php": ">=5.3.0",
+            "phpoffice/common": "0.2.*"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "dev-master",
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phploc/phploc": "2.*",
+            "phpmd/phpmd": "2.*",
+            "phpunit/phpunit": "3.7.*",
+            "sebastian/phpcpd": "2.*",
+            "squizlabs/php_codesniffer": "2.*",
+            "twig/twig": "1.27"
+        },
+        "suggest": {
+            "ext-gd2": "Required to add images"
+        },
+        "time": "2017-04-03T12:42:16+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhpOffice\\PhpPresentation\\": "src/PhpPresentation/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Mark Baker"
+            },
+            {
+                "name": "Ivan Lanin",
+                "homepage": "http://ivan.lanin.org"
+            },
+            {
+                "name": "Franck Lefevre",
+                "homepage": "http://rootslabs.net"
+            }
+        ],
+        "description": "PHPPresentation - Read, Create and Write Presentations documents in PHP",
+        "homepage": "http://phpoffice.github.io",
+        "keywords": [
+            "LibreOffice",
+            "PowerPoint",
+            "odp",
+            "php",
+            "ppt",
+            "pptx",
+            "presentations"
+        ]
     }
 ]

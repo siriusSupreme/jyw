@@ -43,7 +43,7 @@
         "phpoffice/phpword": "^0.13.0",
         "phpoffice/phppowerpoint": "^0.7.0",
         "phpoffice/common": "^0.2.6",
-        "phpoffice/phppresentation": "^0.7.0",
+        "phpoffice/phppresentation": "^0.8.0",
         "phpoffice/phpproject": "^0.2.0",
         "zoujingli/wechat-php-sdk": "^1.1",
         "5ini99/think-addons": "^1.2",
