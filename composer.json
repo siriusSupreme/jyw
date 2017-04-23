@@ -41,7 +41,6 @@
         "jaeger/querylist-ext-dimage": "^1.1",
         "phpoffice/phpexcel": "^1.8",
         "phpoffice/phpword": "^0.13.0",
-        "phpoffice/phppowerpoint": "^0.7.0",
         "phpoffice/common": "^0.2.6",
         "phpoffice/phppresentation": "^0.8.0",
         "phpoffice/phpproject": "^0.2.0",
