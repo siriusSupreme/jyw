@@ -22,7 +22,7 @@ return [
         // 模板引擎类型 支持 php think 支持扩展
         'type'         => 'Think',
         // 视图基础目录，配置目录为所有模块的视图起始目录
-        'view_base'    => './public/template/admin/default/',
+        'view_base'    => './public/theme/admin/default/',
         // 模板路径
         'view_path'    => '',
         // 模板后缀
@@ -48,13 +48,13 @@ return [
       '__PUBLIC_LIBS__'=>'/public/static/libs',
       '__PUBLIC_PLUGINS__'=>'/public/static/plugins',
       '__PUBLIC_JS__'=>'/public/static/js',
-      '__ADMIN_CSS__'=>'/public/template/admin/default/public/static/css',
-      '__ADMIN_STATIC__'=>'/public/template/admin/default/public/static',
-      '__ADMIN_IMAGES__'=>'/public/template/admin/default/public/static/images',
-      '__ADMIN_FONTS__'=>'/public/template/admin/default/public/static/fonts',
-      '__ADMIN_LIBS__'=>'/public/template/admin/default/public/static/libs',
-      '__ADMIN_PLUGINS__'=>'/public/template/admin/default/public/static/plugins',
-      '__ADMIN_JS__'=>'/public/template/admin/default/public/static/js'
+      '__ADMIN_CSS__'=>'/public/theme/admin/default/public/static/css',
+      '__ADMIN_STATIC__'=>'/public/theme/admin/default/public/static',
+      '__ADMIN_IMAGES__'=>'/public/theme/admin/default/public/static/images',
+      '__ADMIN_FONTS__'=>'/public/theme/admin/default/public/static/fonts',
+      '__ADMIN_LIBS__'=>'/public/theme/admin/default/public/static/libs',
+      '__ADMIN_PLUGINS__'=>'/public/theme/admin/default/public/static/plugins',
+      '__ADMIN_JS__'=>'/public/theme/admin/default/public/static/js'
     ],
 
 ];
