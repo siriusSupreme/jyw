@@ -12,5 +12,8 @@ return [
   'app_status'=>'debug',
   'lang_switch_on'=>true,
   'pathinfo_depr'=>'/',
-  'url_html_suffix'=>'html'
+  'url_html_suffix'=>'html',
+  'template'=>[
+    'cache_prefix'=>'self'
+  ]
 ];
