@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:51:"./public/theme/admin/default/admin\index\index.html";i:1487666347;s:46:"./public/theme/admin/default/public\index.html";i:1489651387;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:51:"./public/theme/admin/default/admin\index\index.html";i:1493005168;s:46:"./public/theme/admin/default/public\index.html";i:1489651387;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>

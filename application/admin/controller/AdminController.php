@@ -38,6 +38,6 @@ class AdminController extends AdminBaseController {
 
   public
   function test() {
-    return $this->fetch('public@html/index');
+    return $this->fetch('public@/html/index');
   }
 }
