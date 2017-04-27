@@ -10,7 +10,9 @@ class IndexController extends AdminBaseController {
       return $this->fetch();
     }
     public function welcome() {
-
+      $this->assign( 'cache',config('cache'));
+      $this->assign( 'template', config( 'template' ) );
+      $this->assign( 'sssss', config( 'sssss' ) );
       return $this->fetch();
     }
 }

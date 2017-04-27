@@ -13,7 +13,7 @@ use think\Config;
 
 class LoadSystemConfigBehavior {
   /*public function run(&$paramas){
-    Config::load( CONFIG_PATH . 'config.php' );
+    Config::load( CONFIG_PATH . 'system/config.php' );
   }*/
 
   public
