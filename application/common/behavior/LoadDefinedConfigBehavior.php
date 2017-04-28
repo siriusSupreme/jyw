@@ -18,6 +18,12 @@ class LoadDefinedConfigBehavior {
 
   public
   function appInit() {
-    Config::load( CONFIG_PATH . 'defined/config.php' );
+    $dir=realpath( CONFIG_PATH.'defined/autoload_by_filename');
+    $hanler=opendir( $dir);
+    while(false!==($file=readdir($hanler))){
+      if($file!=='.'&&$file!=='..'){
+        Config::load( $dir.DS.$file ,pathinfo( $file,PATHINFO_FILENAME));
+      }
+    }
   }
 }
