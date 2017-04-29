@@ -30,12 +30,13 @@ abstract class Addons
 
     /**
      * $info = [
-     *  'name'          => 'Test',
-     *  'title'         => '测试插件',
+     *  'name'          => 'hello_world or HelloWorld',
+     *  'title'         => 'hello world 插件',
      *  'description'   => '用于thinkphp5的插件扩展演示',
      *  'status'        => 1,
-     *  'author'        => 'byron sampson',
-     *  'version'       => '0.1'
+     *  'author'        => 'sirius',
+     *  'version'       => '1.0.0',
+     *  'theme'       => 'default'
      * ]
      */
     public $info = [];
@@ -119,7 +120,7 @@ abstract class Addons
      */
     final public function checkInfo()
     {
-        $info_check_keys = ['name', 'title', 'description', 'status', 'author', 'version'];
+        $info_check_keys = ['name', 'title', 'description', 'status', 'author', 'version','theme'];
         foreach ($info_check_keys as $value) {
             if (!array_key_exists($value, $this->info)) {
                 return false;
@@ -205,6 +206,9 @@ abstract class Addons
     //必须实现安装
     abstract public function install();
 
-    //必须卸载插件方法
+    //必须实现卸载插件方法
     abstract public function uninstall();
+
+    //必须实现升级方法
+    abstract public function upgrade();
 }

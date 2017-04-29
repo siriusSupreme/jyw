@@ -16,9 +16,6 @@ use think\Url;
 
 // 插件目录
 define( 'ADDON_PATH', __DIR__ . DIRECTORY_SEPARATOR );
-var_dump( parse_url( 'http://w3c.domain.ext:8080/a/b/c/d/e/f?x=1&y=2#anchor' ));
-var_dump( parse_url( 'helloworld://index/index*index?x=1&y=2#anchor' ) );
-die();
 
 // 注册类的根命名空间
 Loader::addNamespace( 'addons', ADDON_PATH );
@@ -33,7 +30,8 @@ Hook::add( 'action_begin',
     // 获取系统配置
     $data = \think\Config::get( 'app_debug' ) ? [] : cache( 'hooks' );
     if ( empty( $data ) ) {
-      $addons = (array)Config::get( 'addons' );
+      $addons = (array)Config::get( 'addons.hooks' );
+
       foreach ( $addons as $key => $values ) {
         if ( is_string( $values ) ) {
           $values = explode( ',', $values );
