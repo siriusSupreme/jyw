@@ -12,7 +12,7 @@ return [
   'show_error_msg'=>true,
   'app_status'=>'debug',
   'lang_switch_on'=>true,
-  'pathinfo_depr'=>'/',
+  'pathinfo_depr'=>'-',
   'url_html_suffix'=>'html',
 
 ];

@@ -12,9 +12,13 @@
 use think\Hook;
 use think\Config;
 use think\Loader;
+use think\Url;
 
 // 插件目录
 define( 'ADDON_PATH', __DIR__ . DIRECTORY_SEPARATOR );
+var_dump( parse_url( 'http://w3c.domain.ext:8080/a/b/c/d/e/f?x=1&y=2#anchor' ));
+var_dump( parse_url( 'helloworld://index/index*index?x=1&y=2#anchor' ) );
+die();
 
 // 注册类的根命名空间
 Loader::addNamespace( 'addons', ADDON_PATH );
@@ -111,7 +115,7 @@ function get_addon_config( $name ) {
 /**
  * 插件显示内容里生成访问插件的url
  *
- * @param $url
+ * @param $url 插件名://[多级]控制器/方法名
  * @param array $param
  *
  * @return bool|string
@@ -121,7 +125,7 @@ function get_addon_config( $name ) {
  */
 function addon_url( $url, $param = [], $suffix = true, $domain = false ) {
   $url = parse_url( $url );
-  $case = config( 'url_convert' );
+  $case = Config::get( 'url_convert' );
   $addons = $case ? Loader::parseName( $url[ 'scheme' ] ) : $url[ 'scheme' ];
   $controller = $case ? Loader::parseName( $url[ 'host' ] ) : $url[ 'host' ];
   $action = trim( $case ? strtolower( $url[ 'path' ] ) : $url[ 'path' ], '/' );
@@ -133,7 +137,7 @@ function addon_url( $url, $param = [], $suffix = true, $domain = false ) {
   }
 
   // 生成插件链接新规则
-  $actions = "{$addons}-{$controller}-{$action}";
+  $actions = "{$addons}*{$controller}*{$action}";
 
-  return url( "addons/execute/{$actions}", $param, $suffix, $domain );
+  return Url::build( "addons/execute/{$actions}", $param, $suffix, $domain );
 }
