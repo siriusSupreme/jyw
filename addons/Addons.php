@@ -50,7 +50,7 @@ abstract class Addons
     public function __construct()
     {
         // 获取当前插件目录
-        $this->addons_path = ADDON_PATH . $this->getName() . DS;
+        $this->addons_path = ADDON_PATH . Loader::parseName( $this->getName()) . DS;
         // 读取当前插件配置信息
         if (is_file($this->addons_path . 'config.php')) {
             $this->config_file = $this->addons_path . 'config.php';
@@ -111,7 +111,7 @@ abstract class Addons
     final public function getName()
     {
         $data = explode('\\', get_class($this));
-        return Loader::parseName( array_pop( $data ));
+        return array_pop( $data );
     }
 
     /**

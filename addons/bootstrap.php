@@ -161,7 +161,7 @@ function get_addon_config( $name ) {
 /**
  * 插件显示内容里生成访问插件的url
  *
- * @param $url
+ * @param $url  插件名称://一级控制器.二级控制器[.N级控制器]/操作
  * @param array $param
  *
  * @return bool|string
