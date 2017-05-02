@@ -9,6 +9,6 @@
 namespace app\common\controller;
 
 
-class MemberBaseController extends AppController {
+class MemberBaseController extends PortalBaseController {
 
 }
