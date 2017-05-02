@@ -1,12 +1,12 @@
 <?php
-
+namespace utils;
 /**
  * Curl 封装
  */
 class Curl {
 
     /**
-     * 
+     *
      * @param type $method 请求方式
      * @param type $url 地址
      * @param type $fields 附带参数，可以是数组，也可以是字符串
@@ -33,12 +33,12 @@ class Curl {
         if ($username != '') {
             curl_setopt($ch, CURLOPT_USERPWD, $username . ':' . $password);
         }
-        
+
         if (stripos($url, "https://") !== FALSE) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         }
-        
+
         $method = strtolower($method);
         if ('post' == $method) {
             curl_setopt($ch, CURLOPT_POST, true);
