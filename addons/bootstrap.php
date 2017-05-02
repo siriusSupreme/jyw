@@ -17,15 +17,10 @@ use think\Cache;
 use think\Route;
 
 // 插件目录
-define( 'ADDON_PATH', ROOT_PATH . 'addons' . DS );
+define( 'ADDON_PATH', __DIR__ . '/addons' . DIRECTORY_SEPARATOR );
 
 // 定义路由
 Route::any( 'addons/execute/:route', "\\think\\addons\\Route@execute" );
-
-// 如果插件目录不存在则创建
-if ( !is_dir( ADDON_PATH ) ) {
-  @mkdir( ADDON_PATH, 0777, true );
-}
 
 // 注册类的根命名空间
 Loader::addNamespace( 'addons', ADDON_PATH );
@@ -45,7 +40,7 @@ Hook::add( 'app_init',
       // 读取addons的配置
       $config = (array)Config::get( 'addons' );
       // 读取插件目录及钩子列表
-      $base = get_class_methods( "\\think\\Addons" );
+      $base = get_class_methods( "\\addons\\Addons" );
       // 读取插件目录中的php文件
       foreach ( glob( ADDON_PATH . '*/*.php' ) as $addons_file ) {
         // 格式化路径信息
