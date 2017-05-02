@@ -2,6 +2,8 @@
 namespace app\common\controller;
 
 
+use think\App;
+
 class AdminBaseController extends AppController {
     protected function _initialize() {
 
@@ -10,7 +12,7 @@ class AdminBaseController extends AppController {
       /*设置模板临时缓存目录*/
       $template[ 'cache_path' ] = TEMP_PATH . $this->module . DS . $this->controller . DS;
       /*设置模板缓存*/
-      if ( !config( 'app_debug' ) ) {
+      if ( !App::$debug ) {
         $template[ 'cache_id' ] = md5( $this->module . DS . $this->controller . DS . $this->action );
         $template[ 'display_cache' ] = true;
       }

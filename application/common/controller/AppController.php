@@ -2,6 +2,7 @@
 
 namespace app\common\controller;
 
+use think\App;
 use think\Controller;
 use think\Loader;
 use think\Response;
@@ -37,7 +38,7 @@ class AppController extends Controller {
     $cache = config( 'cache' );
     $cache[ 'default' ][ 'cache_subdir' ] = false;
     $cache[ 'default' ][ 'prefix' ] = $this->module . DS . $this->controller;
-    $cache[ 'default' ][ 'data_compress' ] = true;
+    $cache[ 'default' ][ 'data_compress' ] = App::$debug;
     /*设置缓存*/
     config( 'cache', $cache );
 
