@@ -29,7 +29,7 @@
         "topthink/think-migration": "^1.0",
         "topthink/think-angular": "^1.0",
         "topthink/think-testing": "^1.0",
-        "overtrue/pinyin": "~3.0",
+        "overtrue/pinyin": "^3.0",
         "overtrue/wechat": "^3.1",
         "overtrue/socialite": "^1.0",
         "jaeger/curlmulti": "^1.0",
