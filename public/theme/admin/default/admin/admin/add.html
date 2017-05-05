@@ -1,7 +1,8 @@
 <title>添加管理员</title>
 
 
-<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-fileinput/css/fileinput.min.css">
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-fileinput/css/fileinput.min.css" />
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/webuploader/webuploader.css" />
 
 <!-- ajax layout which only needs content area -->
 <div class="row">
@@ -83,6 +84,19 @@
       </div>
 
 
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 头像：
+        </label>
+        <div class="col-xs-12 col-sm-5">
+          <!--<input type="file" name="avatar" value="" class="form-control input-sm wb-webuploader">-->
+          <span class="form-control-static margin-md" ><img id="test" src="__ADMIN_STATIC__/assets/avatars/avatar.png" alt="" width="100" height="100"></span>
+          <div class="wb-webuploader"></div>
+          <button type="button" class="wwb-webuploader">开始上传</button>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+
       <div class="clearfix form-actions align-center">
         <a class="btn btn-info margin-sm-right margin-xs-vertical gzc-btn-save" role="button"
            href="{:url('admin/Menu/save')}">
@@ -107,9 +121,24 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-    var scripts = ['__PUBLIC_PLUGINS__/bootstrap-fileinput/js/fileinput.min.js'];
+    var scripts = ['__PUBLIC_PLUGINS__/bootstrap-fileinput/js/fileinput.min.js',
+                   '__PUBLIC_PLUGINS__/webuploader/webuploader.min.js'];
     $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
         //inline scripts related to this page
         $('.wb-fileinput').fileinput();
+        var uploader=WebUploader.create({
+                                          swf:'__PUBLIC_PLUGINS__/webuploader/Uploader.swf',
+          pick:{id:'.wb-webuploader',innerHTML:'上传头像',multiple:false}
+                                       }).on('fileQueued',function ( file ) {
+          console.log(file);
+          console.log(uploader);
+          this.makeThumb(file, function ( error,src ) {
+            if (error){
+              console.log(error);
+            }else {
+              $('#test').attr('src',src);
+            }
+          })
+        });
     });
 </script>
