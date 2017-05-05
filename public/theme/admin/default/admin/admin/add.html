@@ -1,13 +1,15 @@
 <title>添加管理员</title>
 
 
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-fileinput/css/fileinput.min.css">
+
 <!-- ajax layout which only needs content area -->
 <div class="row">
   <div class="col-xs-12">
     <!-- PAGE CONTENT BEGINS -->
     <form action="{:url('admin/admin/add')}" class="form-horizontal" role="form" method="post" >
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 用户名 </label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 用户名： </label>
         <div class="col-xs-12 col-sm-5">
           <input type="text" placeholder="用户名" name="username" data-rule="required" data-tip="用户名必填，中英文均可" class="form-control input-sm">
         </div>
@@ -15,7 +17,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 密码 </label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 密码： </label>
         <div class="col-xs-12 col-sm-5">
           <input type="password" placeholder="密码长度在6~18位" name="password" data-rule="密码:required;length(6~18)" data-tip="密码长度在6~18位,英文、数字、_等合法字符" class="form-control input-sm">
         </div>
@@ -23,7 +25,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 确认密码 </label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top" > <span class="red">*</span> 确认密码： </label>
         <div class="col-xs-12 col-sm-5">
           <input type="password" placeholder="请和第一次输入密码保持一致" name="repassword" data-rule="确认密码:required;length(6~18);match(password)" data-tip="请和第一次输入密码保持一致" data-msg="两次输入密码不一致" class="form-control input-sm">
         </div>
@@ -36,7 +38,7 @@
         <div class="col-xs-12 col-sm-5">
           <div class="input-group">
             <div class="input-group-addon"><i class="ace-icon fa fa-phone"></i></div>
-            <input type="text" placeholder="手机号" name="telephone" data-rule="required" data-tip="用户名必填，中英文均可"
+            <input type="text" placeholder="手机号" name="mobilphone" data-rule="required" data-tip="请输入正确的手机号码格式"
                    class="form-control input-sm">
           </div>
 
@@ -50,7 +52,7 @@
         <div class="col-xs-12 col-sm-5">
           <div class="input-group">
             <div class="input-group-addon"><i class="ace-icon fa fa-envelope"></i></div>
-            <input type="text" placeholder="邮箱" name="username" data-rule="required"
+            <input type="text" placeholder="邮箱" name="email" data-rule="required"
                    data-tip="邮箱必填"
                    class="form-control input-sm">
           </div>
@@ -67,6 +69,15 @@
           <span class="form-control-static margin-md" ><img src="__ADMIN_STATIC__/assets/avatars/avatar.png" alt="" width="100" height="100"></span>
           <button class="btn btn-corner btn-success btn-sm" type="button" href="ff">重新上传</button>
           <button class="btn btn-corner btn-danger btn-sm" type="button">撤销上传</button>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 头像：
+        </label>
+        <div class="col-xs-12 col-sm-5">
+          <input type="file" name="avatar" value="" class="form-control input-sm wb-fileinput">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
       </div>
@@ -96,8 +107,9 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-    var scripts = [null, null]
+    var scripts = ['__PUBLIC_PLUGINS__/bootstrap-fileinput/js/fileinput.min.js'];
     $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
         //inline scripts related to this page
+        $('.wb-fileinput').fileinput();
     });
 </script>
