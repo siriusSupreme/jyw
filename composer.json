@@ -49,7 +49,8 @@
         "goldeagle/think-builder": "^1.3",
         "workerman/workerman-for-win": "^3.3",
         "qiniu/php-sdk": "^7.1",
-        "aliyuncs/oss-sdk-php": "^2.2"
+        "aliyuncs/oss-sdk-php": "^2.2",
+        "liushoukun/dawn-api": "dev-master"
     },
     "extra": {
         "think-path": "thinkphp"
