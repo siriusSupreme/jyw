@@ -18,4 +18,8 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
 
+    '[v1]'=>[
+      'user'=>['demo/User/restful']
+    ]
+
 ];
