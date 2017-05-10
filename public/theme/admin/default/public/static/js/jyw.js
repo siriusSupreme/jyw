@@ -256,6 +256,7 @@ $( function () {
       /*本地数据*/
       data: [],
       dataField: 'rows', /*服务器端分页时返回的数据键名*/
+      totalField:'total', /*服务器端分页时返回的总数键名*/
       
       /*表格列*/
       idField: undefined, /*指定主键列*/
