@@ -131,10 +131,34 @@
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
   var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-fileinput/js/fileinput.min.js',
+    '__PUBLIC_PLUGINS__/bootstrap-fileinput/themes/fa/theme.js',
+    '__PUBLIC_PLUGINS__/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js',
+    '__PUBLIC_PLUGINS__/bootstrap-fileinput/js/plugins/sortable.min.js',
+    '__PUBLIC_PLUGINS__/bootstrap-fileinput/js/plugins/purify.min.js',
     '__PUBLIC_PLUGINS__/webuploader/webuploader.min.js' ];
   $( '.page-content-area' ).ace_ajax( 'loadScripts', scripts, function () {
     //inline scripts related to this page
-    $( '.wb-fileinput' ).fileinput();
+
+    var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
+      'onclick="alert(\'Call your custom code here.\')">' +
+      '<i class="glyphicon glyphicon-tag"></i>' +
+      '</button>';
+    $( ".wb-fileinput" ).fileinput( {
+      overwriteInitial: true,
+      maxFileSize: 1500,
+      showClose: false,
+      showCaption: false,
+      browseLabel: '',
+      removeLabel: '',
+      browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+      removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+      removeTitle: 'Cancel or reset changes',
+      elErrorContainer: '#kv-avatar-errors-1',
+      msgErrorClass: 'alert alert-block alert-danger',
+      defaultPreviewContent: '<img src="__ADMIN_STATIC__/assets/avatars/avatar.png" alt="Your Avatar" style="width:160px">',
+      layoutTemplates: { main1: '{preview} ' + btnCust + ' {remove} {browse}' },
+      allowedFileExtensions: [ "jpg", "png", "gif" ]
+    } );
     var uploader = WebUploader.create( {
       swf: '__PUBLIC_PLUGINS__/webuploader/Uploader.swf',
       pick: { id: '.wb-webuploader', innerHTML: '上传头像', multiple: false }
