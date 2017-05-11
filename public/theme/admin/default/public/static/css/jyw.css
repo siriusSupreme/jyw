@@ -6,3 +6,10 @@
 .pace .pace-progress {
     height: 3px;
 }
+
+
+/*WebUploader*/
+.webuploader-pick{
+    background: none;
+    padding: 0;
+}
