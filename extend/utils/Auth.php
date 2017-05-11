@@ -46,15 +46,15 @@ class Auth {
 
   /**
    * 规则检测
-   * @param string|array $rules 待认证规则
+   * @param string|array $names 待认证规则
    * @param integer $userId 待认证用户ID
    * @param string $ruleType  待认证规则类型 url or normal
-   * @param string $authMode  认证模式 and or or
+   * @param string $relation  认证模式 and or or
    * @param string $returnType  验证通过时返回类型 rule or id
    *
    * @return bool|array|integer
    */
-  public function check($rules,$userId,$ruleType='url',$authMode='and',$returnType='rule'){
+  public function check($names,$userId,$ruleType='url',$relation='and',$returnType='rule'){
 
   }
 
