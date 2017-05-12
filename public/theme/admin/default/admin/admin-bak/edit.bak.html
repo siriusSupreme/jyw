@@ -1,0 +1,246 @@
+<title>Add - Ace Admin</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC_PLUGINS__/jquery-inputlimiter/jquery.inputlimiter.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC_PLUGINS__/jquery-select2/css/select2.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" type="text/css"
+      href="__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css" />
+
+<div class="gzc-main-content">
+  <div class="page-header">
+    <h1>
+      添加后台菜单
+      <small>
+        带 <i class="ace-icon fa fa-asterisk smaller-80 red"></i> 为必填项
+      </small>
+    </h1>
+  </div><!-- /.page-header -->
+  
+        <!-- ajax layout which only needs content area -->
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- PAGE CONTENT BEGINS -->
+      <form class="form-horizontal gzc-form-validate" role="form" method="post" action="{:url('admin/menu/save')}">
+        
+        <input type="hidden" name="id" value="{$id}" />
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">父级菜单</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <span class="block input-icon input-icon-right">
+              <select type="text" class="form-control input-sm gzc-select2" name="pid">
+                <option value="0">顶级菜单</option>
+                {$options}
+              </select>
+              <i class="ace-icon fa fa-asterisk red smaller-80"></i>
+            </span>
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">菜单名称</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <span class="block input-icon input-icon-right">
+              <input type="text" class="form-control input-sm" placeholder="中文菜单名称" name="name" value="{$editContent['name']}" />
+              <i class="ace-icon fa fa-asterisk red smaller-80"></i>
+            </span>
+          </div>
+          {/*
+          <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+            <span class="help-block padding-xs-horizontal">
+              Warning!
+            </span>
+          </div>
+          */}
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">菜单标题</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <input type="text" class="form-control input-sm" placeholder="用于菜单的title提示" name="title" value="{$editContent['title']|default=''}" />
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">菜单操作</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <input type="text" class="form-control input-sm" placeholder="module/controller/action" name="action" value="{$editContent['action']}" />
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">参数</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <input type="text" class="form-control input-sm gzc-bootstrap-tagsinput" placeholder="Param" name="param" value="{$editContent['param']}" />
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">图标</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <input type="text" class="form-control input-sm" placeholder="菜单图标" name="icon" value="{$editContent['icon']}" />
+          </div>
+          {/*
+          <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+            <span class="help-block padding-xs-horizontal">
+              Warning!
+            </span>
+          </div>
+          */}
+        </div>
+  
+        <div class="space-8"></div>
+  
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">类型</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <label class="margin-md-right padding-top-7 padding-xs-left">
+              <input type="radio" name="is_menu" class="ace" value="1" {if condition="$editContent['type']==1" }checked{/if} />
+              <span class="lbl">菜单</span>
+            </label>
+            <label class="margin-md-right padding-top-7">
+              <input type="radio" name="is_menu" class="ace" value="0" {if condition="$editContent['is_menu']==0"}checked{/if} />
+              <span class="lbl">按钮</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">状态</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <label class="padding-top-7">
+              <input type="checkbox" name="status" class="ace ace-switch ace-switch-7" {if condition="$editContent['status']==1"}checked{/if} />
+              <span class="lbl" data-lbl="隐藏 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 显示"></span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">排序</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <input type="text" name="list_order" class="input-sm gzc-spinner" value="{$editContent['list_order']}" />
+          </div>
+        </div>
+        
+        <div class="space-8"></div>
+        
+        <div class="form-group margin-xs-bottom">
+          <label class="col-xs-12 col-sm-2 control-label no-padding-right">描述</label>
+          <div class="col-xs-12 col-sm-9 col-md-7">
+            <textarea class="form-control input-sm gzc-textarea-autosize gzc-inputlimiter" name="remark"
+                      placeholder="描述信息" maxlength="255" >{$editContent['remark']}</textarea>
+          </div>
+        </div>
+        
+        <div class="space-32"></div>
+        
+        <div class="clearfix form-actions align-center">
+          <a class="btn btn-info margin-sm-right margin-xs-vertical gzc-btn-save" role="button"
+             href="{:url('admin/Menu/save')}">
+            <i class="ace-icon fa fa-check bigger-110"></i>
+            提交保存
+          </a>
+          <a class="btn btn-danger margin-sm-right margin-xs-vertical gzc-btn-reset" role="button">
+            <i class="ace-icon fa fa-undo bigger-110"></i>
+            重置表单
+          </a>
+          <a class="btn btn-success margin-xs-vertical gzc-btn-back-lists" role="button" href="{:url('admin/Menu/lists')}">
+            <i class="ace-icon fa fa-list bigger-110"></i>
+            返回列表
+          </a>
+        </div>
+      
+      </form>
+      <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</div>
+
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+  var scripts = [ '__PUBLIC_PLUGINS__/autosize/autosize.min.js',
+                  '__PUBLIC_PLUGINS__/bootstrap-maxlength/bootstrap-maxlength.js',
+                  '__PUBLIC_PLUGINS__/jquery-inputlimiter/jquery.inputlimiter.min.js',
+                  '__PUBLIC_PLUGINS__/jquery-select2/js/select2.min.js',
+                  '__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.min.js' ];
+
+  var tagsinput = $ ( '.gzc-bootstrap-tagsinput' );
+  $ ( ajaxPageContentSelector ).ace_ajax ( 'loadScripts', scripts, function () {
+    autosize ( $ ( '.gzc-textarea-autosize' ) );
+    inputMaxLengthUTF8 ( '.gzc-inputlimiter' );
+    oSelect2 ( '.gzc-select2' );
+    tagsinput.tagsinput ( {
+                            confirmKeys: [ 13, 44, 32 ],
+                            delimiter: '&',
+                            trimValue: true
+                          } );
+    tagsinput.on ( 'beforeItemAdd', function ( e ) {
+      if ( /^[a-zA-Z_]\w*=(\w|[\u2E80-\u9FFF])+$/.test ( e.item ) ) {
+        e.cancel = false;
+      } else {
+        e.cancel = true;
+      }
+    } );
+
+    $ ( '.gzc-spinner' ).ace_spinner ( {
+                                         min: 0,
+                                         max: 65535,
+                                         step: 1,
+
+                                         icon_up: 'fa fa-plus',
+                                         icon_down: 'fa fa-minus',
+                                         btn_up_class: 'btn-success',
+                                         btn_down_class: 'btn-danger',
+
+                                         on_sides: true
+                                       } );
+
+    var validator = $ ( '.gzc-form-validate' ).validate ( {
+                                                            rules: {
+                                                              'pid': 'required',
+                                                              'name': {
+                                                                required: true,
+                                                                maxlength: 24
+                                                              },
+                                                              'title': {
+                                                                rangelength: [ 0, 30 ]
+                                                              },
+                                                              'action': {
+                                                                maxlength: 255
+                                                              },
+                                                              'param': {
+                                                                maxlength: 255
+                                                              },
+                                                              'icon': {
+                                                                maxlength: 100
+                                                              },
+                                                              'list_order': {
+                                                                required: true,
+                                                                range: [ 0, 65535 ]
+                                                              },
+                                                              'remark': {
+                                                                maxlength: 255
+                                                              }
+                                                            },
+                                                            messages: {}
+                                                          } );
+
+  } ).one ( 'ajaxloadstart', function () {
+    layer.closeAll ();
+    tagsinput.off ( 'beforItemAdd' );
+  } );
+</script>
