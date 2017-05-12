@@ -14,7 +14,11 @@ use app\common\model\AdminBaseModel;
 class AdminGroupModel extends AdminBaseModel {
 
   public function admins(){
-    return $this->belongsToMany( 'AdminModel', 'admin_group_access','admin_group_id','id');
+    return $this->belongsToMany( 'AdminModel', 'admin_group_access','admin_id','admin_group_id');
+  }
+
+  public function authGroupRules(){
+    return $this->morphMany( 'AuthGroupRuleModel','group','admin');
   }
 
 }

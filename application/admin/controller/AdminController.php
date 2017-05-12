@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\AuthGroupRuleModel;
 use app\common\controller\AdminBaseController;
 use think\Request;
 
@@ -14,6 +15,9 @@ class AdminController extends AdminBaseController {
   /*GET  blog*/
   public
   function index() {
+    $a=new AuthGroupRuleModel();
+    $a->getGroups();
+    dump( 1111);
     return $this->fetch();
   }
 
