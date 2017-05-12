@@ -8,14 +8,10 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
-        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
@@ -57,35 +53,10 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Util\\' => 22,
-            'Symfony\\Polyfill\\Php70\\' => 23,
-            'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Validator\\' => 28,
-            'Symfony\\Component\\Translation\\' => 30,
-            'Symfony\\Component\\Stopwatch\\' => 28,
-            'Symfony\\Component\\Security\\Csrf\\' => 32,
-            'Symfony\\Component\\Security\\Core\\' => 32,
-            'Symfony\\Component\\Routing\\' => 26,
-            'Symfony\\Component\\PropertyAccess\\' => 33,
-            'Symfony\\Component\\OptionsResolver\\' => 34,
-            'Symfony\\Component\\Intl\\' => 23,
-            'Symfony\\Component\\Inflector\\' => 28,
-            'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
-            'Symfony\\Component\\Form\\' => 23,
-            'Symfony\\Component\\Finder\\' => 25,
-            'Symfony\\Component\\Filesystem\\' => 29,
-            'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DomCrawler\\' => 29,
-            'Symfony\\Component\\DependencyInjection\\' => 38,
-            'Symfony\\Component\\Debug\\' => 24,
-            'Symfony\\Component\\Config\\' => 25,
-            'Symfony\\Component\\ClassLoader\\' => 30,
-            'Symfony\\Component\\Cache\\' => 24,
-            'Symfony\\Bundle\\FrameworkBundle\\' => 31,
-            'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
         ),
         'Q' => 
@@ -99,7 +70,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
-            'Psr\\Cache\\' => 10,
             'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\PhpProject\\' => 21,
             'PhpOffice\\PhpPresentation\\' => 26,
@@ -205,18 +175,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'Symfony\\Polyfill\\Util\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
-        ),
-        'Symfony\\Polyfill\\Php70\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
-        ),
-        'Symfony\\Polyfill\\Php56\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -225,101 +183,13 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Validator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/validator',
-        ),
-        'Symfony\\Component\\Translation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/translation',
-        ),
-        'Symfony\\Component\\Stopwatch\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/stopwatch',
-        ),
-        'Symfony\\Component\\Security\\Csrf\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/security-csrf',
-        ),
-        'Symfony\\Component\\Security\\Core\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/security-core',
-        ),
-        'Symfony\\Component\\Routing\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/routing',
-        ),
-        'Symfony\\Component\\PropertyAccess\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/property-access',
-        ),
-        'Symfony\\Component\\OptionsResolver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/options-resolver',
-        ),
-        'Symfony\\Component\\Intl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/intl',
-        ),
-        'Symfony\\Component\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/inflector',
-        ),
-        'Symfony\\Component\\HttpKernel\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/http-kernel',
-        ),
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
         ),
-        'Symfony\\Component\\Form\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/form',
-        ),
-        'Symfony\\Component\\Finder\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/finder',
-        ),
-        'Symfony\\Component\\Filesystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/filesystem',
-        ),
-        'Symfony\\Component\\EventDispatcher\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
-        ),
         'Symfony\\Component\\DomCrawler\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/dom-crawler',
-        ),
-        'Symfony\\Component\\DependencyInjection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/dependency-injection',
-        ),
-        'Symfony\\Component\\Debug\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
-        'Symfony\\Component\\Config\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/config',
-        ),
-        'Symfony\\Component\\ClassLoader\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/class-loader',
-        ),
-        'Symfony\\Component\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/cache',
-        ),
-        'Symfony\\Bundle\\FrameworkBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/framework-bundle',
-        ),
-        'Symfony\\Bridge\\Twig\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/twig-bridge',
         ),
         'Symfony\\Bridge\\PsrHttpMessage\\' => 
         array (
@@ -353,10 +223,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
-        'Psr\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
         'PhpOffice\\PhpWord\\' => 
         array (
@@ -425,13 +291,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
     );
 
     public static $prefixesPsr0 = array (
-        'T' => 
-        array (
-            'Twig_' => 
-            array (
-                0 => __DIR__ . '/..' . '/twig/twig/lib',
-            ),
-        ),
         'S' => 
         array (
             'SecurityLib' => 
@@ -479,27 +338,19 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
     );
 
     public static $classMap = array (
-        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
-        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Callback' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'CallbackBody' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'CallbackParam' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'CallbackParameterToReference' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'CallbackReturnReference' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'CallbackReturnValue' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
-        'Collator' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Collator.php',
         'DOMDocumentWrapper' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'DOMEvent' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
-        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
-        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
         'ICallbackNamed' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
-        'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
-        'Locale' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Locale.php',
-        'NumberFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/NumberFormatter.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
         'PHPMailerOAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauth.php',
         'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
@@ -906,7 +757,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
-        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'PclZip' => __DIR__ . '/..' . '/pclzip/pclzip/pclzip.lib.php',
         'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
@@ -946,7 +796,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
-        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
         'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
         'phpQuery' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'phpQueryEvents' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
