@@ -12,7 +12,7 @@ namespace app\admin\model;
 use app\common\model\AdminBaseModel;
 
 class AuthRuleModel extends AdminBaseModel {
-  public function aa(){
-
+  public function ruleBelongsToGroups(){
+    return $this->hasMany( 'AuthGroupRuleModel','auth_rule_id','id');
   }
 }
