@@ -13,12 +13,12 @@ $( function () {
       ajax: true,
       document: true,
       eventLag: false, // disabled
-      elements: { selectors: [ '.page-content-area' ] }
+      elements: { selectors: [ ".page-content-area[data-ajax-content='true']" ] }
     }
   }
   
   var demo_ajax_options = {
-    default_url: '/admin/index/welcome.html',//default hash
+    default_url: 'admin/index/welcome.html',//default hash
     loading_icon: 'fa fa-spin fa-spinner fa-2x orange',
     loading_text: '',
     loading_overlay: null,
@@ -26,7 +26,7 @@ $( function () {
     update_title: true,
     update_active: true,
     close_active: true,
-    max_load_wait: 3000,
+    max_load_wait: 5,//单位：s
     close_mobile_menu: '#sidebar',
     close_dropdowns: true,
     
@@ -56,11 +56,14 @@ $( function () {
   }
   
   //initiate ajax loading on this element( which is .page-content-area[data-ajax-content=true] in Ace's demo)
-  $( '[data-ajax-content=false]' ).ace_ajax( demo_ajax_options )
+  $( ".page-content-area[data-ajax-content='false']" ).ace_ajax( demo_ajax_options )
+                                                      .one( 'ajaxloadcomplete', function ( e ) {
+                                                        window.$pageContentArea = $( ".page-content-area[data-ajax-content='true']" );
+                                                      } );
   
   //if general error happens and ajax is working, let's stop loading icon & PACE
-  $( window ).on( 'error.ace_ajax', function () {
-    $( '[data-ajax-content=true]' ).each( function () {
+  $( window ).on( 'error.ace_ajax ajaxloaderror ajaxloadlong', function (e) {
+    $( ".page-content-area[data-ajax-content='true']" ).each( function () {
       var $this = $( this );
       if ( $this.ace_ajax( 'working' ) ) {
         if ( window.Pace && Pace.running ) {
@@ -68,12 +71,20 @@ $( function () {
         }
         $this.ace_ajax( 'stopLoading', true );
       }
-    } )
-  } )
+    } );
+    console.log( e.type );
+    layer.open({
+      type:0,
+      icon:5,
+      content:'请求出错，错误类型：'+e.type
+    });
+  } );
 } );
 
 /*自定义函数*/
 (function ( _this, $, undefined ) {
+  /*公共变量*/
+  
   /*输入框字数限制*/
   _this.inputMaxLengthUTF8 = function ( selector, options, callback ) {
     var defaults = {
@@ -201,7 +212,7 @@ $( function () {
     
     return { "btLength": _selectedLen, "btData": _fieldData };
   };
-}( this, jQuery ));
+}( window, jQuery ));
 
 /*nice validator 默认配置项*/
 $( function () {
@@ -464,4 +475,79 @@ $( function () {
       '</div>';
   };
   
-})( this, jQuery );
+})( window, jQuery );
+
+
+/*事件绑定*/
+$(function (  ) {
+  /*url属性：href data-url data-href form(action)*/
+  $(document).on('click.wb','.wb-btn-add-back',function ( e ) {
+    e.preventDefault();
+    var _url=$(this).attr('href') || $(this).data('url') || $(this).data('href') || '';
+    if (_url){
+      $.ajax(_url, {
+        //url:'',
+        type:'get',
+        async:true,
+        data:[],
+        processData:true,
+        dataType:'json',
+        dataFilter:function ( resopnse,dataType ) {
+          return resopnse;
+        },
+        beforeSend:function ( XMLHttpRequest ) {
+        
+        },
+        statusCode:{'404':function (  ) {
+        
+        }},
+        complete:function ( xhr,textStatus ) {
+        
+        },
+        success:function ( response,textStatus,xhr ) {console.log( response);
+          if (response.code===0){
+            var index=layer.open({
+              type:1,//页面层
+              skin: 'layui-layer-lan',
+              scrollbar:false,
+              maxmin:true,
+              resize:true,
+              title:response.data.title,
+              content:response.data.html
+            });
+            layer.full(index);
+          }else {
+            layer.open({
+              type:0,//信息层
+              icon:5,
+              content:'无效响应'
+            });
+          }
+        },
+        error:function ( xhr,textStatus,errorThrow ) {
+          layer.open( {
+            icon:0,
+            type:0,
+            content:'无效请求'
+          });
+        }
+      });
+    }else {
+      layer.alert('无效 URL', { icon: 0 });
+    }
+    
+  });
+  $( document ).on( 'click.wb', '.wb-btn-add', function ( e ) {
+    e.preventDefault();
+    
+    var _url = $( this ).attr( 'href' ) || $( this ).data( 'url' ) || $( this ).data( 'href' ) || '';
+    
+    if (_url){
+      $pageContentArea.ace_ajax( 'loadAddr', _url );
+    }else {
+    
+    }
+    
+    
+  });
+});

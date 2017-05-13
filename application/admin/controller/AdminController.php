@@ -15,9 +15,7 @@ class AdminController extends AdminBaseController {
   /*GET  blog*/
   public
   function index() {
-    $a=new AuthGroupRuleModel();
-    $a->getGroups();
-    dump( 1111);
+
     return $this->fetch();
   }
 
@@ -25,6 +23,7 @@ class AdminController extends AdminBaseController {
   public
   function create() {
     return $this->fetch();
+    //$this->result(['html'=>$html,'title'=>'新增管理员'],0,'','json' );
   }
 
   /*POST  blog*/
@@ -53,4 +52,5 @@ class AdminController extends AdminBaseController {
   public
   function delete() {
   }
+
 }

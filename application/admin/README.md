@@ -64,37 +64,49 @@ class Comment extends Model
 ~~~
 
 +----------------------------------------------------------+
-+   数据表    主键    外键     备注
-+   city     cid             城市表
-+   user     uid    f_cid    用户表
-+   topic    tid    f_uid    话题表
++   数据表     主键    外键            备注
++   city      cid                    城市表
++   user      uid    f_cid           用户表
++   tu_middle tuid   ff_uid,ff_tid   用户和话题中间表
++   topic     tid    f_uid           话题表
 +----------------------------------------------------------+
 一个城市(city)有多个用户(user)
+一个城市(city)有多个话题(topic)
 class City extends Model
 {
     public function user()
     {
         return $this->hasMany('User','f_cid','cid');
     }
-}
-
-一个用户(user)有多个话题(topic)
-class User extends Model
-{
-    public function topic()
-    {
-        return $this->hasMany('Topic','f_uid','uid');
-    }
-}
-
-一个城市(city)有多个话题(topic)
-class City extends Model 
-{
     public function topic()
     {
         return $this->hasManyThrough('Topic','User','f_cid','f_uid','tid');
     }
 }
+
+一个用户(user)属于一个城市(city)
+一个用户(user)有多个话题(topic)
+class User extends Model
+{
+    public function city()
+    {
+        return $this->belongsTo('City','f_cid','cid');
+    }
+    public function topic()
+    {
+        return $this->belongsToMany('Topic','tu_middle','ff_tid','ff_uid');
+    }
+}
+
+一个话题(topic)属于多个用户(user)
+class Topic extends Model
+{
+    public function user()
+    {
+        return $this->belongsToMany('User','tu_middle','ff_uid','ff_tid');
+    }
+}
+
 
 ~~~
 
