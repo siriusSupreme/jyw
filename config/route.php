@@ -20,6 +20,8 @@ return [
 
     '[v1]'=>[
       'user'=>['demo/User/restful']
-    ]
+    ],
+    
+   // 'icesui/assets/:resource'=>['\\icesui\\IcesBuilder@assets',['merge_extra_vars'=>true]]//'\app\admin\controller\IndexController@test'
 
 ];

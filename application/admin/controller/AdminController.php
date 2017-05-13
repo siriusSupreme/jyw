@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use app\admin\model\AuthGroupRuleModel;
 use app\common\controller\AdminBaseController;
+use icesui\FormBuilder;
 use think\Request;
 
 class AdminController extends AdminBaseController {
@@ -22,6 +23,38 @@ class AdminController extends AdminBaseController {
   /*GET  blog/create*/
   public
   function create() {
+//    $formBuilder = new FormBuilder();
+//    //这个是select等的选择内容, 必须是[text => '', value => '']的形式
+//    $options = [
+//      ['text' => "路虎", 'value' => "LuHu", "subtext" => "LH","icon" => "icon-ok", "title" => "路虎揽胜"],
+//      ['text' => "奔驰", 'value' => "BMW", "subtext" => "BMW", "icon" => "icon-user"]
+//    ];
+//    //请使用listUploadFiles来获取到指定的upload默认文件信息
+//    $uploadList = [$formBuilder->listUploadFiles("1", "测试.jpg", "image/jpg", "134000", "134000", "2017-04-16")];
+//    //select的一些附加属性
+//    $selectData = $formBuilder->getSelectData("btn-select", "true");
+//    return $formBuilder
+//      ->addText("动画效果输入框", "input的name", "default的值", "测试tips", "col-xs-6", "readonly")
+//      ->addText1("只有边框效果输入框", "input的name", "default的值", "测试tips", "col-xs-6")
+//      ->addPassword("测试密码", "input的name", "default的值", "测试tips", "col-xs-6")
+//      ->addSelect("单选框测试", "select的name", $options, "default的值", "请选择合适车型", $selectData, "col-xs-6")
+//      ->addSelect("多选框测试", "select的name", $options, "default的值", "请选择合适车型", $selectData, "col-xs-6", "multiple")
+//      ->addLinkSelect("联动select测试", "linkselect", $options, "点击之后默认去那个网址获取信息", "需要触发的那个select的name,如select1", '')//这个方法会发送两个字段, field和value字段到指定网址, 网址的function在下方
+//      ->addSwitch("switch测试", "input的name", "如果希望是打开状态, 只要值不为空或0, 就都是打开状态", "请确认打开", "col-xs-6")
+//      ->addTextarea("输入区域", "textarea的name", "default的值", "测试tips", "col-xs-6")
+//                    ->addDate("测试日期", "input的name", "default的值", "测试tips", "col-xs-6")
+//      ->addDatetime("测试日期时间", "input的name", "default的值", "测试tips", "col-xs-6")
+//      ->addTime("测试时间", "input的name", "default的值", "测试tips", "col-xs-6")
+//      ->addDateRange("测试时间区间", "timerange", ['start的值', 'end的值'], "测试时间区间", "col-xs-6")
+//      ->addStatic("静态文本测试", "static", "静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试静态文本测试")//可以使<<<HTML HTML内容
+//      ->addUpload("上传测试", "upload1", $uploadList)
+//      ->addRadio("Radio测试", "radio", $options, "BMW", '', 'col-xs-6')
+//      ->addCheckBox("CheckBox测试", "checkbox", $options, ['LuHu', "BMW"], '', 'col-xs-6')
+//      ->addUeditor("Ueditor测试", "ueditor", "", "测试tips", "col-xs-6")
+//      ->addTextFormatter("格式化输入框", "fomatter", "¥{{999}},{{999}},{{999}}.{{99}}", "", "测试tips", "col-xs-6")//这个请去看formatter官网
+//      ->addSortable("Sortable测试", "sortable", $options, "BMW", '', 'col-xs-6')//拖动排序
+//      ->getForm("/welcome");//form表单的提交网址, 可以为空, 就是提交到当前网址
+    
     return $this->fetch();
     //$this->result(['html'=>$html,'title'=>'新增管理员'],0,'','json' );
   }

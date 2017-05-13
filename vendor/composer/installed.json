@@ -4097,5 +4097,52 @@
             "mail",
             "mailer"
         ]
+    },
+    {
+        "name": "yirius/icesui",
+        "version": "0.0.1",
+        "version_normalized": "0.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yirius/icesui.git",
+            "reference": "06158fadb4f9a08b2bfdeb0599a3f301d1bdde11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/yirius/icesui/06158fadb4f9a08b2bfdeb0599a3f301d1bdde11.zip",
+            "reference": "06158fadb4f9a08b2bfdeb0599a3f301d1bdde11",
+            "shasum": ""
+        },
+        "require": {
+            "topthink/think-helper": ">=1.0.4",
+            "topthink/think-installer": ">=1.0.10"
+        },
+        "time": "2017-05-12T11:47:18+00:00",
+        "type": "think-extend",
+        "extra": {
+            "think-config": {
+                "icesui": "src/config.php"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "icesui\\": "src"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "yirius",
+                "email": "2951979767@qq.com"
+            }
+        ],
+        "description": "The ThinkPHP5 Admin Ui package"
     }
 ]

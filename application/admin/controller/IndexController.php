@@ -15,4 +15,8 @@ class IndexController extends AdminBaseController {
       $this->assign( 'sssss', config( 'sssss' ) );
       return $this->fetch();
     }
+    
+    public function test(){
+      return 'hello world';
+    }
 }
