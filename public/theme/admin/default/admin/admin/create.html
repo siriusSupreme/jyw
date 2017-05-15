@@ -129,7 +129,7 @@
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
   var scripts = [ '__PUBLIC_PLUGINS__/webuploader/webuploader.min.js' ];
-  $( '.page-content-area' ).ace_ajax( 'loadScripts', scripts, function () {
+  $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
     //inline scripts related to this page
 
     /*WebUploader initialize*/

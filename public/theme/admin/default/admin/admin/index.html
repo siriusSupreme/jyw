@@ -10,26 +10,44 @@
     <!-- PAGE CONTENT BEGINS -->
 
     <!--toolbar-->
-    <div class="btn-group btn-group-mini" id="wb-toolbar">
-      <a href="{:url('admin/Admin/create')}" class="btn btn-primary wb-btn-add" role="button">
-        <i class="ace-icon fa fa-plus"></i>新增
+    <div class="button-group" role="group" id="wb-toolbar">
+      <a href="{:url('admin/Admin/create')}" class="button button-primary button-tiny button-raised wb-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i> 新增
       </a>
-      <a href="{:url('admin/Menu/edit')}" class="btn btn-success wb-btn-edit" role="button">
-        <i class="ace-icon fa fa-edit"></i>编辑
+      <a href="{:url('admin/Admin/edit')}" class="button button-action button-tiny button-raised wb-btn-edit" role="button">
+        <i class="ace-icon fa fa-edit"></i> 编辑
       </a>
-      <a href="{:url('admin/Menu/detail')}" class="btn btn-info wb-btn-detail" role="button">
-        <i class="ace-icon fa fa-info-circle"></i>查看
+      <a href="{:url('admin/Admin/detail')}" class="button button-royal button-tiny button-raised wb-btn-detail" role="button">
+        <i class="ace-icon fa fa-info-circle"></i> 查看
       </a>
-      <a href="{:url('admin/Menu/delete')}" class="btn btn-warning wb-btn-recycle" role="button">
-        <i class="ace-icon fa fa-trash-o"></i>回收站
+      <a href="{:url('admin/Admin/recyclebin')}" class="button button-highlight button-tiny button-raised wb-btn-recyclebin" role="button">
+        <i class="ace-icon fa fa-trash-o"></i> 回收站
       </a>
-      <a href="{:url('admin/Menu/delete')}" class="btn btn-danger wb-btn-delete" role="button">
-        <i class="ace-icon fa fa-trash"></i>删除
+      <a href="{:url('admin/Admin/delete')}" class="button button-caution button-tiny button-raised wb-btn-delete" role="button">
+        <i class="ace-icon fa fa-trash"></i> 删除
       </a>
+      <div class="button-dropdown button-dropdown-primary button-dropdown-tiny" data-buttons="dropdown" role="group">
+        <a class="button button-tiny button-action" role="button">
+          更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </a>
+        <ul class="button-dropdown-list">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <!--toolbar end-->
 
-    <table id="wb-table" data-toolbar="#wb-toolbar">
+    <table id="wb-bootstrap-table" data-toolbar="#wb-toolbar">
 
     </table>
 
@@ -49,14 +67,14 @@
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
   var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.js' ];
-  $( '.page-content-area' ).ace_ajax( 'loadScripts', scripts, function () {
+  $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
     //inline scripts related to this page
 
     /*bootstrap-table initialize*/
-    initBootstrapTable( '#wb-table' );
+    initBootstrapTable( '#wb-bootstrap-table' );
 
   } ).one( 'ajaxloadstart', function () {
-    $( '#wb-table' ).data( 'bootstrap.table' );
+    $( '#wb-bootstrap-table' ).data( 'bootstrap.table' );
   } );
 </script>
 

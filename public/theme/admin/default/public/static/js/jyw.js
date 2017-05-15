@@ -7,7 +7,7 @@ $( function () {
   if ( !$.fn.ace_ajax ) {
     return;
   }
-
+  
   if ( window.Pace ) {
     window.paceOptions = {
       ajax: true,
@@ -16,7 +16,7 @@ $( function () {
       elements: { selectors: [ ".page-content-area[data-ajax-content='true']" ] }
     }
   }
-
+  
   var demo_ajax_options = {
     default_url: 'admin/index/welcome.html',//default hash
     loading_icon: 'fa fa-spin fa-spinner fa-2x orange',
@@ -26,43 +26,51 @@ $( function () {
     update_title: true,
     update_active: true,
     close_active: true,
-    max_load_wait: 5,//单位：s
+    max_load_wait: 10,//单位：s
     close_mobile_menu: '#sidebar',
     close_dropdowns: true,
-
+    
     'content_url': function ( hash ) {
       //***NOTE***
       //this is for Ace demo only, you should change it to return a valid URL
       //please refer to documentation for more info
-
+      
       /*if( !hash.match(/^page\//) ) return false;
        var path = document.location.pathname;*/
-
+      
       //for example in Ace HTML demo version we convert /ajax/index.html#page/gallery to > /ajax/content/gallery.html and load it
       /*if(path.match(/(\/ajax\/)(index\.html)?/))
        return path.replace(/(\/ajax\/)(index\.html)?/, '/ajax/content/'+hash.replace(/^page\//, '')+'.html') ;*/
-
+      
       //for example in Ace PHP demo version we convert "ajax.php#page/dashboard" to "ajax.php?page=dashboard" and load it
       /*return path + "?" + hash.replace(/\//, "=");*/
-
+      
       return hash;
     }
   };
-
+  
   //for IE9 and below we exclude PACE loader (using conditional IE comments)
   //for other browsers we use the following extra ajax loader options
   if ( window.Pace ) {
     demo_ajax_options[ 'loading_overlay' ] = 'body';//the opaque overlay is applied to 'body'
   }
-
+  
+  //1、ajaxloadstart
+  //2、ajaxloaddone
+  //3、ajaxloadpost
+  //4、ajaxloadcomplete
+  //5、ajaxloaderror
+  //6、ajaxloadlong
+  //7、ajaxscriptsloaded
+  
   //initiate ajax loading on this element( which is .page-content-area[data-ajax-content=true] in Ace's demo)
   $( ".page-content-area[data-ajax-content='false']" ).ace_ajax( demo_ajax_options )
-                                                      .one( 'ajaxloadcomplete', function ( e ) {
+                                                      .one( 'ajaxloaddone', function ( e ) {
                                                         window.$pageContentArea = $( ".page-content-area[data-ajax-content='true']" );
                                                       } );
-
+  
   //if general error happens and ajax is working, let's stop loading icon & PACE
-  $( window ).on( 'error.ace_ajax ajaxloaderror ajaxloadlong', function (e) {
+  $( window ).on( 'error.ace_ajax ajaxloaderror ajaxloadlong', function ( e ) {
     $( ".page-content-area[data-ajax-content='true']" ).each( function () {
       var $this = $( this );
       if ( $this.ace_ajax( 'working' ) ) {
@@ -73,18 +81,18 @@ $( function () {
       }
     } );
     console.log( e.type );
-    layer.open({
-      type:0,
-      icon:5,
-      content:'请求出错，错误类型：'+e.type
-    });
+    layer.open( {
+      type: 0,
+      icon: 5,
+      content: '请求出错，错误类型：' + e.type
+    } );
   } );
 } );
 
 /*自定义函数*/
 (function ( _this, $, undefined ) {
   /*公共变量*/
-
+  
   /*输入框字数限制*/
   _this.inputMaxLengthUTF8 = function ( selector, options, callback ) {
     var defaults = {
@@ -119,7 +127,7 @@ $( function () {
     var defaults = {
       boxAttach: false,
       boxId: 'gzc-inputlimiter',
-
+      
       remText: '您还可以输入%n个字符，',
       remTextFilter: function ( opts, charsRemaining ) {
         var remText = opts.remText;
@@ -131,7 +139,7 @@ $( function () {
       },
       remTextHideOnBlur: false,
       remFullText: '输入字符已达上限，',
-
+      
       limitTextShow: true,
       limitText: '最多可输入%n个字符。',
       limitTextFilter: function ( opts ) {
@@ -139,7 +147,7 @@ $( function () {
         limitText     = limitText.replace( /\%n/g, opts.limit );
         return limitText;
       },
-
+      
       limitBy: 'characters',
       lineReturnCount: 1
     };
@@ -171,30 +179,30 @@ $( function () {
       theme: 'default', /*default classic*/
       width: 'resolve'
     };
-
+    
     if ( $.isPlainObject( options ) ) {
       defaults = $.extend( defaults, options );
     }
-
+    
     $( selector ).select2( defaults );
   }
   /*自定义重置表单*/
   _this.resetForm = function () {
-    $( '.gzc-select2' ).trigger( 'change.select2' );
-    $( '.gzc-bootstrap-tagsinput' ).tagsinput( 'removeAll' );
+    $( '.wb-select2' ).trigger( 'change.select2' );
+    $( '.wb-bootstrap-tagsinput' ).tagsinput( 'removeAll' );
   }
-
+  
   /*获取 bootstrapTable 表格中 已选择项的 指定 key 的值*/
   _this.getBootstrapTableField = function ( field, tableId ) {
     /*获取表格*/
-    var _bootstrapTable = $( tableId || '#gzc-bootstrap-table' );
+    var _bootstrapTable = $( tableId || '#wb-bootstrap-table' );
     /*获取表格选择项*/
     var _options     = _bootstrapTable.bootstrapTable( 'getOptions' );
     var _selectedArr = _bootstrapTable.bootstrapTable( 'getSelections' );
     var _selectedLen = _selectedArr.length;
-
+    
     var _fieldData = {};
-
+    
     if ( $.isPlainObject( field ) ) {
       $.each( field, function ( index, item ) {
         var _key = _options[ index ];
@@ -202,15 +210,29 @@ $( function () {
           _fieldData[ _key ] = $.map( _selectedArr, function ( _item, _index ) {
             return _item[ _key ];
           } );
-          if ( item == false ) {/*数组转字符串*/
+          if ( item === false ) {/*数组转字符串*/
             _fieldData[ _key ] = _fieldData[ _key ].join( ',' );
           }
         }
-
+        
       } );
     }
-
+    
     return { "btLength": _selectedLen, "btData": _fieldData };
+  };
+  
+  /*获取 URL 地址*/
+  _this.getUrl = function ( selector ) {
+    /*url属性：href data-url data-href form(action)*/
+    var $selector = $( selector );
+    
+    _url = $selector.attr( 'href' ) || $selector.data( 'url' ) || $selector.data( 'href' ) || '';
+    
+    if ( _url === '' && $selector.parents( 'form' ).get( 0 ) ) {
+      _url = $selector.parents( 'form' ).eq( 0 ).attr( 'action' );
+    }
+    
+    return _url;
   };
 }( window, jQuery ));
 
@@ -252,10 +274,9 @@ $( function () {
   } );
 } );
 
-
 /*bootstrap-table*/
 (function ( _this, $, undefined ) {
-
+  
   /*初始化 bootstrapTable*/
   _this.initBootstrapTable = function ( selector, options ) {
     var defaults   = {
@@ -263,12 +284,12 @@ $( function () {
       classes: 'table table-hover table-condensed',
       striped: true,
       height: undefined,
-
+      
       /*本地数据*/
       data: [],
       dataField: 'rows', /*服务器端分页时返回的数据键名*/
-      totalField:'total', /*服务器端分页时返回的总数键名*/
-
+      totalField: 'total', /*服务器端分页时返回的总数键名*/
+      
       /*表格列*/
       idField: undefined, /*指定主键列*/
       minimumCountColumns: 1,
@@ -279,44 +300,44 @@ $( function () {
          checkbox: false,
          checkboxEnabled: true,
          clickToSelect: true,
-
+         
          列
          field: undefined,
          title: undefined,
          titleTooltip: undefined,
-
+         
          对齐
          align: undefined, // left, right, center
          valign: undefined, // top, middle, bottom
          halign: undefined, // left, right, center
          falign: undefined, // left, right, center
-
+         
          单元格属性
          'class': undefined,
          width: undefined,
          cellStyle: undefined,
-
+         
          排序
          sortable: false,
          order: 'asc', // asc, desc
          sorter: undefined,
          sortName: undefined,
-
+         
          搜索
          searchable: true,
          searchFormatter: true,
-
+         
          显示
          visible: true,
          switchable: true,
          cardVisible: true
-
+         
          格式化
          formatter: undefined,
          footerFormatter: undefined,
          events: undefined,
          }*/ ],
-
+      
       /*表格行*/
       showHeader: true,
       showFooter: false,
@@ -333,7 +354,7 @@ $( function () {
          返回值可以为class或者css */
         return {};
       },
-
+      
       /*排序*/
       sortable: true,
       sortClass: undefined,
@@ -342,7 +363,7 @@ $( function () {
       sortStable: false,
       silentSort: true,
       customSort: $.noop,
-
+      
       /*分页*/
       pagination: true,
       paginationLoop: true,
@@ -359,7 +380,7 @@ $( function () {
       paginationPreText: '&lsaquo;',
       paginationNextText: '&rsaquo;',
       showPaginationSwitch: false,
-
+      
       /*ajax 异步*/
       method: 'get',
       url: undefined,
@@ -379,7 +400,7 @@ $( function () {
       responseHandler: function ( res ) {
         return res;
       },
-
+      
       /*搜索*/
       search: false,
       searchOnEnterKey: false,
@@ -389,18 +410,18 @@ $( function () {
       searchText: '',
       trimOnSearch: true,
       customSearch: $.noop,
-
+      
       /*radio or checkbox*/
       selectItemName: 'btSelectItem',
       clickToSelect: false,
       singleSelect: false,
       checkboxHeader: true,
       maintainSelected: false,
-
+      
       /*自定义工具条*/
       toolbar: undefined,
       toolbarAlign: 'left',
-
+      
       /*内置工具条*/
       showColumns: true,
       showRefresh: true,
@@ -418,19 +439,19 @@ $( function () {
         detailOpen: 'fa-plus',
         detailClose: 'fa-minus'
       },
-
+      
       /*view card*/
       cardView: false,
       detailView: false,
       detailFormatter: function ( index, row ) {
         return index + '===' + row;
       },
-
+      
       /*other*/
       locale: undefined,
       smartDisplay: true,
       escape: false,
-
+      
       undefinedText: '-',
       footerStyle: function ( row, index ) {
         return {};
@@ -443,7 +464,7 @@ $( function () {
     }
     $( selector ).bootstrapTable( defaults );
   };
-
+  
   /*序号索引格式化*/
   _this.squenceIndex = function ( value, row, index ) {
     return index + 1;
@@ -474,87 +495,224 @@ $( function () {
       '<button type="button" class="btn btn-primary dropdown-toggle gzc-custom-action" data-toggle="dropdown">Action <span class="caret no-margin-top"></span> </button>' +
       '</div>';
   };
-
+  
 })( window, jQuery );
 
-
 /*事件绑定*/
-$(function (  ) {
-  /*url属性：href data-url data-href form(action)*/
-  $(document).on('click.wb','.wb-btn-add-back',function ( e ) {
+$( function () {
+  
+  $( document ).on( 'click.wb', '.wb-btn-add-back', function ( e ) {
     e.preventDefault();
-    var _url=$(this).attr('href') || $(this).data('url') || $(this).data('href') || '';
-    if (_url){
-      $.ajax(_url, {
+    var _url = $( this ).attr( 'href' ) || $( this ).data( 'url' ) || $( this ).data( 'href' ) || '';
+    if ( _url ) {
+      $.ajax( _url, {
         //url:'',
-        type:'get',
-        async:true,
-        data:[],
-        processData:true,
-        dataType:'json',
-        dataFilter:function ( resopnse,dataType ) {
+        type: 'get',
+        async: true,
+        data: [],
+        processData: true,
+        dataType: 'json',
+        dataFilter: function ( resopnse, dataType ) {
           return resopnse;
         },
-        beforeSend:function ( XMLHttpRequest ) {
-
+        beforeSend: function ( XMLHttpRequest ) {
+        
         },
-        statusCode:{'404':function (  ) {
-
-        }},
-        complete:function ( xhr,textStatus ) {
-
-        },
-        success:function ( response,textStatus,xhr ) {console.log( response);
-          if (response.code===0){
-            var index=layer.open({
-              type:1,//页面层
-              skin: 'layui-layer-lan',
-              scrollbar:false,
-              maxmin:true,
-              resize:true,
-              title:response.data.title,
-              content:response.data.html
-            });
-            layer.full(index);
-          }else {
-            layer.open({
-              type:0,//信息层
-              icon:5,
-              content:'无效响应'
-            });
+        statusCode: {
+          '404': function () {
+          
           }
         },
-        error:function ( xhr,textStatus,errorThrow ) {
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          console.log( response );
+          if ( response.code === 0 ) {
+            var index = layer.open( {
+              type: 1,//页面层
+              skin: 'layui-layer-lan',
+              scrollbar: false,
+              maxmin: true,
+              resize: true,
+              title: response.data.title,
+              content: response.data.html
+            } );
+            layer.full( index );
+          } else {
+            layer.open( {
+              type: 0,//信息层
+              icon: 5,
+              content: '无效响应'
+            } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
           layer.open( {
-            icon:0,
-            type:0,
-            content:'无效请求'
-          });
+            icon: 0,
+            type: 0,
+            content: '无效请求'
+          } );
         }
-      });
-    }else {
-      layer.alert('无效 URL', { icon: 0 });
+      } );
+    } else {
+      layer.alert( '无效 URL', { icon: 0 } );
     }
-
-  });
+    
+  } );
+  
+  /*新增*/
   $( document ).on( 'click.wb', '.wb-btn-add', function ( e ) {
     e.preventDefault();
-
-    var _url = $( this ).attr( 'href' ) || $( this ).data( 'url' ) || $( this ).data( 'href' ) || '';
-
-    if (_url){
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
       //$pageContentArea.ace_ajax( 'loadAddr', _url );
-      window.location.hash=_url;
+      window.location.hash = _url;
       /*layer.open({
-        type:2,
-        content:_url,
-        maxmin:true,
-        btn:['yes','no']
-                 });*/
-    }else {
-
+       type:2,
+       content:_url,
+       maxmin:true,
+       btn:['yes','no']
+       });*/
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
     }
-
-
-  });
-});
+  } );
+  /*编辑、批量编辑*/
+  $( document ).on( 'click.wb', '.wb-btn-edit', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*查看*/
+  $( document ).on( 'click.wb', '.wb-btn-detail', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  
+  /*放入回收站*/
+  $( document ).on( 'click.wb', '.wb-btn-recyclebin', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*删除*/
+  $( document ).on( 'click.wb', '.wb-btn-delete', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  
+  /*排序*/
+  $( document ).on( 'click.wb', '.wb-btn-sort', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  
+  /*表单提交*/
+  $( document ).on( 'click.wb', '.wb-btn-submit', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*表单重置*/
+  $( document ).on( 'click.wb', '.wb-btn-reset', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*从表单页返回列表页*/
+  $( document ).on( 'click.wb', '.wb-btn-return', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+} );
