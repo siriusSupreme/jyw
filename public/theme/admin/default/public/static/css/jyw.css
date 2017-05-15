@@ -8,6 +8,27 @@
 }
 
 
+/*按钮组样式*/
+.btn {
+    border-radius: 4px;
+}
+.btn-group > .btn:first-child {
+    margin: 0 ;
+}
+.btn-group > .btn, .btn-group > .btn + .btn {
+    margin: 0;
+}
+
+
+/*下拉菜单*/
+.dropdown-menu{
+    min-width: 0;
+}
+
+.btn-group > .btn.btn-sm > .caret{
+    margin-top: 0;
+}
+
 /*WebUploader*/
 .webuploader-pick{
     background: none;

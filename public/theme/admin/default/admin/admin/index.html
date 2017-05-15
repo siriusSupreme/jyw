@@ -10,27 +10,31 @@
     <!-- PAGE CONTENT BEGINS -->
 
     <!--toolbar-->
-    <div class="button-group" role="group" id="wb-toolbar">
-      <a href="{:url('admin/Admin/create')}" class="button button-primary button-tiny button-raised wb-btn-add" role="button">
-        <i class="ace-icon fa fa-plus"></i> 新增
+    <div class="btn-group btn-group-mini" role="group" id="wb-toolbar">
+      <a href="{:url('admin/Admin/create')}" class="btn btn-primary wb-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i>新增
       </a>
-      <a href="{:url('admin/Admin/edit')}" class="button button-action button-tiny button-raised wb-btn-edit" role="button">
-        <i class="ace-icon fa fa-edit"></i> 编辑
+      <a href="{:url('admin/Admin/edit')}" class="btn btn-success wb-btn-edit disabled" role="button">
+        <i class="ace-icon fa fa-edit"></i>编辑
       </a>
-      <a href="{:url('admin/Admin/detail')}" class="button button-royal button-tiny button-raised wb-btn-detail" role="button">
-        <i class="ace-icon fa fa-info-circle"></i> 查看
+      <a href="{:url('admin/Admin/detail')}" class="btn btn-info wb-btn-detail disabled" role="button">
+        <i class="ace-icon fa fa-info-circle"></i>查看
       </a>
-      <a href="{:url('admin/Admin/recyclebin')}" class="button button-highlight button-tiny button-raised wb-btn-recyclebin" role="button">
-        <i class="ace-icon fa fa-trash-o"></i> 回收站
+      <a href="{:url('admin/Admin/recyclebin')}" class="btn btn-warning wb-btn-recyclebin disabled" role="button">
+        <i class="ace-icon fa fa-trash-o"></i>回收站
       </a>
-      <a href="{:url('admin/Admin/delete')}" class="button button-caution button-tiny button-raised wb-btn-delete" role="button">
-        <i class="ace-icon fa fa-trash"></i> 删除
+      <a href="{:url('admin/Admin/delete')}" class="btn btn-danger wb-btn-delete disabled" role="button">
+        <i class="ace-icon fa fa-trash"></i>删除
       </a>
-      <div class="button-dropdown button-dropdown-primary button-dropdown-tiny" data-buttons="dropdown" role="group">
-        <a class="button button-tiny button-action" role="button">
-          更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
-        </a>
-        <ul class="button-dropdown-list">
+      <div class="btn-group btn-group-mini" role="group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+          更多操作<i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-sort wb-btn-order"></i> 排序</a>
+          </li>
+
           <li>
             <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
           </li>
@@ -46,6 +50,30 @@
       </div>
     </div>
     <!--toolbar end-->
+
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+      <div class="panel-footer">
+        Panel footer
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      This is a default alert!
+    </div>
+
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+      <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </div>
 
     <table id="wb-bootstrap-table" data-toolbar="#wb-toolbar">
 

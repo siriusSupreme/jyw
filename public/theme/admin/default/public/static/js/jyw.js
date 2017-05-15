@@ -651,7 +651,55 @@ $( function () {
   } );
   
   /*排序*/
-  $( document ).on( 'click.wb', '.wb-btn-sort', function ( e ) {
+  $( document ).on( 'click.wb', '.wb-btn-order', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*全选*/
+  $( document ).on( 'click.wb', '.wb-btn-checkall', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*取消选择*/
+  $( document ).on( 'click.wb', '.wb-btn-checknone', function ( e ) {
+    e.preventDefault();
+    
+    var _url = getUrl( this );
+    
+    if ( _url ) {
+      window.location.hash = _url;
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*反选*/
+  $( document ).on( 'click.wb', '.wb-btn-checkinvert', function ( e ) {
     e.preventDefault();
     
     var _url = getUrl( this );
@@ -700,7 +748,7 @@ $( function () {
     }
   } );
   /*从表单页返回列表页*/
-  $( document ).on( 'click.wb', '.wb-btn-return', function ( e ) {
+  $( document ).on( 'click.wb', '.wb-btn-back-lists', function ( e ) {
     e.preventDefault();
     
     var _url = getUrl( this );

@@ -50,7 +50,7 @@
     <!--toolbar end-->
 
     <!--toolbar-->
-    <div class="button-group btn-group-mini" role="group" id="wb-toolbar">
+    <div class="button-group btn-group-mini" role="group" id="wb-toolbar--">
       <a href="{:url('admin/Admin/create')}" class="btn btn-primary wb-btn-add" role="button">
         <i class="ace-icon fa fa-plus"></i>新增
       </a>
@@ -71,6 +71,49 @@
           更多操作<i class="ace-icon fa fa-angle-down icon-on-right"></i>
         </button>
         <ul class="dropdown-menu dropdown-danger">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--toolbar end-->
+
+    <!--toolbar-->
+    <div class="button-group" role="group" id="wb-toolbar---">
+      <a href="{:url('admin/Admin/create')}" class="button button-primary button-tiny button-raised wb-btn-add"
+         role="button">
+        <i class="ace-icon fa fa-plus"></i> 新增
+      </a>
+      <a href="{:url('admin/Admin/edit')}" class="button button-action button-tiny button-raised wb-btn-edit disabled"
+         role="button">
+        <i class="ace-icon fa fa-edit"></i> 编辑
+      </a>
+      <a href="{:url('admin/Admin/detail')}" class="button button-royal button-tiny button-raised wb-btn-detail"
+         role="button">
+        <i class="ace-icon fa fa-info-circle"></i> 查看
+      </a>
+      <a href="{:url('admin/Admin/recyclebin')}"
+         class="button button-highlight button-tiny button-raised wb-btn-recyclebin" role="button">
+        <i class="ace-icon fa fa-trash-o"></i> 回收站
+      </a>
+      <a href="{:url('admin/Admin/delete')}" class="button button-caution button-tiny button-raised wb-btn-delete"
+         role="button">
+        <i class="ace-icon fa fa-trash"></i> 删除
+      </a>
+      <div class="button-dropdown button-dropdown-primary button-dropdown-tiny" data-buttons="dropdown" role="group">
+        <a class="button button-tiny button-action" role="button">
+          更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </a>
+        <ul class="button-dropdown-list">
           <li>
             <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
           </li>
