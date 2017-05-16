@@ -54,7 +54,7 @@ class AdminController extends AdminBaseController {
 //      ->addTextFormatter("格式化输入框", "fomatter", "¥{{999}},{{999}},{{999}}.{{99}}", "", "测试tips", "col-xs-6")//这个请去看formatter官网
 //      ->addSortable("Sortable测试", "sortable", $options, "BMW", '', 'col-xs-6')//拖动排序
 //      ->getForm("/welcome");//form表单的提交网址, 可以为空, 就是提交到当前网址
-    
+
     return $this->fetch();
     //$this->result(['html'=>$html,'title'=>'新增管理员'],0,'','json' );
   }
@@ -62,6 +62,7 @@ class AdminController extends AdminBaseController {
   /*POST  blog*/
   public
   function save() {
+    $this->result( input('param.'));
   }
 
   /*GET  blog/:id*/

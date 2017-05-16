@@ -228,18 +228,49 @@ $( function () {
     
     _url = $selector.attr( 'href' ) || $selector.data( 'url' ) || $selector.data( 'href' ) || '';
     
-    if ( _url === '' && $selector.parents( 'form' ).get( 0 ) ) {
-      _url = $selector.parents( 'form' ).eq( 0 ).attr( 'action' );
+    if ( _url === '' && getForm( $selector ) ) {
+      _url = getForm( $selector ).eq( 0 ).attr( 'action' );
     }
     
     return _url;
   };
+  
+  /*获取表单对象*/
+  _this.getForm = function ( selector ) {
+    /*直接获取真实表单对象或者通过点击按钮倒推获取表单对象*/
+    /*直接获取对象*/
+    var $selector = $( selector );
+    /*如果不是表单对象，则是通过按钮点击的*/
+    if ( !$selector.is( 'form' ) ) {
+      if ( $selector.parents( 'form' ).get( 0 ) ) {
+        $selector = $selector.parents( 'form' );
+      } else {
+        $selector = $selector.data( 'form' ) ? $( $selector.data( 'form' ) ) : false;
+      }
+    }
+    
+    return $selector;
+  };
+  
+  /*获取表格对象*/
+  _this.getTable = function ( selector ) {
+    /*直接获取真实表格对象或者通过点击按钮倒推获取表格对象*/
+    /*直接获取对象*/
+    var $selector = $( selector );
+    /*如果不是表格对象，则通过点击按钮获取*/
+    if ( !$selector.is( 'table' ) ) {
+      $selector = $selector.data( 'table' ) ? $( $selector.data( 'table' ) ) : false;
+    }
+    
+    return $selector;
+  };
+  
 }( window, jQuery ));
 
 /*nice validator 默认配置项*/
 $( function () {
   $.validator.config( {
-    debug: 1,
+    debug: 0,
     /*theme:'yellow_right_effect',*/
     timely: 2,
     stopOnError: false,
@@ -592,6 +623,7 @@ $( function () {
     
     if ( _url ) {
       window.location.hash = _url;
+      
     } else {
       layer.open( {
         type: 0,
@@ -715,14 +747,145 @@ $( function () {
     }
   } );
   
-  /*表单提交*/
+  /*表单验证提交*/
+  $( document ).on( 'click.wb', '.wb-btn-validate-submit', function ( e ) {
+    e.preventDefault();
+    
+    var _url  = getUrl( this );
+    var _form = getForm( this );
+    
+    if ( _url && _form ) {
+      _form.ajaxSubmit( {
+        url: _url,
+        type: 'post',
+        dataType: 'json',
+        async: true,
+        data: [],
+        processData: true,
+        /*jquery.form参数 start*/
+        beforeSubmit: function ( data, form, options ) {
+          console.log( data );
+          console.log( form );
+          console.log( options );
+          
+          return form.isValid();
+        },
+        // beforeSerialize:function ( form,options ) {
+        //
+        // },
+        clearForm: true,
+        resetForm: true,
+        //target:'#id.class',
+        //replaceTarget:true,
+        /*jquery.form参数 end*/
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        statusCode: {
+          '404': function () {
+          
+          }
+        },
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          console.log( response );
+          if ( response.code === 0 ) {
+            layer.open( {
+              type: 0,//信息层
+              icon: 6,
+              skin: 'layui-layer-lan',
+              content: response.data.username
+            } );
+          } else {
+            layer.open( {
+              type: 0,//信息层
+              icon: 5,
+              content: '无效响应'
+            } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.open( {
+            icon: 0,
+            type: 0,
+            content: '无效请求'
+          } );
+        }
+      } );
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*表单直接提交*/
   $( document ).on( 'click.wb', '.wb-btn-submit', function ( e ) {
     e.preventDefault();
     
-    var _url = getUrl( this );
+    var _url  = getUrl( this );
+    var _form = getForm( this );
     
-    if ( _url ) {
-      window.location.hash = _url;
+    if ( _url && _form ) {
+      _form.ajaxSubmit( {
+        url: _url,
+        type: 'post',
+        dataType: 'json',
+        async: true,
+        data: [],
+        processData: true,
+        beforeSubmit: function ( data, form, options ) {
+          console.log( data );
+          console.log( form );
+          console.log( options );
+          
+          return form.isValid();
+        },
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        statusCode: {
+          '404': function () {
+          
+          }
+        },
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          console.log( response );
+          if ( response.code === 0 ) {
+            var index = layer.open( {
+              type: 0,//信息层
+              icon: 6,
+              skin: 'layui-layer-lan',
+              content: response.data.username
+            } );
+          } else {
+            layer.open( {
+              type: 0,//信息层
+              icon: 5,
+              content: '无效响应'
+            } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.open( {
+            icon: 0,
+            type: 0,
+            content: '无效请求'
+          } );
+        }
+      } );
     } else {
       layer.open( {
         type: 0,
