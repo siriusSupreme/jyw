@@ -7,7 +7,7 @@
  */
 return [
   // 应用初始化
-  'app_init'     => [ ],
+  'app_init'     => ['app\\api\\behavior\\CORSBehavior'],
   // 应用开始
   'app_begin'    => [],
   // 模块初始化
