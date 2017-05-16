@@ -529,6 +529,19 @@ $( function () {
   
 })( window, jQuery );
 
+/*ajax设置*/
+$(function (  ) {
+  $.ajaxSetup({
+    global:true,
+    traditional:true,
+    statusCode: {
+      '404': function () {
+      
+      }
+    },
+  });
+});
+
 /*事件绑定*/
 $( function () {
   
@@ -549,11 +562,7 @@ $( function () {
         beforeSend: function ( XMLHttpRequest ) {
         
         },
-        statusCode: {
-          '404': function () {
-          
-          }
-        },
+        
         complete: function ( xhr, textStatus ) {
         
         },
@@ -761,6 +770,7 @@ $( function () {
         dataType: 'json',
         async: true,
         data: [],
+        headers:{},
         processData: true,
         /*jquery.form参数 start*/
         beforeSubmit: function ( data, form, options ) {
