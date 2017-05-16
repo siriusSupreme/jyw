@@ -51,7 +51,8 @@
         "qiniu/php-sdk": "^7.1",
         "aliyuncs/oss-sdk-php": "^2.2",
         "liushoukun/dawn-api": "dev-master",
-        "yirius/icesui": "^0.0.1"
+        "yirius/icesui": "^0.0.1",
+        "firebase/php-jwt": "^4.0"
     },
     "extra": {
         "think-path": "thinkphp"
