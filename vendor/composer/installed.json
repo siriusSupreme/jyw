@@ -1017,48 +1017,6 @@
         ]
     },
     {
-        "name": "topthink/think-angular",
-        "version": "1.0.9",
-        "version_normalized": "1.0.9.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/top-think/think-angular.git",
-            "reference": "71c5d575f654b16fe708a22315612ed92cc42dc5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-angular/zipball/71c5d575f654b16fe708a22315612ed92cc42dc5",
-            "reference": "71c5d575f654b16fe708a22315612ed92cc42dc5",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0"
-        },
-        "time": "2016-12-21T04:21:12+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": {
-                "think\\view\\driver\\Angular": "drivers/thinkphp5/Angular.php"
-            },
-            "psr-4": {
-                "think\\angular\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache2"
-        ],
-        "authors": [
-            {
-                "name": "玩具机器人",
-                "email": "zhaishuaigan@qq.com"
-            }
-        ],
-        "description": "think angular view engine",
-        "homepage": "http://kancloud.cn/shuai/php-angular"
-    },
-    {
         "name": "symfony/polyfill-mbstring",
         "version": "v1.3.0",
         "version_normalized": "1.3.0.0",
@@ -3343,58 +3301,6 @@
         ]
     },
     {
-        "name": "overtrue/socialite",
-        "version": "1.0.24",
-        "version_normalized": "1.0.24.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/overtrue/socialite.git",
-            "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/overtrue/socialite/zipball/2040343fd871e6d745a1d2ffb9b353097efffa36",
-            "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": "~5.0|~6.0",
-            "php": ">=5.4.0",
-            "symfony/http-foundation": "~2.6|~2.7|~2.8|~3.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2017-04-08T11:39:52+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Overtrue\\Socialite\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "overtrue",
-                "email": "anzhengchao@gmail.com"
-            }
-        ],
-        "description": "A collection of OAuth 2 packages that extracts from laravel/socialite.",
-        "keywords": [
-            "login",
-            "oauth",
-            "qq",
-            "social",
-            "wechat",
-            "weibo"
-        ]
-    },
-    {
         "name": "topthink/framework",
         "version": "v5.0.8",
         "version_normalized": "5.0.8.0",
@@ -4189,5 +4095,99 @@
         ],
         "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
         "homepage": "https://github.com/firebase/php-jwt"
+    },
+    {
+        "name": "topthink/think-angular",
+        "version": "1.0.10",
+        "version_normalized": "1.0.10.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/think-angular.git",
+            "reference": "7fc77bc951a899428f0a4f910392938e9ee96e5c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/top-think/think-angular/7fc77bc951a899428f0a4f910392938e9ee96e5c.zip",
+            "reference": "7fc77bc951a899428f0a4f910392938e9ee96e5c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2017-05-16T10:56:18+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": {
+                "think\\view\\driver\\Angular": "drivers/thinkphp5/Angular.php"
+            },
+            "psr-4": {
+                "think\\angular\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache2"
+        ],
+        "authors": [
+            {
+                "name": "玩具机器人",
+                "email": "zhaishuaigan@qq.com"
+            }
+        ],
+        "description": "think angular view engine",
+        "homepage": "http://kancloud.cn/shuai/php-angular"
+    },
+    {
+        "name": "overtrue/socialite",
+        "version": "1.0.25",
+        "version_normalized": "1.0.25.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/overtrue/socialite.git",
+            "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/overtrue/socialite/234b3051e7864bc94744c7cfa2a9fb1999a9ca2c.zip",
+            "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~5.0|~6.0",
+            "php": ">=5.4.0",
+            "symfony/http-foundation": "~2.6|~2.7|~2.8|~3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2017-05-16T15:34:16+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Overtrue\\Socialite\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "overtrue",
+                "email": "anzhengchao@gmail.com"
+            }
+        ],
+        "description": "A collection of OAuth 2 packages that extracts from laravel/socialite.",
+        "keywords": [
+            "login",
+            "oauth",
+            "qq",
+            "social",
+            "wechat",
+            "weibo"
+        ]
     }
 ]
