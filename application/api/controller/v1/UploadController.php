@@ -19,6 +19,7 @@ class UploadController extends Controller {
 
   public function upload(){
     $result=Upload::instance( [ 'save_path' => 'avatar' ])->upload();
-    $this->result( $result);
+    //$this->result( $result);
+    var_dump( $result);
   }
 }
