@@ -136,7 +136,7 @@
     var webuploader = WebUploader.create( {
       swf: '__PUBLIC_PLUGINS__/webuploader/Uploader.swf',
       pick: { id: '#wb-webuploader', innerHTML: '上传头像', multiple: false },
-      server: 'dd'
+      server: '{:url("/api/v1/upload/upload")}'
     } ).on( 'fileQueued', function ( file ) {
       /*文件加入队列后*/
       /*生成缩略图*/

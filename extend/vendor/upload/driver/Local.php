@@ -32,7 +32,8 @@ class Local {
   public
   function checkPath( $file ) {
     /* 检测并创建目录 */
-    $dir= $file[ 'root_path' ] . $file[ 'save_path' ];
+    $dir= dirname( $file[ 'root_path' ] . $file[ 'save_path' ] . $file[ 'save_name' ] );
+
     if ( !is_dir( $dir )){
       if (!mkdir( $dir,0666,true)){
         $this->error= "目录 {$dir} 创建失败！";
@@ -56,7 +57,7 @@ class Local {
    */
   public
   function save( $file, $replace = true ) {
-    $filename = $file['root_path'] . $file[ 'save_path' ] . $file[ 'save_name' ];
+    $filename =  $file[ 'root_path' ] . $file[ 'save_path' ]  . $file[ 'save_name' ];
 
     /* 不覆盖同名文件 */
     if ( !$replace && is_file( $filename ) ) {

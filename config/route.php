@@ -16,12 +16,6 @@ return [
     '[hello]'     => [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
-    ],
-
-    '[v1]'=>[
-      'user'=>['demo/User/restful']
-    ],
-    
-   // 'icesui/assets/:resource'=>['\\icesui\\IcesBuilder@assets',['merge_extra_vars'=>true]]//'\app\admin\controller\IndexController@test'
+    ]
 
 ];
