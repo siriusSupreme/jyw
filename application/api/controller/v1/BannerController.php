@@ -10,9 +10,9 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\ApiBaseController;
-use app\api\validate\IDMustBePositiveInt;
-use app\api\model\Banner as BannerModel;
-use app\lib\exception\MissException;
+use app\api\validate\IDMustBePositiveIntValidate;
+use app\api\model\BannerModel;
+use app\api\library\exception\MissException;
 
 /**
  * Banner资源
@@ -33,7 +33,7 @@ class BannerController extends ApiBaseController
      */
     public function getBanner($id)
     {
-        $validate = new IDMustBePositiveInt();
+        $validate = new IDMustBePositiveIntValidate();
         $validate->goCheck();
         $banner = BannerModel::getBannerById($id);
         if (!$banner ) {
