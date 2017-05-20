@@ -13,6 +13,9 @@
 /*a:app c:config  m:module  f:file  d:directory*/
 /*cmf_config->cmf_database->cmd_extra->cmf_app_status->cmf_tags->amf_common->amf_lang->app_path_func->conf_path_route*/
 
+//app_debug
+//class_suffix
+
 return [
 
 // 默认输出类型

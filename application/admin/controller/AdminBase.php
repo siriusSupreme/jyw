@@ -1,8 +1,9 @@
 <?php
 
-namespace app\common\controller;
+namespace app\admin\controller;
 
 
+use app\common\controller\CommonBase;
 use think\App;
 
 class AdminBase extends CommonBase {

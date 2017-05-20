@@ -1,9 +1,8 @@
 <?php
 namespace app\admin\controller;
 
-use app\common\controller\CommonBase;
 
-class Index extends CommonBase {
+class Index extends AdminBase {
 
     public function index() {
 

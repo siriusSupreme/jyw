@@ -1,5 +1,9 @@
 <?php
 
+
+//app_debug
+//class_suffix
+
 return [
   // +----------------------------------------------------------------------
   // | 应用设置
@@ -38,9 +42,9 @@ return [
   // 默认语言
   'default_lang'           => 'zh-cn',
   // 应用类库后缀
-  'class_suffix'           => true,
+  'class_suffix'           => false,
   // 控制器类后缀
-  'controller_suffix'      => true,
+  'controller_suffix'      => false,
 
   // +----------------------------------------------------------------------
   // | 模块设置
