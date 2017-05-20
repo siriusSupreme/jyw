@@ -28,10 +28,6 @@ return [
 'default_filter'         => '',
 // 默认语言
 'default_lang'           => 'zh-cn',
-// 应用类库后缀
-'class_suffix'           => false,
-// 控制器类后缀
-'controller_suffix'      => false,
 // 自动搜索控制器
 'controller_auto_search' => true,
 // pathinfo分隔符
