@@ -8,7 +8,6 @@
 
 namespace app\api\service;
 
-use app\api\model\Image as ImageModel;
 /**
  * 图片服务类
  */

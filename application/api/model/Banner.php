@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class Banner extends ApiBase
 {
     public function items()

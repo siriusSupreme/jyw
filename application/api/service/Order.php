@@ -11,14 +11,13 @@
 namespace app\api\service;
 
 
-use app\api\model\OrderProduct;
-use app\api\model\Product;
-use app\api\model\Order as OrderModel;
-use app\api\model\UserAddress;
 use app\api\library\enum\OrderStatusEnum;
 use app\api\library\exception\OrderException;
 use app\api\library\exception\UserException;
-use think\Db;
+use app\api\model\Order as OrderModel;
+use app\api\model\OrderProduct;
+use app\api\model\Product;
+use app\api\model\UserAddress;
 use think\Exception;
 
 /**

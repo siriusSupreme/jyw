@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class BannerItem extends ApiBase
 {
     protected $hidden = ['id', 'img_id', 'banner_id', 'delete_time'];
@@ -12,5 +10,4 @@ class BannerItem extends ApiBase
     {
         return $this->belongsTo('Image', 'img_id', 'id');
     }
-    //
 }

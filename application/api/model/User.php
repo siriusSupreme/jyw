@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class User extends ApiBase
 {
     protected $autoWriteTimestamp = true;

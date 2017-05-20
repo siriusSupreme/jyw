@@ -11,8 +11,6 @@
 namespace app\api\model;
 
 
-use think\Model;
-
 class ProductImage extends ApiBase
 {
     protected $hidden = ['img_id', 'delete_time', 'product_id'];

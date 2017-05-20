@@ -11,8 +11,7 @@
 namespace app\api\validate;
 
 
-use app\lib\exception\ParameterException;
-use think\Exception;
+use app\api\library\exception\ParameterException;
 
 class OrderPlace extends ApiBase
 {

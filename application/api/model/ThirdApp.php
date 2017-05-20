@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class ThirdApp extends ApiBase
 {
     public static function check($ac, $se)

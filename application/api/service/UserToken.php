@@ -2,10 +2,10 @@
 
 namespace app\api\service;
 
-use app\api\model\User;
 use app\api\library\enum\ScopeEnum;
 use app\api\library\exception\TokenException;
 use app\api\library\exception\WeChatException;
+use app\api\model\User;
 use think\Exception;
 
 /**

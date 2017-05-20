@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class Product extends ApiBase
 {
     protected $autoWriteTimestamp = 'datetime';

@@ -11,9 +11,9 @@
 namespace app\api\service;
 
 
-use app\api\model\Order as OrderModel;
 use app\api\library\exception\OrderException;
 use app\api\library\exception\TokenException;
+use app\api\model\Order as OrderModel;
 use think\Exception;
 use think\Loader;
 use think\Log;

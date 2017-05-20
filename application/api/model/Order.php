@@ -2,8 +2,6 @@
 
 namespace app\api\model;
 
-use think\Model;
-
 class Order extends ApiBase
 {
     protected $hidden = ['user_id', 'delete_time', 'update_time'];

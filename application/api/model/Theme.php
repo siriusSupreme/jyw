@@ -9,9 +9,8 @@
 namespace app\api\model;
 
 
-use app\lib\exception\ProductException;
-use app\lib\exception\ThemeException;
-use think\Model;
+use app\api\library\exception\ProductException;
+use app\api\library\exception\ThemeException;
 
 class Theme extends ApiBase
 {
