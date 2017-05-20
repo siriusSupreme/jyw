@@ -7,7 +7,6 @@
  */
 
 namespace app\api\library\exception;
-use think\Exception;
 
 /**
  * 微信服务器异常
