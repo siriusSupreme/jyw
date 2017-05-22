@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: yunwuxin <448901948@qq.com>　
+// | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 namespace think\migration;
 
@@ -15,6 +15,11 @@ use think\migration\db\Table;
 
 class Migrator extends AbstractMigration
 {
+    /**
+     * @param string $tableName
+     * @param array  $options
+     * @return Table
+     */
     public function table($tableName, $options = [])
     {
         return new Table($tableName, $options, $this->getAdapter());

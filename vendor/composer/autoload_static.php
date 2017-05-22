@@ -15,12 +15,12 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
-        'ddc3cd2a04224f9638c5d0de6a69c7e3' => __DIR__ . '/..' . '/topthink/think-migration/src/config.php',
         '72c97b53391125cae04082a81029f42d' => __DIR__ . '/..' . '/topthink/think-testing/src/config.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         '9e090711773bfc38738f5dbaee5a7f14' => __DIR__ . '/..' . '/overtrue/wechat/src/Payment/helpers.php',
         '2cd73290f8e6fac63cdf82efabea125f' => __DIR__ . '/..' . '/5ini99/think-addons/src/common.php',
         '392748655b1ef40c99aedf52ae92a05d' => __DIR__ . '/..' . '/yirius/icesui/src/helper.php',
+        'ddc3cd2a04224f9638c5d0de6a69c7e3' => __DIR__ . '/..' . '/topthink/think-migration/src/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -150,8 +150,8 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/topthink/think-image/src',
             1 => __DIR__ . '/..' . '/topthink/think-queue/src',
-            2 => __DIR__ . '/../..' . '/thinkphp/library/think',
-            3 => __DIR__ . '/..' . '/5ini99/think-addons/src',
+            2 => __DIR__ . '/..' . '/5ini99/think-addons/src',
+            3 => __DIR__ . '/../..' . '/thinkphp/library/think',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (

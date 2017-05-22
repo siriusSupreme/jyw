@@ -14,7 +14,7 @@ return array(
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
     'think\\angular\\' => array($vendorDir . '/topthink/think-angular/src'),
-    'think\\' => array($vendorDir . '/topthink/think-image/src', $vendorDir . '/topthink/think-queue/src', $baseDir . '/thinkphp/library/think', $vendorDir . '/5ini99/think-addons/src'),
+    'think\\' => array($vendorDir . '/topthink/think-image/src', $vendorDir . '/topthink/think-queue/src', $vendorDir . '/5ini99/think-addons/src', $baseDir . '/thinkphp/library/think'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'icesui\\' => array($vendorDir . '/yirius/icesui/src'),
     'Zend\\Validator\\' => array($vendorDir . '/zendframework/zend-validator/src'),
