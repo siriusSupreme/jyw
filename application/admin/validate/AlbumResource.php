@@ -2,15 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2017/5/17
- * Time: 16:26
+ * Date: 2017/3/28
+ * Time: 11:36
  */
 
 namespace app\admin\validate;
 
 
-use think\Model;
 
-class AdminBase extends Model {
+class AlbumResource extends AdminBase {
 
 }
