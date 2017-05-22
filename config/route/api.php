@@ -8,7 +8,7 @@
  */
 
 // 写完代码后对着路由表看，能否不看注释就知道这个接口的意义
-use think\Route;
+use think\facade\Route;
 
 //Sample
 Route::get('api/:version/sample/:key', 'api/:version.Sample/getSample');
@@ -49,7 +49,7 @@ Route::get('api/:version/product/:id', 'api/:version.Product/getOne',[],['id'=>'
 Route::get('api/:version/product/recent', 'api/:version.Product/getRecent');
 
 //Category
-Route::get('api/:version/category', 'api/:version.Category/getCategories'); 
+Route::get('api/:version/category', 'api/:version.Category/getCategories');
 // 正则匹配区别id和all，注意d后面的+号，没有+号将只能匹配个位数
 //Route::get('api/:version/category/:id', 'api/:version.Category/getCategory',[], ['id'=>'\d+']);
 //Route::get('api/:version/category/:id/products', 'api/:version.Category/getCategory',[], ['id'=>'\d+']);
