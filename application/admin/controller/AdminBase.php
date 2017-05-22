@@ -4,7 +4,6 @@ namespace app\admin\controller;
 
 
 use app\common\controller\CommonBase;
-use think\App;
 
 class AdminBase extends CommonBase {
   protected
@@ -16,7 +15,7 @@ class AdminBase extends CommonBase {
     /*设置模板临时缓存目录*/
     $template[ 'cache_path' ] = TEMP_PATH . $this->module . DS . $this->controller . DS;
     /*设置模板缓存*/
-    if ( !App::$debug ) {
+    if ( !container()->make( 'config')->get('app.app_debug') ) {
       $template[ 'cache_id' ] = md5( $this->module . DS . $this->controller . DS . $this->action );
       $template[ 'display_cache' ] = true;
     }

@@ -9,8 +9,6 @@
 namespace app\common\behavior;
 
 
-use think\Config;
-
 class LoadSystemConfigBehavior {
   /*public function run(&$paramas){
     Config::load( CONFIG_PATH . 'system/config.php' );
@@ -27,11 +25,11 @@ class LoadSystemConfigBehavior {
           $autoFiles = scandir( $autoDir );
           foreach ( $autoFiles as $autoFile ) {
             if ( $autoFile !== '.' && $autoFile !== '..' ) {
-              Config::load( $autoDir . DS . $autoFile, pathinfo( $autoFile, PATHINFO_FILENAME ) );
+              app('config')->load( $autoDir . DS . $autoFile, pathinfo( $autoFile, PATHINFO_FILENAME ) );
             }
           }
         } else {
-          Config::load( $autoDir );
+          app( 'config' )->load( $autoDir );
         }
       }
     }

@@ -9,8 +9,6 @@
 namespace app\common\behavior;
 
 
-use think\Config;
-
 class LoadDefinedConfigBehavior {
   /*public function run(&$paramas){
     Config::load( CONFIG_PATH . 'config.php' );
@@ -22,7 +20,7 @@ class LoadDefinedConfigBehavior {
     $hanler = opendir( $dir );
     while ( false !== ( $file = readdir( $hanler ) ) ) {
       if ( $file !== '.' && $file !== '..' ) {
-        Config::load( $dir . DS . $file, pathinfo( $file, PATHINFO_FILENAME ) );
+        app( 'config' )->load( $dir . DS . $file, pathinfo( $file, PATHINFO_FILENAME ) );
       }
     }
   }
