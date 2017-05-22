@@ -6,6 +6,8 @@
  * Time: 20:56
  */
 
+defined( 'DS') or define( 'DS', DIRECTORY_SEPARATOR);
+
 /*网站根路径*/
 defined( 'ROOT_PATH') or define( 'ROOT_PATH', dirname( realpath( APP_PATH)).DIRECTORY_SEPARATOR);
 
