@@ -1,10 +1,11 @@
 /*!
 * jquery.inputmask.js
-* https://github.com/RobinHerbots/jquery.inputmask
+* https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.5-213
+* Version: 3.3.7-12
 */
+
 !function(factory) {
     "function" == typeof define && define.amd ? define([ "jquery", "./inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("jquery"), require("./inputmask")) : factory(jQuery, window.Inputmask);
 }(function($, Inputmask) {
@@ -48,7 +49,8 @@
             });
         } else {
             if ("object" == typeof fn) return nptmask = new Inputmask(fn), void 0 === fn.mask && void 0 === fn.alias ? this.each(function() {
-                return void 0 !== this.inputmask ? this.inputmask.option(fn) : void nptmask.mask(this);
+                if (void 0 !== this.inputmask) return this.inputmask.option(fn);
+                nptmask.mask(this);
             }) : this.each(function() {
                 nptmask.mask(this);
             });

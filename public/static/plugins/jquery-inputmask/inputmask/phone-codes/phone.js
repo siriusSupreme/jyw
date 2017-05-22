@@ -1,10 +1,11 @@
 /*!
 * phone-codes/phone.js
-* https://github.com/RobinHerbots/jquery.inputmask
+* https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.5-213
+* Version: 3.3.7-12
 */
+
 !function(factory) {
     "function" == typeof define && define.amd ? define([ "../inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
 }(function(Inputmask) {
@@ -1336,6 +1337,13 @@
                 desc_ru: ""
             }, {
                 mask: "+60-##-###-####",
+                cc: "MY",
+                cd: "Malaysia ",
+                desc_en: "mobile",
+                name_ru: "\u041c\u0430\u043b\u0430\u0439\u0437\u0438\u044f ",
+                desc_ru: "\u043c\u043e\u0431\u0438\u043b\u044c\u043d\u044b\u0435"
+            }, {
+                mask: "+60-11-####-####",
                 cc: "MY",
                 cd: "Malaysia ",
                 desc_en: "mobile",
