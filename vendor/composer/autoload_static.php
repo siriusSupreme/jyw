@@ -109,7 +109,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
-            'DawnApi\\' => 8,
         ),
     );
 
@@ -300,27 +299,9 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
-        'DawnApi\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/liushoukun/dawn-api/src',
-        ),
     );
 
     public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'SecurityLib' => 
-            array (
-                0 => __DIR__ . '/..' . '/ircmaxell/security-lib/lib',
-            ),
-        ),
-        'R' => 
-        array (
-            'RandomLib' => 
-            array (
-                0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
-            ),
-        ),
         'P' => 
         array (
             'Prophecy\\' => 

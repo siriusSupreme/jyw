@@ -50,5 +50,4 @@ return array(
     'EasyWeChat\\' => array($vendorDir . '/overtrue/wechat/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
-    'DawnApi\\' => array($vendorDir . '/liushoukun/dawn-api/src'),
 );

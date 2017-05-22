@@ -50,7 +50,6 @@
         "workerman/workerman-for-win": "^3.3",
         "qiniu/php-sdk": "^7.1",
         "aliyuncs/oss-sdk-php": "^2.2",
-        "liushoukun/dawn-api": "dev-master",
         "yirius/icesui": "^0.0.1",
         "firebase/php-jwt": "^4.0"
     },
