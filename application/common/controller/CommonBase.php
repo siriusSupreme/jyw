@@ -9,8 +9,6 @@
 namespace app\common\controller;
 
 use think\Controller;
-use think\facade\Config;
-use think\Response;
 
 class CommonBase extends Controller{
   /*C 风格模块*/
@@ -45,7 +43,7 @@ class CommonBase extends Controller{
     $cache = config( 'cache' );
     $cache[ 'default' ][ 'cache_subdir' ] = false;
     $cache[ 'default' ][ 'prefix' ] = $this->module . DS . $this->controller;
-    $cache[ 'default' ][ 'data_compress' ] = Config::get('app.app_debug');
+    $cache[ 'default' ][ 'data_compress' ] = config('app.app_debug');
     /*设置缓存*/
     config( 'cache', $cache );
 
@@ -62,36 +60,6 @@ class CommonBase extends Controller{
 
   }
 
-  protected
-  function ajaxReturn( $code, $msg, $data, $type = 'json' ) {
-    $result = [
-      'code' => $code,
-      'msg'  => $msg,
-      'data' => $data
-    ];
-
-    switch ( strtolower( $type ) ) {
-      case 'json': {
-        $result = Response::create( $result, 'json' );
-        break;
-      }
-      case 'jsonp': {
-        $result = Response::create( $result, 'jsonp' );
-        break;
-      }
-      case 'xml': {
-        $result = Response::create( $result, 'xml' );
-        break;
-      }
-      case 'array':
-      default: {
-        $result = Response::create( $result, 'json' );
-        break;
-      }
-    }
-
-    return $result;
-  }
 
   protected
   function fetch( $template = '', $vars = [], $replace = [], $config = [] ) {

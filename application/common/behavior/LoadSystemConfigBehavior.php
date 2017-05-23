@@ -29,7 +29,7 @@ class LoadSystemConfigBehavior {
             }
           }
         } else {
-          app( 'config' )->load( $autoDir );
+          app( 'config' )->load( $autoDir, pathinfo( $autoDir, PATHINFO_FILENAME ) );
         }
       }
     }
