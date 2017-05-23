@@ -32,20 +32,20 @@ class CommonBase extends Controller{
     $this->action = parse_name( $this->request->action() );
 
     /*设置并获取资源前缀*/
-    if ( !config( '?resource_prefix' ) ) {
+    if ( !config( '?base.resource_prefix' ) ) {
       $this->resourcePrefix = preg_match( '#public/?$#', input( 'server.document_root' ) ) ? '/' : '/public/';
-      config( 'resource_prefix', $this->resourcePrefix );
+      config( 'base.resource_prefix', $this->resourcePrefix );
     }
-    $this->resourcePrefix = config( 'resource_prefix' );
+    $this->resourcePrefix = config( 'base.resource_prefix' );
 
 
     /*获取缓存设置*/
-    $cache = config( 'cache' );
+    $cache = config( 'cache.' );
     $cache[ 'default' ][ 'cache_subdir' ] = false;
     $cache[ 'default' ][ 'prefix' ] = $this->module . DS . $this->controller;
-    $cache[ 'default' ][ 'data_compress' ] = config('app.app_debug');
+    $cache[ 'default' ][ 'data_compress' ] = !$this->app->isDebug();
     /*设置缓存*/
-    config( 'cache', $cache );
+    config(  $cache,'cache' );
 
     /*获取模板替换字符串*/
     $this->viewReplaceStr = [

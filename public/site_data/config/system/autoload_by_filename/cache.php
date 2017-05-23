@@ -9,6 +9,8 @@ return [
   'type'    => 'complex',
   'default' => [// 驱动方式
                 'type'   => 'File',
+                'cache_subdir'=>false,
+                'data_compress'=>false,
                 // 缓存保存目录
                 'path'   => CACHE_PATH,
                 // 缓存前缀
