@@ -9,7 +9,7 @@
 namespace app\common\behavior;
 
 
-class LoadSystemConfigBehavior {
+class LoadSystemConfig {
   /*public function run(&$paramas){
     Config::load( CONFIG_PATH . 'system/config.php' );
   }*/

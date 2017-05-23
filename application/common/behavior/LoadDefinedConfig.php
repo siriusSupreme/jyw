@@ -9,7 +9,7 @@
 namespace app\common\behavior;
 
 
-class LoadDefinedConfigBehavior {
+class LoadDefinedConfig {
   /*public function run(&$paramas){
     Config::load( CONFIG_PATH . 'config.php' );
   }*/
