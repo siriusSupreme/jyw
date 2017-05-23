@@ -2,14 +2,13 @@
 
 namespace app\api\controller\v1;
 
+use app\api\library\exception\SuccessMessage;
+use app\api\library\exception\ThemeException;
 use app\api\model\Theme as ThemeModel;
 use app\api\validate\IDCollection;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\ThemeProduct;
-use app\lib\exception\SuccessMessage;
-use app\lib\exception\ThemeException;
 use think\Controller;
-use think\Exception;
 
 /**
  * 主题推荐,主题指首页里多个聚合在一起的商品

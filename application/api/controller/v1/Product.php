@@ -8,22 +8,21 @@
 
 namespace app\api\controller\v1;
 
+use app\api\library\exception\ParameterException;
+use app\api\library\exception\ProductException;
+use app\api\library\exception\ThemeException;
 use app\api\model\Product as ProductModel;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\PagingParameter;
-use app\lib\exception\ParameterException;
-use app\lib\exception\ProductException;
-use app\lib\exception\ThemeException;
 use think\Controller;
-use think\Exception;
 
 class Product extends Controller
 {
     protected $beforeActionList = [
         'checkSuperScope' => ['only' => 'createOne,deleteOne']
     ];
-    
+
     /**
      * 根据类目ID获取该类目下所有商品(分页）
      * @url /product?id=:category_id&page=:page&size=:page_size

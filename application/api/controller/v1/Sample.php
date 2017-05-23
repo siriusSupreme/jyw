@@ -1,12 +1,11 @@
 <?php
 namespace app\api\controller\v1;
 
+use app\api\library\exception\MissException;
 use app\api\model\Auth;
-use app\api\model\Product;
-use app\api\validate\SampleGet;
-use app\lib\exception\MissException;
-use think\Controller;
 use app\api\service\Sample as SampleService;
+use app\api\validate\SampleGet;
+use think\Controller;
 use think\Request;
 
 /*

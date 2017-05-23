@@ -14,7 +14,6 @@ use app\api\controller\ApiBase;
 use app\api\service\Pay as PayService;
 use app\api\service\WxNotify;
 use app\api\validate\IDMustBePositiveInt;
-use think\Controller;
 
 class Pay extends ApiBase
 {

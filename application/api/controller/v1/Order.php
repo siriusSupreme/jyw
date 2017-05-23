@@ -11,15 +11,14 @@
 namespace app\api\controller\v1;
 
 use app\api\controller\ApiBase;
+use app\api\library\exception\OrderException;
+use app\api\library\exception\SuccessMessage;
 use app\api\model\Order as OrderModel;
 use app\api\service\Order as OrderService;
 use app\api\service\Token;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\OrderPlace;
 use app\api\validate\PagingParameter;
-use app\lib\exception\OrderException;
-use app\lib\exception\SuccessMessage;
-use think\Controller;
 
 class Order extends ApiBase
 {

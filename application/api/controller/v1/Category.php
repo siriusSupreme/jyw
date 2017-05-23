@@ -12,10 +12,9 @@ namespace app\api\controller\v1;
 
 
 use app\api\controller\ApiBase;
+use app\api\library\exception\MissException;
 use app\api\model\Category as CategoryModel;
 use app\api\validate\IDMustBePositiveInt;
-use app\lib\exception\MissException;
-use think\Controller;
 
 class Category extends ApiBase
 {

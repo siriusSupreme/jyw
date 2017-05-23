@@ -7,7 +7,7 @@
  */
 
 namespace app\api\controller\v1;
-use app\lib\exception\MissException;
+use app\api\library\exception\MissException;
 
 use think\Controller;
 
