@@ -48,7 +48,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'W' => 
         array (
             'Workerman\\' => 10,
-            'Wechat\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
@@ -170,10 +169,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/workerman/workerman-for-win',
             1 => __DIR__ . '/..' . '/workerman/workerman',
-        ),
-        'Wechat\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-php-sdk/Wechat',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -320,17 +315,6 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
             'PHPExcel' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
-            ),
-        ),
-        'C' => 
-        array (
-            'Commando' => 
-            array (
-                0 => __DIR__ . '/..' . '/nategood/commando/src',
-            ),
-            'Colors' => 
-            array (
-                0 => __DIR__ . '/..' . '/kevinlebrun/colors.php/src',
             ),
         ),
     );

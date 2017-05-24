@@ -10,6 +10,4 @@ return array(
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'PHPProject' => array($vendorDir . '/phpoffice/phpproject/src'),
     'PHPExcel' => array($vendorDir . '/phpoffice/phpexcel/Classes'),
-    'Commando' => array($vendorDir . '/nategood/commando/src'),
-    'Colors' => array($vendorDir . '/kevinlebrun/colors.php/src'),
 );
