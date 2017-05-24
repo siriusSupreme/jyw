@@ -1,4 +1,4 @@
-ThinkPHP 5.0
+ThinkPHP 5.1
 ===============
 
 [![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
@@ -36,6 +36,14 @@ ThinkPHP5在保持快速开发和大道至简的核心理念不变的同时，PH
 
 ~~~
 www  WEB部署目录（或者子目录）
+├─addons
+│  ├─plugin_name        插件目录
+│  │  ├─config.php      插件配置文件
+│  │  ├─common.php      插件函数文件
+│  │  ├─controller      控制器目录
+│  │  ├─model           模型目录
+│  │  ├─view            视图目录
+│  │  └─ ...            更多类库目录
 ├─application           应用目录
 │  ├─common             公共模块目录（可以更改）
 │  ├─module_name        模块目录
