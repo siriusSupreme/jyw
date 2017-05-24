@@ -547,15 +547,6 @@
 							</li>
 
 							<li class="">
-								<a href="typography.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Typography
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
 								<a href="elements.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Elements
@@ -564,50 +555,6 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="buttons.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Buttons &amp; Icons
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="content-slider.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Content Sliders
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="treeview.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Treeview
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="jquery-ui.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jQuery UI
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="nestable-list.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Nestable Lists
-								</a>
-
-								<b class="arrow"></b>
-							</li>
 
 							<li class="">
 								<a href="#" class="dropdown-toggle">
@@ -667,7 +614,7 @@
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> 管理员 </span>
+							<span class="menu-text"> 后台菜单 </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -676,18 +623,18 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="{:url('admin/admin/index')}">
+								<a href="#{:url('admin/AdminMenu/index')}" data-url="{:url('admin/AdminMenu/index')}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									管理员列表
+									菜单列表
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
 							<li class="">
-								<a href="{:url('admin/admin/create')}">
+								<a href="#{:url('admin/AdminMenu/create')}" data-url="{:url('admin/AdminMenu/create')}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									添加管理员
+									添加菜单
 								</a>
 
 								<b class="arrow"></b>
@@ -719,6 +666,38 @@
 								<a href="#{:url('admin/Admin/create')}" data-url="{:url('admin/Admin/create')}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									添加管理员
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="#{:url('admin/AdminGroup/index')}" data-url="{:url('admin/AdminGroup/index')}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									管理员组列表
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="#{:url('admin/AdminGroup/create')}" data-url="{:url('admin/AdminGroup/create')}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									添加管理员组
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="#{:url('admin/AuthRule/index')}" data-url="{:url('admin/AuthRule/index')}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									权限规则列表
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="#{:url('admin/AuthRule/create')}" data-url="{:url('admin/AuthRule/create')}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									添加权限规则
 								</a>
 
 								<b class="arrow"></b>

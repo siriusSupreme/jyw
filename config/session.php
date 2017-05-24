@@ -18,4 +18,5 @@ return [
   'auto_start'     => true,
   'httponly'       => true,
   'secure'         => false,
+  'use_trans_sid'=>true
 ];
