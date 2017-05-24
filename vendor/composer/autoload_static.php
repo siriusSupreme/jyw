@@ -58,6 +58,8 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
+            'SocialConnect\\Common\\' => 21,
+            'SocialConnect\\' => 14,
         ),
         'Q' => 
         array (
@@ -196,6 +198,14 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'Symfony\\Bridge\\PsrHttpMessage\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
+        ),
+        'SocialConnect\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialconnect/common/src',
+        ),
+        'SocialConnect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialconnect/auth/src',
         ),
         'Qiniu\\' => 
         array (

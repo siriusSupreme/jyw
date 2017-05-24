@@ -3994,5 +3994,122 @@
         "keywords": [
             "diff"
         ]
+    },
+    {
+        "name": "socialconnect/common",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/SocialConnect/common.git",
+            "reference": "0383fea78d121409fc4ab8ff871ef57cb661a826"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/SocialConnect/common/0383fea78d121409fc4ab8ff871ef57cb661a826.zip",
+            "reference": "0383fea78d121409fc4ab8ff871ef57cb661a826",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "doctrine/cache": "^1.5.1",
+            "ext-curl": "*",
+            "guzzlehttp/guzzle": "^5.3|^6.0",
+            "phpunit/phpunit": "^4.2",
+            "squizlabs/php_codesniffer": "^2.8"
+        },
+        "suggest": {
+            "ext-curl": "Allows to use Http\\Client\\Curl",
+            "guzzlehttp/guzzle": "Allows to use Http\\Client\\Guzzle, require guzzlehttp/guzzle:~5.3|~6.0."
+        },
+        "time": "2017-03-25T15:41:32+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SocialConnect\\Common\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Patsura",
+                "email": "talk@dmtry.me"
+            }
+        ],
+        "description": "Common component"
+    },
+    {
+        "name": "socialconnect/auth",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/SocialConnect/auth.git",
+            "reference": "59cb71665bf359f6acbcbd530844af4e862aac0c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/SocialConnect/auth/59cb71665bf359f6acbcbd530844af4e862aac0c.zip",
+            "reference": "59cb71665bf359f6acbcbd530844af4e862aac0c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "php": ">=5.5",
+            "socialconnect/common": "^1.0"
+        },
+        "replace": {
+            "socialconnect/oauth1": "self.version",
+            "socialconnect/oauth2": "self.version",
+            "socialconnect/openid": "self.version",
+            "socialconnect/openid-connect": "self.version",
+            "socialconnect/provider": "self.version"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.8.34",
+            "squizlabs/php_codesniffer": "~2.8.0"
+        },
+        "time": "2017-05-16T12:23:26+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SocialConnect\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dmitry Patsura",
+                "email": "talk@dmtry.me"
+            }
+        ],
+        "description": "Social Connect Auth Component",
+        "keywords": [
+            "amazon",
+            "auth",
+            "bitbucket",
+            "facebook",
+            "github",
+            "gitlab",
+            "google",
+            "login",
+            "oauth",
+            "slack",
+            "socialconnect",
+            "twitch",
+            "twitter",
+            "vk"
+        ]
     }
 ]

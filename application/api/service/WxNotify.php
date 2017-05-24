@@ -12,7 +12,6 @@ namespace app\api\service;
 
 
 use app\api\library\enum\OrderStatusEnum;
-use app\api\library\order\OrderStatus;
 use app\api\model\Order;
 use app\api\model\Product;
 use app\api\service\Order as OrderService;

@@ -27,6 +27,8 @@ return array(
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
     'Symfony\\Component\\DomCrawler\\' => array($vendorDir . '/symfony/dom-crawler'),
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
+    'SocialConnect\\Common\\' => array($vendorDir . '/socialconnect/common/src'),
+    'SocialConnect\\' => array($vendorDir . '/socialconnect/auth/src'),
     'Qiniu\\' => array($vendorDir . '/qiniu/php-sdk/src/Qiniu'),
     'QL\\Ext\\Lib\\' => array($vendorDir . '/jaeger/curlmulti', $vendorDir . '/jaeger/http'),
     'QL\\Ext\\' => array($vendorDir . '/jaeger/querylist-ext-aquery', $vendorDir . '/jaeger/querylist-ext-multi', $vendorDir . '/jaeger/querylist-ext-request', $vendorDir . '/jaeger/querylist-ext-login', $vendorDir . '/jaeger/querylist-ext-dimage'),
