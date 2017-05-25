@@ -2,12 +2,14 @@
 
 namespace builder;
 
+use think\Controller;
+
 
 /**
  * 表单页面自动生成器
  * @author jyw <guoplc@163.com>
  */
-class FormBuilder
+class FormBuilder extends Controller
 {
     private $_meta_title; // 页面标题
     private $_tab_nav = array(); // 页面Tab导航
@@ -25,9 +27,9 @@ class FormBuilder
      * @return $this
      * @author jyw <guoplc@163.com>
      */
-    protected function _initialize()
+    protected function _initialize($endpoint='admin')
     {
-        $this->_template = APP_PATH . 'Common/Builder/Layout/' . MODULE_MARK . '/form.html';
+        $this->_template = __DIR__ . '/layout/' . $endpoint . '/form.html';
     }
 
     /**
@@ -81,13 +83,14 @@ class FormBuilder
 
     /**
      * 加入一个表单项
+     * @param $name 表单名
      * @param $type 表单类型(取值参考系统配置FORM_ITEM_TYPE)
      * @param $title 表单标题
      * @param $tip 表单提示说明
-     * @param $name 表单名
      * @param $options 表单options
      * @param $extra 额外自定义项目
      * @param $extra_attr 表单项额外属性
+     *
      * @return $this
      * @author jyw <guoplc@163.com>
      */
@@ -172,6 +175,14 @@ class FormBuilder
 
     /**
      * 显示页面
+     *
+     * @param string $template     指定要调用的模板文件
+     *                             默认为空 由系统自动定位模板文件
+     * @param string $charset      输出编码
+     * @param string $contentType  输出类型
+     * @param string $content      输出内容
+     * @param string $prefix       模板缓存前缀
+     *
      * @author jyw <guoplc@163.com>
      */
     public function display($template = '', $charset = '', $contentType = '', $content = '', $prefix = '')
@@ -193,12 +204,11 @@ class FormBuilder
         $this->assign('post_url', $this->_post_url); //标题提交地址
         $this->assign('form_items', $this->_form_items); //表单项目
         $this->assign('form_data', $this->_form_data); //表单项目默认值
-        $this->assign('ajax_submit', $this->_ajax_submit); //额外HTML代码
+        $this->assign('ajax_submit', $this->_ajax_submit); //是否ajax提交
         $this->assign('submit_title', $this->_submit_title); //确定按钮文本自定义
-        $this->assign('extra_html', $this->_extra_html); //是否ajax提交
+        $this->assign('extra_html', $this->_extra_html); //额外HTML代码
 
         // 显示页面
-        $template = CONTROLLER_NAME . '/' . ACTION_NAME;
         if (is_file($this->view->parseTemplate($template))) {
             parent::display();
         } else {

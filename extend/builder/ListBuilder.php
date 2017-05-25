@@ -2,12 +2,14 @@
 
 namespace builder;
 
+use think\Controller;
+
 
 /**
  * 数据列表自动生成器
  * @author jyw <guoplc@163.com>
  */
-class ListBuilder
+class ListBuilder extends Controller
 {
     private $_meta_title; // 页面标题
     private $_top_button_list     = array(); // 顶部工具栏按钮组
@@ -27,9 +29,9 @@ class ListBuilder
      * @return $this
      * @author jyw <guoplc@163.com>
      */
-    protected function _initialize()
+    protected function _initialize($endpoint='admin')
     {
-        $this->_template = APP_PATH . 'Common/Builder/Layout/' . MODULE_MARK . '/list.html';
+        $this->_template = __DIR__ . '/layout/' . $endpoint . '/list.html';
     }
 
     /**
@@ -61,7 +63,7 @@ class ListBuilder
                 // 预定义按钮属性以简化使用
                 $my_attribute['title'] = '新增';
                 $my_attribute['class'] = 'btn btn-primary-outline btn-pill';
-                $my_attribute['href']  = U(MODULE_NAME . '/' . CONTROLLER_NAME . '/add');
+                $my_attribute['href']  = url(MODULE_NAME . '/' . CONTROLLER_NAME . '/add');
 
                 /**
                  * 如果定义了属性数组则与默认的进行合并
