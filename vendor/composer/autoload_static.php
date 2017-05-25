@@ -76,6 +76,7 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
             'PhpOffice\\PhpPresentation\\' => 26,
             'PhpOffice\\Common\\' => 17,
             'Phinx\\' => 6,
+            'Payment\\' => 8,
         ),
         'O' => 
         array (
@@ -92,6 +93,7 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'Grafika\\' => 8,
         ),
         'F' => 
         array (
@@ -251,6 +253,10 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         array (
             0 => __DIR__ . '/..' . '/topthink/think-migration/phinx/src/Phinx',
         ),
+        'Payment\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/riverslei/payment/src',
+        ),
         'Overtrue\\Socialite\\' => 
         array (
             0 => __DIR__ . '/..' . '/overtrue/socialite/src',
@@ -278,6 +284,10 @@ class ComposerStaticInit08f08a214235bbf8440d122b7496afbb
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Grafika\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kosinix/grafika/src/Grafika',
         ),
         'Firebase\\JWT\\' => 
         array (

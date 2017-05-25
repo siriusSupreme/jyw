@@ -3940,5 +3940,102 @@
                 "email": "448901948@qq.com"
             }
         ]
+    },
+    {
+        "name": "riverslei/payment",
+        "version": "v3.1.0",
+        "version_normalized": "3.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/helei112g/payment.git",
+            "reference": "31dab9a45971eab4a48cafb9925dec36c8ed88cf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/helei112g/payment/31dab9a45971eab4a48cafb9925dec36c8ed88cf.zip",
+            "reference": "31dab9a45971eab4a48cafb9925dec36c8ed88cf",
+            "shasum": ""
+        },
+        "require": {
+            "ext-bcmath": "*",
+            "ext-mbstring": "*",
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "endroid/qrcode": "~1.9"
+        },
+        "time": "2017-04-30T11:24:48+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Payment\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "helei",
+                "email": "dayugog@gmail.com",
+                "homepage": "https://helei112g.github.io/categories/payment-3/"
+            }
+        ],
+        "description": "支付宝支付、微信支付、招商一网通支付php SDK。方便快速接入，最完整的开源支付 php sdk",
+        "homepage": "https://helei112g.github.io/categories/payment-3/",
+        "keywords": [
+            "alipay",
+            "weixin",
+            "一网通",
+            "微信支付",
+            "招商一网通",
+            "支付宝支付",
+            "集成支付接口SDK"
+        ]
+    },
+    {
+        "name": "kosinix/grafika",
+        "version": "2.0.4",
+        "version_normalized": "2.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kosinix/grafika.git",
+            "reference": "d45761f77976b77ee4c9dc967c80159ca4e24e8e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/kosinix/grafika/d45761f77976b77ee4c9dc967c80159ca4e24e8e.zip",
+            "reference": "d45761f77976b77ee4c9dc967c80159ca4e24e8e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2017-02-09T07:39:54+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Grafika\\": "src/Grafika"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT",
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Nico Amarilla",
+                "homepage": "https://www.kosinix.com"
+            }
+        ],
+        "description": "An image manipulation library for PHP.",
+        "homepage": "http://kosinix.github.io/grafika",
+        "keywords": [
+            "grafika"
+        ]
     }
 ]

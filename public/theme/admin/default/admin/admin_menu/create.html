@@ -64,7 +64,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 链接目标：</label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span> 链接目标：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
           <label class="margin-sm-right">
             <input type="radio" name="target" class="ace ace-checkbox-2" value="0" data-rule="checked" />
@@ -88,9 +88,9 @@
       </div>
 
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 排序：</label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span> 排序：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
-          <input type="text" placeholder="a=2&b=3,4,5&c=6" name="params" data-tip="URL后缀参数，如a=2&b=3,4,5&c=6"
+          <input type="text" placeholder="数字越大越靠前" name="list_order" data-rule="required" data-tip="数字越大越靠前，且必须是正整数"
                  class="form-control input-sm">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
@@ -100,9 +100,47 @@
         <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 是否验证：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
           <label>
-            <input type="checkbox" name="is_need_check" class="ace ace-switch btn-rotate" />
+            <input type="checkbox" name="is_need_check" class="ace ace-switch ace-switch-7" />
             <span class="lbl"></span>
           </label>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 是否显示：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label>
+            <input type="checkbox" name="status" class="wb-switch ace ace-switch ace-switch-5" />
+            <span class="lbl" data-lbl="显示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏"></span>
+          </label>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          菜单位置：
+        </label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label class="margin-sm-right">
+            <input type="checkbox" name="position[]" class="ace" value="0" data-rule="checked" />
+            <span class="lbl padding-8">主菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="checkbox" name="position[]" class="ace" value="1" />
+            <span class="lbl padding-8">子菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="checkbox" name="position[]" class="ace" value="2" />
+            <span class="lbl padding-8">表格菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="checkbox" name="position[]" class="ace" value="3" />
+            <span class="lbl padding-8">表格行级菜单</span>
+          </label>
+
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
       </div>
