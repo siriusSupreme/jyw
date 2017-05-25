@@ -9,12 +9,12 @@
 // | Author: Byron Sampson <xiaobo.sun@qq.com>
 // +----------------------------------------------------------------------
 
-use think\App;
-use think\Hook;
-use think\Config;
+use think\facade\App;
+use think\facade\Hook;
+use think\facade\Config;
 use think\Loader;
-use think\Cache;
-use think\Route;
+use think\facade\Cache;
+use think\facade\Route;
 
 // 插件目录
 define( 'ADDON_PATH', __DIR__ . '/addons' . DIRECTORY_SEPARATOR );
