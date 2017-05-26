@@ -9,6 +9,10 @@
 namespace app\admin\validate;
 
 
-class AdminMenu {
-
+class AdminMenu extends AdminBase {
+  protected $rule=[
+    'pid'=>'require'
+  ];
+  protected $message=[];
+  protected $scene=[];
 }

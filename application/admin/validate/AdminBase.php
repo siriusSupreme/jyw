@@ -9,8 +9,10 @@
 namespace app\admin\validate;
 
 
-use think\Model;
+use think\Validate;
 
-class AdminBase extends Model {
+class AdminBase extends Validate {
+  public function goCheck(){
 
+  }
 }
