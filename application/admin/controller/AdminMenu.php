@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use think\facade\Request;
+use app\admin\model\AdminMenu as AdminMenuModel;
 
 class AdminMenu extends AdminBase {
   protected
@@ -39,7 +40,9 @@ class AdminMenu extends AdminBase {
    */
   public
   function save( Request $request ) {
-    //
+    $result=AdminMenuModel::create(input('post.'));
+
+    dump($result);die();
   }
 
   /**

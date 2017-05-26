@@ -11,7 +11,9 @@ namespace app\admin\validate;
 
 class AdminMenu extends AdminBase {
   protected $rule=[
-    'pid'=>'require'
+    'pid'=>'require|isPositiveInteger',
+    'name'=>'require',
+
   ];
   protected $message=[];
   protected $scene=[];

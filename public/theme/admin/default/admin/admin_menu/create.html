@@ -34,7 +34,8 @@
       <div class="form-group">
         <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 菜单提示：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
-          <input type="text" placeholder="鼠标悬浮在菜单项上时的提示语" name="title" data-tip="鼠标悬浮在菜单项上时的提示语" class="form-control input-sm">
+          <input type="text" placeholder="鼠标悬浮在菜单项上时的提示语" name="title" data-tip="鼠标悬浮在菜单项上时的提示语"
+                 class="form-control input-sm">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
       </div>
@@ -42,7 +43,8 @@
       <div class="form-group">
         <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 链接地址：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
-          <input type="text" placeholder="URI=URL&URN" name="url" data-tip="module/controller/action，C风格或者大驼峰命名" class="form-control input-sm">
+          <input type="text" placeholder="URI=URL&URN" name="url" data-tip="module/controller/action，C风格或者大驼峰命名"
+                 class="form-control input-sm">
         </div>
         <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
       </div>
@@ -57,7 +59,8 @@
       </div>
 
       <div class="form-group">
-        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span> 链接目标：</label>
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          链接目标：</label>
         <div class="col-xs-12 col-sm-8 col-md-5">
           <label class="margin-sm-right">
             <input type="radio" name="target" class="ace" value="0" data-rule="checked" checked />
@@ -144,7 +147,6 @@
       </div>
 
 
-
       <div class="clearfix form-actions align-center">
         <a class="btn btn-info margin-sm-right margin-xs-vertical wb-btn-validate-submit"
            role="button"
@@ -169,23 +171,23 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
-  var scope={};
-  var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.min.js'];
+  var scope   = {};
+  var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.min.js' ];
   $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
     //inline scripts related to this page
 
     /*tagsinput*/
-    scope.tagsInput = $('#wb-tagsinput');
-    scope.tagsInput.tagsinput({
-      confirmKeys:[13,44,188,32],
-      trimValue:true,
-      allowDuplicates:false,
-    });
-    scope.tagsInput.on('beforeItemAdd',function ( e ) {
-      var _equal= e.item.match( /=/g );
-      e.cancel= (!(_equal&& _equal.length===1)) || e.item.indexOf('=')===0 || e.item.lastIndexOf( '=' )=== e.item.length;
-    }).on('beforeItemRemove',function ( e ) {
-      if(!e.options || !e.options.notFirst){
+    scope.tagsInput = $( '#wb-tagsinput' );
+    scope.tagsInput.tagsinput( {
+      confirmKeys: [ 13, 44, 188, 32 ],
+      trimValue: true,
+      allowDuplicates: false,
+    } );
+    scope.tagsInput.on( 'beforeItemAdd', function ( e ) {
+      var _equal = e.item.match( /=/g );
+      e.cancel   = (!(_equal && _equal.length === 1)) || e.item.indexOf( '=' ) === 0 || e.item.lastIndexOf( '=' ) === e.item.length;
+    } ).on( 'beforeItemRemove', function ( e ) {
+      if ( !e.options || !e.options.notFirst ) {
         e.cancel = true;
         layer.open( {
           type: 0,
@@ -201,20 +203,20 @@
           }
         } );
       }
-    });
+    } );
 
     /*spinbox*/
-    scope.spinbox=$( '#wb-spinbox' );
+    scope.spinbox = $( '#wb-spinbox' );
     scope.spinbox.ace_spinner( {
       min: -65536,
       max: 65536,
       step: 1,
-      limitToStep:true,
-      cycle:true,
-      speed:'fast',
-      disabled:false,
-      hold:true,
-      units:[],
+      limitToStep: true,
+      cycle: true,
+      speed: 'fast',
+      disabled: false,
+      hold: true,
+      units: [],
 
       icon_up: 'fa fa-plus',
       icon_down: 'fa fa-minus',
@@ -222,14 +224,12 @@
       btn_down_class: 'btn-danger',
 
       on_sides: true,
-      touch_spinner:true
+      touch_spinner: true
     } );
-
-
 
   } ).one( 'ajaxloadstart', function () {
     /*destroy tagsinput*/
-    scope.tagsInput.tagsinput('destroy');
-    scope.tagsInput.off('beforeItemAdd beforeItemRemove');
+    scope.tagsInput.tagsinput( 'destroy' );
+    scope.tagsInput.off( 'beforeItemAdd beforeItemRemove' );
   } );
 </script>
