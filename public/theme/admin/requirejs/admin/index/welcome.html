@@ -1,0 +1,25 @@
+<title>Blank Page - Ace Admin</title>
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    天水家园网后台管理系统
+
+    {:dump($cache)}
+
+    {:dump($template)}
+
+    {:url('a/b/c?l=1&m=2& n=3:4,5;6&o=====4',['x'=>1,'y'=>2])}
+
+    <!-- PAGE CONTENT ENDS -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+    var scripts = [null, null]
+    $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
+        //inline scripts related to this page
+    });
+</script>

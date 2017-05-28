@@ -1,0 +1,94 @@
+<title>管理员列表</title>
+
+
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.css"/>
+
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+
+    <!--toolbar-->
+    <div class="btn-group btn-group-mini" role="group" id="wb-toolbar">
+      <a href="{:url('admin/AdminMenu/create')}" class="btn btn-primary wb-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i> 新增
+      </a>
+      <a href="{:url('admin/AdminMenu/edit')}" class="btn btn-success wb-btn-edit disabled" role="button">
+        <i class="ace-icon fa fa-edit"></i> 编辑
+      </a>
+      <a href="{:url('admin/AdminMenu/detail')}" class="btn btn-info wb-btn-detail disabled" role="button">
+        <i class="ace-icon fa fa-info-circle"></i> 查看
+      </a>
+      <a href="{:url('admin/AdminMenu/recyclebin')}" class="btn btn-warning wb-btn-recyclebin disabled" role="button">
+        <i class="ace-icon fa fa-trash-o"></i> 回收站
+      </a>
+      <a href="{:url('admin/AdminMenu/delete')}" class="btn btn-danger wb-btn-delete disabled" role="button">
+        <i class="ace-icon fa fa-trash"></i> 删除
+      </a>
+      <div class="btn-group btn-group-mini" role="group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+          更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-sort wb-btn-order"></i> 排序</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--toolbar end-->
+
+
+
+
+
+
+    <div class="alert alert-info">
+      This is a default alert!
+    </div>
+
+
+    <table id="wb-bootstrap-table" data-toolbar="#wb-toolbar">
+
+    </table>
+
+    <!-- PAGE CONTENT ENDS -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+
+<!--模态对话框-->
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+  var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.js' ];
+  $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
+    //inline scripts related to this page
+
+    /*bootstrap-table initialize*/
+    initBootstrapTable( '#wb-bootstrap-table' );
+
+  } ).one( 'ajaxloadstart', function () {
+    $( '#wb-bootstrap-table' ).data( 'bootstrap.table' );
+  } );
+</script>
+

@@ -1,0 +1,201 @@
+<title>管理员列表</title>
+
+
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.css"/>
+
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+
+    <!--toolbar-->
+    <div class="btn-group btn-group-mini" id="wb-toolbar">
+      <a href="{:url('admin/Menu/add')}" class="btn btn-primary gzc-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i>新增
+      </a>
+      <a href="{:url('admin/Menu/edit')}" class="btn btn-success gzc-btn-edit" role="button">
+        <i class="ace-icon fa fa-edit"></i>编辑
+      </a>
+      <a href="{:url('admin/Menu/detail')}" class="btn btn-info gzc-btn-detail" role="button">
+        <i class="ace-icon fa fa-info-circle"></i>查看
+      </a>
+      <a href="{:url('admin/Menu/delete')}" class="btn btn-warning gzc-btn-delete gzc-btn-soft-del" role="button">
+        <i class="ace-icon fa fa-trash-o"></i>软删除
+      </a>
+      <a href="{:url('admin/Menu/delete')}" class="btn btn-danger gzc-btn-delete" role="button">
+        <i class="ace-icon fa fa-trash"></i>硬删除
+      </a>
+    </div>
+    <!--toolbar end-->
+
+    <!--toolbar-->
+    <div class="button-group" id="wb-toolbar-">
+      <a href="{:url('admin/Menu/add')}" class="button button-primary button-small button-raised gzc-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i>新增
+      </a>
+      <a href="{:url('admin/Menu/edit')}" class="button button-action button-small button-raised gzc-btn-edit" role="button">
+        <i class="ace-icon fa fa-edit"></i>编辑
+      </a>
+      <a href="{:url('admin/Menu/detail')}" class="button button-royal button-small button-raised gzc-btn-detail" role="button">
+        <i class="ace-icon fa fa-info-circle"></i>查看
+      </a>
+      <a href="{:url('admin/Menu/delete')}" class="button button-highlight button-small button-raised gzc-btn-delete gzc-btn-soft-del" role="button">
+        <i class="ace-icon fa fa-trash-o"></i>软删除
+      </a>
+      <a href="{:url('admin/Menu/delete')}" class="button button-caution button-small button-raised gzc-btn-delete" role="button">
+        <i class="ace-icon fa fa-trash"></i>硬删除
+      </a>
+    </div>
+    <!--toolbar end-->
+
+    <!--toolbar-->
+    <div class="button-group btn-group-mini" role="group" id="wb-toolbar--">
+      <a href="{:url('admin/Admin/create')}" class="btn btn-primary wb-btn-add" role="button">
+        <i class="ace-icon fa fa-plus"></i>新增
+      </a>
+      <a href="{:url('admin/Admin/edit')}" class="btn btn-success wb-btn-edit" role="button">
+        <i class="ace-icon fa fa-edit"></i>编辑
+      </a>
+      <a href="{:url('admin/Admin/detail')}" class="btn btn-info wb-btn-detail" role="button">
+        <i class="ace-icon fa fa-info-circle"></i>查看
+      </a>
+      <a href="{:url('admin/Admin/recyclebin')}" class="btn btn-warning wb-btn-recyclebin" role="button">
+        <i class="ace-icon fa fa-trash-o"></i>回收站
+      </a>
+      <a href="{:url('admin/Admin/delete')}" class="btn btn-danger wb-btn-delete" role="button">
+        <i class="ace-icon fa fa-trash"></i>删除
+      </a>
+      <div class="btn-group btn-group-mini" role="group">
+        <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
+          更多操作<i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-danger">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--toolbar end-->
+
+    <!--toolbar-->
+    <div class="button-group" role="group" id="wb-toolbar---">
+      <a href="{:url('admin/Admin/create')}" class="button button-primary button-tiny button-raised wb-btn-add"
+         role="button">
+        <i class="ace-icon fa fa-plus"></i> 新增
+      </a>
+      <a href="{:url('admin/Admin/edit')}" class="button button-action button-tiny button-raised wb-btn-edit disabled"
+         role="button">
+        <i class="ace-icon fa fa-edit"></i> 编辑
+      </a>
+      <a href="{:url('admin/Admin/detail')}" class="button button-royal button-tiny button-raised wb-btn-detail"
+         role="button">
+        <i class="ace-icon fa fa-info-circle"></i> 查看
+      </a>
+      <a href="{:url('admin/Admin/recyclebin')}"
+         class="button button-highlight button-tiny button-raised wb-btn-recyclebin" role="button">
+        <i class="ace-icon fa fa-trash-o"></i> 回收站
+      </a>
+      <a href="{:url('admin/Admin/delete')}" class="button button-caution button-tiny button-raised wb-btn-delete"
+         role="button">
+        <i class="ace-icon fa fa-trash"></i> 删除
+      </a>
+      <div class="button-dropdown button-dropdown-primary button-dropdown-tiny" data-buttons="dropdown" role="group">
+        <a class="button button-tiny button-action" role="button">
+          更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+        </a>
+        <ul class="button-dropdown-list">
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
+          </li>
+
+          <li>
+            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--toolbar end-->
+
+    <!--context menu-->
+    <ul class="dropdown-menu no-padding hide" id="wb-contextmenu">
+      <li data-item="add" data-url="{:url('admin/Menu/add')}">
+        <a class="bg-primary" role="button"><i class="ace-icon fa fa-plus"></i> 新增</a>
+      </li>
+
+      <li data-item="edit" data-url="{:url('admin/Menu/edit')}">
+        <a class="bg-success" role="button"><i class="ace-icon fa fa-edit"></i> 编辑</a>
+      </li>
+
+      <li data-item="detail" data-url="{:url('admin/Menu/detail')}">
+        <a class="bg-info" role="button"><i class="ace-icon fa fa-info-circle"></i> 查看</a>
+      </li>
+
+      <li class="divider"></li>
+
+      <li data-item="soft-delete" data-url="{:url('admin/Menu/delete')}">
+        <a class="bg-warning gzc-btn-soft-del" role="button"><i class="ace-icon fa fa-trash-o"></i> 软删除</a>
+      </li>
+
+      <li data-item="delete" data-url="{:url('admin/Menu/delete')}">
+        <a class="bg-danger" role="button"><i class="ace-icon fa fa-trash"></i> 硬删除</a>
+      </li>
+
+      <li class="divider"></li>
+
+      <li data-item="check-all">
+        <a role="button"><i class="ace-icon fa fa-check-square"></i> 全选</a>
+      </li>
+
+      <li data-item="check-revert">
+        <a role="button"><i class="ace-icon fa fa-check-square-o"></i> 反选</a>
+      </li>
+
+      <li data-item="check-none">
+        <a role="button"><i class="ace-icon fa fa-check"></i> 取消选择</a>
+      </li>
+
+    </ul>
+    <!--context menu end-->
+    <table id="table" data-toolbar="#wb-toolbar"></table>
+    <!-- PAGE CONTENT ENDS -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+
+<!--模态对话框-->
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+  var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.js' ];
+  $( '.page-content-area' ).ace_ajax( 'loadScripts', scripts, function () {
+    //inline scripts related to this page
+
+    /*bootstrap-table initialize*/
+    initBootstrapTable( '#table' );
+
+  } ).one( 'ajaxloadstart', function () {
+    $( '#table' ).data( 'bootstrap.table' );
+    console.log( $( '#table' ).data( 'bootstrap.table' ) );
+  } );
+</script>
+
