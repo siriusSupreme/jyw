@@ -12,11 +12,11 @@ namespace app\common\library\exception;
 use think\Exception;
 
 class CommonException extends Exception {
-  public $code      = 400;
-  public $msg       = 'invalid parameters';
-  public $errorCode = 999;
+  protected $code      = 400;
+  protected $msg       = 'invalid parameters';
+  protected $errorCode = 999;
 
-  public $shouldToClient = true;
+  protected $shouldToClient = true;
 
   /**
    * 构造函数，接收一个关联数组
@@ -37,5 +37,15 @@ class CommonException extends Exception {
     if ( array_key_exists( 'errorCode', $params ) ) {
       $this->errorCode = $params[ 'errorCode' ];
     }
+  }
+
+  public
+  function __get( $name ) {
+    return isset( $this->$name ) ? $this->$name : '';
+  }
+
+  public
+  function __isset( $name ) {
+    return isset( $this->$name );
   }
 }
