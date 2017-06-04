@@ -193,6 +193,7 @@
       allowDuplicates: false,
       delimiter: '&'
     } );
+
     scope.tagsInput.on( 'beforeItemAdd', function ( e ) {
       e.cancel = !(/^\w+=.+/.test( e.item ));
     } ).on( 'beforeItemRemove', function ( e ) {
