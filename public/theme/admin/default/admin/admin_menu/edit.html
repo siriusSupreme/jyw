@@ -1,0 +1,244 @@
+<title>新增管理员</title>
+
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <form action="{:url('admin/admin/add')}" class="form-horizontal" role="form" method="post">
+
+      <input type="hidden" name="id" value="{$item['id']}">
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          父级菜单：
+        </label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <select name="pid" data-rule="required" data-tip="请选择本级菜单的父级菜单" class="form-control input-sm" id="wb-select2">
+            <option value="0">顶级菜单</option>
+            {$option_tree}
+          </select>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          菜单名称：
+        </label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <input type="text" placeholder="菜单名称" name="name" data-rule="required" data-tip="菜单名必填"
+                 class="form-control input-sm" value="{$item['name']}">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 菜单提示：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <input type="text" placeholder="鼠标悬浮在菜单项上时的提示语" name="title" data-tip="鼠标悬浮在菜单项上时的提示语"
+                 class="form-control input-sm" value="{$item['title']}">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 链接地址：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <input type="text" placeholder="URI=URL&URN" name="url" data-tip="module/controller/action，C风格或者大驼峰命名"
+                 class="form-control input-sm" value="{$item['url']}">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 链接参数：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <input type="text" placeholder="形如：y=x" name="params" data-tip="URL后缀参数，如a=2&b=3,4,5&c=6"
+                 class="form-control input-sm" id="wb-tagsinput" value="{$item['params']}">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          链接目标：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label class="margin-sm-right">
+            <input type="radio" name="target" class="ace" value="0" data-rule="checked" {if condition="$item['target'] eq 0"}checked{/if} />
+            <span class="lbl padding-8">_self</span>
+          </label>
+          <label>
+            <input type="radio" name="target" class="ace ace-checkbox-2" value="1" {if condition="$item['target'] eq 1"
+                   }checked{/if} />
+            <span class="lbl padding-8">_blank</span>
+          </label>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 图标：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <div class="input-group">
+            <input type="text" placeholder="菜单图标，如：fa fa-plus" name="icon" data-tip="菜单图标，填写完整格式"
+                   class="form-control input-sm" value="{$item['icon']}">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-xs" type="button">选择</button>
+            </span>
+          </div>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span> 排序：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <input type="text" placeholder="数字越大越靠前" name="list_order" data-rule="required" data-tip="数字越大越靠前，且必须是正整数"
+                 class="form-control input-sm" id="wb-spinbox" value="{$item['list_order']}">
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 是否验证：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label>
+            <input type="checkbox" name="is_need_check" class="ace ace-switch ace-switch-7" {eq name="$item['is_need_check']" value="1" }checked{/eq} />
+            <span class="lbl"></span>
+          </label>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> 是否显示：</label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label>
+            <input type="checkbox" name="status" class="wb-switch ace ace-switch ace-switch-5" {eq
+                   name="$item['status']" value="1" }checked{/eq} />
+            <span class="lbl" data-lbl="显示 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏"></span>
+          </label>
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-2 control-label no-padding-right padding-xs-top"> <span class="red">*</span>
+          菜单位置：
+        </label>
+        <div class="col-xs-12 col-sm-8 col-md-5">
+          <label class="margin-sm-right">
+            <input type="radio" name="position" class="ace" value="0" data-rule="checked" {eq
+                   name="$item['position']" value="0" }checked{/eq} />
+            <span class="lbl padding-8">主菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="radio" name="position" class="ace" value="1" {eq
+                   name="$item['position']" value="1" }checked{/eq} />
+            <span class="lbl padding-8">子菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="radio" name="position" class="ace" value="2" {eq
+                   name="$item['position']" value="2" }checked{/eq} />
+            <span class="lbl padding-8">表格菜单</span>
+          </label>
+          <label class="margin-sm-right">
+            <input type="radio" name="position" class="ace" value="3" {eq
+                   name="$item['position']" value="3" }checked{/eq} />
+            <span class="lbl padding-8">表格行级菜单</span>
+          </label>
+
+        </div>
+        <div class="help-block inline col-xs-12 col-sm-reset margin-xs-bottom "></div>
+      </div>
+
+
+      <div class="clearfix form-actions align-center">
+        <a class="btn btn-info margin-sm-right margin-xs-vertical wb-btn-validate-submit"
+           role="button"
+           href="{:url('admin/AdminMenu/update')}">
+          <i class="ace-icon fa fa-check"></i>
+          提交保存
+        </a>
+        <a class="btn btn-danger margin-sm-right margin-xs-vertical wb-btn-reset" role="button">
+          <i class="ace-icon fa fa-undo"></i>
+          重置表单
+        </a>
+        <a class="btn btn-success margin-xs-vertical wb-btn-back-lists" role="button"
+           href="{:url('admin/AdminMenu/index')}">
+          <i class="ace-icon fa fa-list"></i>
+          返回列表
+        </a>
+      </div>
+    </form>
+    <!-- PAGE CONTENT ENDS -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+  var scope   = {};
+  var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-tagsinput/bootstrap-tagsinput.min.js' ];
+  $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
+    //inline scripts related to this page
+
+    /*tagsinput*/
+    scope.tagsInput = $( '#wb-tagsinput' );
+    scope.tagsInput.tagsinput( {
+      confirmKeys: [ 13, /*44,*/ 188, 32 ], /*enter comma commond space*/
+      trimValue: true,
+      allowDuplicates: false,
+      delimiter: '&'
+    } );
+    scope.tagsInput.on( 'beforeItemAdd', function ( e ) {
+      e.cancel = !(/^\w+=.+/.test( e.item ));
+    } ).on( 'beforeItemRemove', function ( e ) {
+      if ( !e.options || !e.options.notFirst ) {
+        e.cancel = true;
+        layer.open( {
+          type: 0,
+          icon: 0,
+          content: '您确定要删除此参数吗？',
+          btn: [ '删除', '取消' ],
+          yes: function ( index, layero ) {
+            layer.close( index );
+            scope.tagsInput.tagsinput( 'remove', e.item, { notFirst: true } );
+          },
+          btn2: function ( index, layero ) {
+
+          }
+        } );
+      }
+    } );
+
+    /*spinbox*/
+    scope.spinbox = $( '#wb-spinbox' );
+    scope.spinbox.ace_spinner( {
+      min: -65536,
+      max: 65536,
+      step: 1,
+      limitToStep: true,
+      cycle: true,
+      speed: 'fast',
+      disabled: false,
+      hold: true,
+      units: [],
+
+      icon_up: 'fa fa-plus',
+      icon_down: 'fa fa-minus',
+      btn_up_class: 'btn-success',
+      btn_down_class: 'btn-danger',
+
+      on_sides: true,
+      touch_spinner: true
+    } );
+
+  } ).one( 'ajaxloadstart', function () {
+    /*destroy tagsinput*/
+    scope.tagsInput.tagsinput( 'destroy' );
+    scope.tagsInput.off( 'beforeItemAdd beforeItemRemove' );
+  } );
+</script>

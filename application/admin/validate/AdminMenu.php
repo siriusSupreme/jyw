@@ -1,20 +1,23 @@
 <?php
+
+namespace app\admin\validate;
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2017/5/17
- * Time: 16:17
+ * Date: 2017/5/31
+ * Time: 15:53
  */
-
-namespace app\admin\validate;
-
-
 class AdminMenu extends AdminBase {
-  protected $rule=[
-    'pid'=>'require|isPositiveInteger',
-    'name'=>'require',
-
+  protected $rule = [
+    'id'  => 'require|isPositiveInteger',
+    'pid' => 'require|integer'
   ];
-  protected $message=[];
-  protected $scene=[];
+
+  protected $scene = [
+    'create' => [ 'pid' ],
+    'save'   => [ 'pid' ],
+    'edit'   => [ 'id' ],
+    'update' => [ 'id', 'pid' ]
+  ];
+
 }

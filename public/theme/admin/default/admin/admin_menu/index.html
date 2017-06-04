@@ -1,7 +1,7 @@
 <title>管理员列表</title>
 
 
-<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.css"/>
+<link rel="stylesheet" href="__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.css" />
 
 
 <!-- ajax layout which only needs content area -->
@@ -9,21 +9,24 @@
   <div class="col-xs-12">
     <!-- PAGE CONTENT BEGINS -->
 
+    {/*命名空间-[class|id]*/}
+    {/*命名空间-类型-功能【-附件】*/}
     <!--toolbar-->
-    <div class="btn-group btn-group-mini" role="group" id="wb-toolbar">
-      <a href="{:url('admin/AdminMenu/create')}" class="btn btn-primary wb-btn-add" role="button">
+    <div class="btn-group btn-group-mini" role="group" id="wb-custom-toolbar" data-table="#wb-bootstrap-table">
+      <a class="btn btn-primary wb-btn-create" role="button">
         <i class="ace-icon fa fa-plus"></i> 新增
       </a>
-      <a href="{:url('admin/AdminMenu/edit')}" class="btn btn-success wb-btn-edit disabled" role="button">
+      <a class="btn btn-success wb-btn-edit wb-condition-disabled disabled"
+         role="button">
         <i class="ace-icon fa fa-edit"></i> 编辑
       </a>
-      <a href="{:url('admin/AdminMenu/detail')}" class="btn btn-info wb-btn-detail disabled" role="button">
+      <a class="btn btn-info wb-btn-read wb-condition-disabled disabled" role="button">
         <i class="ace-icon fa fa-info-circle"></i> 查看
       </a>
-      <a href="{:url('admin/AdminMenu/recyclebin')}" class="btn btn-warning wb-btn-recyclebin disabled" role="button">
+      <a class="btn btn-warning wb-btn-recyclebin wb-condition-disabled disabled" role="button">
         <i class="ace-icon fa fa-trash-o"></i> 回收站
       </a>
-      <a href="{:url('admin/AdminMenu/delete')}" class="btn btn-danger wb-btn-delete disabled" role="button">
+      <a class="btn btn-danger wb-btn-delete wb-condition-disabled disabled" role="button">
         <i class="ace-icon fa fa-trash"></i> 删除
       </a>
       <div class="btn-group btn-group-mini" role="group">
@@ -31,38 +34,56 @@
           更多操作 <i class="ace-icon fa fa-angle-down icon-on-right"></i>
         </button>
         <ul class="dropdown-menu">
-          <li>
-            <a role="button"><i class="ace-icon fa fa-sort wb-btn-order"></i> 排序</a>
-          </li>
-
-          <li>
-            <a role="button"><i class="ace-icon fa fa-check-square wb-btn-checkall"></i> 全选</a>
-          </li>
-
-          <li>
-            <a role="button"><i class="ace-icon fa fa-check-square-o wb-btn-checkinvert"></i> 反选</a>
-          </li>
-
-          <li>
-            <a role="button"><i class="ace-icon fa fa-check wb-btn-checknone"></i> 取消选择</a>
-          </li>
+          <li><a role="button" class="wb-btn-order wb-condition-disabled disabled"><i class="ace-icon fa fa-sort"></i>
+            排序</a></li>
+          <li><a role="button" class="wb-btn-check-all"><i class="ace-icon fa fa-check-square"></i> 全选</a></li>
+          <li><a role="button" class="wb-btn-check-invert wb-condition-disabled disabled"><i
+            class="ace-icon fa fa-check-square-o"></i> 反选</a></li>
+          <li><a role="button" class="wb-btn-check-none wb-condition-disabled disabled"><i
+            class="ace-icon fa fa-check"></i> 取消选择</a></li>
         </ul>
       </div>
     </div>
     <!--toolbar end-->
 
-
-
-
-
+    <!--action start-->
+    <div class="hidden" id="wb-custom-action">
+      <a class="btn btn-primary btn-minier wb-btn-create-single" role="button">
+        <i class="ace-icon fa fa-plus"></i> 新增
+      </a>
+      <a class="btn btn-success btn-minier wb-btn-edit-single" role="button">
+        <i class="ace-icon fa fa-edit"></i> 编辑
+      </a>
+      <a class="btn btn-info btn-minier wb-btn-read-single" role="button">
+        <i class="ace-icon fa fa-info-circle"></i> 查看
+      </a>
+      <a class="btn btn-warning btn-minier wb-btn-recyclebin-single"
+         role="button">
+        <i class="ace-icon fa fa-trash-o"></i> 回收站
+      </a>
+      <a class="btn btn-danger btn-minier wb-btn-delete-single" role="button">
+        <i class="ace-icon fa fa-trash"></i> 删除
+      </a>
+    </div>
+    <!--action end-->
 
     <div class="alert alert-info">
       This is a default alert!
     </div>
 
-
-    <table id="wb-bootstrap-table" data-toolbar="#wb-toolbar">
-
+    <table id="wb-bootstrap-table" data-toolbar="#wb-custom-toolbar" data-id-field="id" data-url="{:url('admin/AdminMenu/lists')}">
+      <thead>
+      <tr>
+        <th data-field="check_status" data-checkbox="true"></th>
+        <th data-title="ID" data-field="id" data-sortable="true"></th>
+        <th data-title="名称" data-field="name"></th>
+        <th data-title="链接" data-field="url" data-class="hidden-xs"></th>
+        <th data-title="状态" data-field="status" data-formatter="scope.formatter.status"
+            data-events="scope.events.status" data-align="center"
+            data-class="hidden-xs"></th>
+        <th data-title="操作" data-formatter="scope.formatter.operate" data-events="scope.events.operate"></th>
+      </tr>
+      </thead>
     </table>
 
     <!-- PAGE CONTENT ENDS -->
@@ -80,15 +101,142 @@
 
 <!-- page specific plugin scripts -->
 <script type="text/javascript">
+  var scope   = {};
   var scripts = [ '__PUBLIC_PLUGINS__/bootstrap-table/bootstrap-table.min.js' ];
   $pageContentArea.ace_ajax( 'loadScripts', scripts, function () {
     //inline scripts related to this page
+    scope.url = {
+      create: "{:url('admin/AdminMenu/create')}",
+      edit: "{:url('admin/AdminMenu/edit')}",
+      read: "{:url('admin/AdminMenu/read')}",
+      recyclebin: "{:url('admin/AdminMenu/recyclebin')}",
+      'delete': "{:url('admin/AdminMenu/delete')}",
+      save: "{:url('admin/AdminMenu/save')}",
+      update: "{:url('admin/AdminMenu/update')}",
+      submit: "{:url('admin/AdminMenu/save')}",
+      order: "{:url('admin/AdminMenu/order')}",
+      status: "{:url('admin/AdminMenu/status')}"
+    };
+
+    var actionHtml  = $( '#wb-custom-action' ).html();
+    scope.formatter = {
+      operate: function ( value, row, index ) {
+        return actionHtml;
+      },
+      status: function ( value, row, index ) {
+        if ( value === 1 ) {
+          return '<a role="button" class="btn btn-minier btn-warning wb-btn-status-single">启用</a>';
+        } else {
+          return '<a role="button" class="btn btn-minier btn-danger wb-btn-status-single">禁用</a>';
+        }
+      }
+    };
+    scope.events    = {
+      operate: {
+        'click .wb-btn-create-single': function ( e, value, row, index ) {
+          var _url = scope.url.create;
+          var _id=getPrimaryKey(this);
+          openUrl( _url, { pid: row[_id] } );
+          e.preventDefault();
+        },
+        'click .wb-btn-edit-single': function ( e, value, row, index ) {
+          var _url = scope.url.edit;
+          var _id  = getPrimaryKey( this );
+          openUrl( _url, { id: row[ _id ] } );
+          e.preventDefault();
+        },
+        'click .wb-btn-read-single': function ( e, value, row, index ) {
+          var _url = scope.url.read;
+          var _id  = getPrimaryKey( this );
+          openUrl( _url, { id: row[ _id ] } );
+          e.preventDefault();
+        },
+        'click .wb-btn-recyclebin-single': function ( e, value, row, index ) {
+          var _url = scope.url.recyclebin;
+          var _id  = getPrimaryKey( this );
+          _url     = fixUrl( _url, { id: row[ _id ] } );
+          $.ajax( {
+            url: _url,
+            type: 'post',
+            context: this,
+            success: function ( response, textStatus, xhr ) {
+              if ( response.error_code === 0 ) {
+                layer.alert( response.msg, { icon: 6 } );
+              } else {
+                layer.alert( response.msg, { icon: 5 } );
+              }
+            },
+            error: function ( xhr, textStatus, errorThrow ) {
+              layer.alert( '无效请求', { icon: 5 } );
+            }
+          } );
+          e.preventDefault();
+        },
+        'click .wb-btn-delete-single': function ( e, value, row, index ) {
+          var _url = scope.url.delete;
+          var _id  = getPrimaryKey( this );
+          _url     = fixUrl( _url, { id: row[ _id ] } );
+          $.ajax( {
+            url: _url,
+            type: 'post',
+            context: this,
+            success: function ( response, textStatus, xhr ) {
+              if ( response.error_code === 0 ) {
+                layer.alert( response.msg, { icon: 6 } );
+              } else {
+                layer.alert( response.msg, { icon: 5 } );
+              }
+            },
+            error: function ( xhr, textStatus, errorThrow ) {
+              layer.alert( '无效请求', { icon: 5 } );
+            }
+          } );
+          e.preventDefault();
+        }
+      },
+      status: {
+        'click .wb-btn-status-single': function ( e, value, row, index ) {
+          var _url = scope.url.status;
+          var _id = getPrimaryKey( this );
+          _url=fixUrl( _url, { id: row[ _id ] } );
+          $.ajax( {
+            url: _url,
+            type: 'post',
+            context:this,
+            success: function ( response, textStatus, xhr ) {
+              if ( response.error_code === 0 ) {
+                var $this=$(this).toggleClass('btn-warning btn-danger');
+                if ($this.is('.btn-warning')){
+                  $this.text('启用');
+                }else {
+                  $this.text( '禁用' );
+                }
+                layer.alert( response.msg, { icon: 6 } );
+              } else {
+                layer.alert( response.msg, { icon: 5 } );
+              }
+            },
+            error: function ( xhr, textStatus, errorThrow ) {
+              layer.alert( '无效请求', { icon: 5 } );
+            }
+          } );
+          e.preventDefault();
+        }
+      }
+    };
 
     /*bootstrap-table initialize*/
+    scope.bootstrapTable = $( '#wb-bootstrap-table' );
     initBootstrapTable( '#wb-bootstrap-table' );
 
+    scope.bootstrapTable.on( 'check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function ( e, row, $element ) {
+      var action = $( this ).bootstrapTable( 'getSelections' ).length > 0 ? 'removeClass' : 'addClass';
+      $( '.wb-condition-disabled', this.$toolbar )[ action ]( 'disabled' );
+    } );
+
   } ).one( 'ajaxloadstart', function () {
-    $( '#wb-bootstrap-table' ).data( 'bootstrap.table' );
+    console.log( scope.bootstrapTable.data( 'bootstrap.table' ) );
+    scope.bootstrapTable.bootstrapTable( 'destroy' );
   } );
 </script>
 

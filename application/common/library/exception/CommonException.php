@@ -9,12 +9,14 @@
 namespace app\common\library\exception;
 
 
+use app\common\library\constant\ErrorCode;
+use app\common\library\constant\StatusCode;
 use think\Exception;
 
 class CommonException extends Exception {
-  protected $code      = 400;
-  protected $msg       = 'invalid parameters';
-  protected $errorCode = 999;
+  protected $statusCode = StatusCode::BAD_REQUEST;
+  protected $errorCode  = ErrorCode::UNKNOWN_ERROR;
+  protected $msg        = '';
 
   protected $shouldToClient = true;
 
@@ -28,14 +30,14 @@ class CommonException extends Exception {
     if ( !is_array( $params ) ) {
       return;
     }
-    if ( array_key_exists( 'code', $params ) ) {
-      $this->code = $params[ 'code' ];
+    if ( array_key_exists( 'status_code', $params ) ) {
+      $this->statusCode = $params[ 'status_code' ];
+    }
+    if ( array_key_exists( 'error_code', $params ) ) {
+      $this->errorCode = $params[ 'error_code' ];
     }
     if ( array_key_exists( 'msg', $params ) ) {
-      $this->msg = $params[ 'msg' ];
-    }
-    if ( array_key_exists( 'errorCode', $params ) ) {
-      $this->errorCode = $params[ 'errorCode' ];
+      $this->msg = empty( $params[ 'msg' ] ) ? ErrorCode::getTextByErrorCode( $this->errorCode ) : $params[ 'msg' ];
     }
   }
 

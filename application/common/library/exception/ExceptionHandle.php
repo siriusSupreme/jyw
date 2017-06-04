@@ -8,14 +8,16 @@
 
 namespace app\common\library\exception;
 
+use app\common\library\constant\ErrorCode;
+use app\common\library\constant\StatusCode;
 use Exception;
 use think\exception\Handle;
 
 class ExceptionHandle extends Handle {
 
-  private $code;
-  private $msg;
+  private $statusCode;
   private $errorCode;
+  private $msg;
 
   public
   function render( Exception $e ) {
@@ -24,9 +26,9 @@ class ExceptionHandle extends Handle {
       //因为这些通常是因为客户端传递参数错误或者是用户请求造成的异常
       //不应当记录日志
 
-      $this->code = $e->code;
-      $this->msg = $e->msg;
+      $this->statusCode = $e->statusCode;
       $this->errorCode = $e->errorCode;
+      $this->msg = $e->msg;
     } else {
       // 如果是服务器未处理的异常，将http状态码设置为500，并记录日志
       if ( app()->isDebug() ) {
@@ -35,9 +37,9 @@ class ExceptionHandle extends Handle {
         return parent::render( $e );
       }
 
-      $this->code = 500;
+      $this->statusCode = StatusCode::INTERNAL_SERVER_ERROR;
+      $this->errorCode = ErrorCode::UNKNOWN_ERROR;
       $this->msg = 'sorry，we make a mistake. (^o^)Y';
-      $this->errorCode = 999;
       $this->recordErrorLog( $e );
     }
 
@@ -48,7 +50,7 @@ class ExceptionHandle extends Handle {
       'request_url' => $request->url()
     ];
 
-    return json( $result, $this->code );
+    return json( $result, $this->statusCode );
   }
 
   /*
@@ -56,13 +58,12 @@ class ExceptionHandle extends Handle {
    */
   private
   function recordErrorLog( Exception $e ) {
-    $log=app('log');
-    $log->init( [
+    app('log')->init( [
                  'type'  => 'File',
                  'path'  => LOG_PATH,
                  'level' => [ 'error' ]
                ] );
-//        $log->record($e->getTraceAsString());
-    $log->record( $e->getMessage(), 'error' );
+//        app('log')->record($e->getTraceAsString());
+    app('log')->record( $e->getMessage(), 'error' );
   }
 }
