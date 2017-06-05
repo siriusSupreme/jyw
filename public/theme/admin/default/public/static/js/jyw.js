@@ -91,7 +91,6 @@ $( function () {
 
 /*自定义函数*/
 (function ( _this, $, undefined ) {
-  /*公共变量*/
   
   /*输入框字数限制*/
   _this.inputMaxLengthUTF8 = function ( selector, options, callback ) {
@@ -157,7 +156,7 @@ $( function () {
     $( selector ).inputlimiter( defaults );
   };
   /*select2*/
-  _this.oSelect2 = function ( selector, options ) {
+  _this.wbSelect2 = function ( selector, options ) {
     var defaults = {
       debug: false,
       closeOnSelect: true,
@@ -193,32 +192,78 @@ $( function () {
   }
   
   /*获取 bootstrapTable 表格中 已选择项的 指定 key 的值*/
-  _this.getBootstrapTableField = function ( field, tableId ) {
+  _this.getSelectedItem = function (  selector,field ) {
     /*获取表格*/
-    var _bootstrapTable = $( tableId || '#wb-bootstrap-table' );
-    /*获取表格选择项*/
-    var _options     = _bootstrapTable.bootstrapTable( 'getOptions' );
-    var _selectedArr = _bootstrapTable.bootstrapTable( 'getSelections' );
-    var _selectedLen = _selectedArr.length;
+    var $table = getTable( selector );
     
-    var _fieldData = {};
-    
-    if ( $.isPlainObject( field ) ) {
-      $.each( field, function ( index, item ) {
-        var _key = _options[ index ];
-        if ( _key ) {
-          _fieldData[ _key ] = $.map( _selectedArr, function ( _item, _index ) {
-            return _item[ _key ];
-          } );
-          if ( item === false ) {/*数组转字符串*/
-            _fieldData[ _key ] = _fieldData[ _key ].join( ',' );
-          }
-        }
+    if ( $table &&  $table.data( 'bootstrap.table' )){
+     
+      /*数组转对象*/
+      if ($.isArray(field)){
+        var _field=field;
+        field = {};
+        $.each( _field, function ( index,item ) {
+          field[ item] =true;
+        });
+      }
+  
+      if ( $.isPlainObject( field ) ) {
+        var _options     = $table.bootstrapTable( 'getOptions' ) || {};
+        var _selectedArr = $table.bootstrapTable( 'getSelections' ) || [];
+        var _selectedLen = _selectedArr.length;
         
-      } );
+        console.log( _options);
+        console.log( _selectedArr );
+        console.log( field );
+        console.log( field.length );
+        
+        var _fieldData = {};
+        $.each( field, function ( index, item ) {
+          var _key = _options[ index ];
+          if ( _key ) {
+            _fieldData[ _key ] = $.map( _selectedArr, function ( _item, _index ) {
+              return _item[ _key ];
+            } );
+            if ( item === false ) {/*数组转字符串*/
+              _fieldData[ _key ] = _fieldData[ _key ].join( ',' );
+            }
+          }
+      
+        } );
+      }
+  
+      return { "btLength": _selectedLen, "btData": _fieldData };
+    }
+    return false;
+  };
+  
+  /*获取主键字段*/
+  _this.getPrimaryKey=function ( selector ) {
+    var $table=getTable(selector);
+    
+    if ($table && (selector=$table.data('bootstrap.table'))){
+      return selector['options']['idField'] || 'id';
     }
     
-    return { "btLength": _selectedLen, "btData": _fieldData };
+    return 'id';
+  };
+  
+  /*获取选中项的主键值*/
+  _this.getSelectedItemPK=function ( selector ) {
+    var $table=getTable(selector);
+    var pks=[];
+    
+    if ($table && $table.data('bootstrap.table')){
+      var _options = $table.bootstrapTable('getOptions');
+      var _selectedItemArray= $table.bootstrapTable( 'getSelections' );
+      var _pk=_options['idField'] || _options['uniqueId'] || 'id';
+      
+      pks=$.map(_selectedItemArray,function ( item,index ) {
+        return item[_pk];
+      });
+    }
+    
+    return pks;
   };
   
   /*获取 URL 地址*/
@@ -226,43 +271,194 @@ $( function () {
     /*url属性：href data-url data-href form(action)*/
     var $selector = $( selector );
     
-    _url = $selector.attr( 'href' ) || $selector.data( 'url' ) || $selector.data( 'href' ) || '';
+    var _url = $selector.attr( 'href' ) || $selector.data( 'url' ) || $selector.data( 'href' ) || '';
     
-    if ( _url === '' && getForm( $selector ) ) {
-      _url = getForm( $selector ).eq( 0 ).attr( 'action' );
+    if ( _url === '' ) {
+      var _form = getForm( $selector );
+      _url      = _form ? _form.eq( 0 ).attr( 'action' ) : '';
     }
     
     return _url;
+  };
+  
+  /*修复 URL 地址*/
+  _this.fixUrl = function ( url, queryObject ) {
+    /*URL 格式：scheme(protocol)://hostname:port/pathname?search#hash*/
+    var location = [];
+    var queryStr='';
+    if ( $.isPlainObject( queryObject ) ) {
+      queryStr    = $.param( queryObject );
+      queryStr = decodeURIComponent( queryStr);
+      location = url.match( /([^#\?]+)(\??[^#]*)(#?.*)/ );
+      if ( location[ 2 ].length > 1 ) {
+        url = location[ 1 ] + location[ 2 ] + '&' + queryStr + location[ 3 ];
+      } else {
+        url = location[ 1 ] + '?' + queryStr + location[ 3 ];
+      }
+    }
+    
+    return url;
+    
   };
   
   /*获取表单对象*/
   _this.getForm = function ( selector ) {
     /*直接获取真实表单对象或者通过点击按钮倒推获取表单对象*/
     /*直接获取对象*/
-    var $selector = $( selector );
+    var $form = $( selector );
     /*如果不是表单对象，则是通过按钮点击的*/
-    if ( !$selector.is( 'form' ) ) {
-      if ( $selector.parents( 'form' ).get( 0 ) ) {
-        $selector = $selector.parents( 'form' );
-      } else {
-        $selector = $selector.data( 'form' ) ? $( $selector.data( 'form' ) ) : false;
-      }
+    if ( !$form.is( 'form' ) ) {
+        selector = $form.data( 'form' ) || $form.parents( '[data-form]' ).data( 'form' ) || false;
+        if ( selector ) {
+          $form = $( selector );
+          if ( !$form.is( 'form' ) ) {
+            $form = false;
+          }
+        }else {
+          selector = $form.parents( 'form' );
+          if ( selector.is( 'form' ) ) {
+            $form = selector;
+          } else {
+            $form=false;
+          }
+        }
     }
     
-    return $selector;
+    return $form;
   };
   
   /*获取表格对象*/
   _this.getTable = function ( selector ) {
     /*直接获取真实表格对象或者通过点击按钮倒推获取表格对象*/
     /*直接获取对象*/
-    var $selector = $( selector );
+    var $table = $( selector );
     /*如果不是表格对象，则通过点击按钮获取*/
-    if ( !$selector.is( 'table' ) ) {
-      $selector = $selector.data( 'table' ) ? $( $selector.data( 'table' ) ) : false;
+    if ( !$table.is( 'table' ) ) {
+        selector = $table.data( 'table' ) || $table.parents( '[data-table]' ).data( 'table' ) || false;
+        if ( selector ) {
+          $table = $( selector );
+          if ( !$table.is( 'table' ) ) {
+            $table = false;
+          }
+        }else{
+          selector = $table.parents( 'table' );
+          if ( selector.is( 'table' ) ) {
+            $table = selector;
+          } else {
+            $table=false;
+          }
+        }
     }
-    
-    return $selector;
+    return $table;
+  };
+  
+  /*打开页面*/
+  _this.openUrl    = function ( url, queryObject ) {
+    if ( queryObject){
+      url = fixUrl( url, queryObject);
+    }
+    if ( url ) {
+      //$pageContentArea.ace_ajax( 'loadAddr', _url );
+      window.location.hash = url;
+    } else {
+      layer.alert( '无效地址', { icon: 0 } );
+    }
+  };
+  /*打开对话框*/
+  _this.openDialog = function ( url, queryObject ) {
+    if ( queryObject ) {
+      url = fixUrl( url, queryObject );
+    }
+    if ( url ) {
+      $.ajax( url, {
+        //url:url,
+        type: 'get',
+        async: true,
+        data: [],
+        processData: true,
+        dataType: 'json',
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          // console.log( response );
+          if ( response.error_code === 0 ) {
+            var index = layer.open( {
+              type: 1,//页面层
+              skin: 'layui-layer-lan',
+              scrollbar: false,
+              maxmin: true,
+              resize: true,
+              title: response.msg,
+              content: response.data
+            } );
+            layer.full( index );
+          } else {
+            layer.alert( response.msg, { icon: 5 } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.alert( '无效请求', { icon: 0 } );
+        }
+      } );
+    } else {
+      layer.alert( '无效地址', { icon: 0 } );
+    }
+  };
+  /*打开模态框*/
+  _this.openModal  = function ( url, queryObject ) {
+    if ( queryObject ) {
+      url = fixUrl( url, queryObject );
+    }
+    if ( url ) {
+      $.ajax( url, {
+        //url:url,
+        type: 'get',
+        async: true,
+        data: [],
+        processData: true,
+        dataType: 'json',
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          // console.log( response );
+          if ( response.error_code === 0 ) {
+            var index = layer.open( {
+              type: 1,//页面层
+              skin: 'layui-layer-lan',
+              scrollbar: false,
+              maxmin: true,
+              resize: true,
+              title: response.msg,
+              content: response.data
+            } );
+            layer.full( index );
+          } else {
+            layer.alert( response.msg, { icon: 5 } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.alert( '无效请求', { icon: 0 } );
+        }
+      } );
+    } else {
+      layer.alert( '无效地址', { icon: 0 } );
+    }
   };
   
 }( window, jQuery ));
@@ -496,56 +692,68 @@ $( function () {
     $( selector ).bootstrapTable( defaults );
   };
   
-  /*序号索引格式化*/
-  _this.squenceIndex = function ( value, row, index ) {
-    return index + 1;
-  };
-  /*图标格式化*/
-  _this.iconFormatter = function ( value, row, index ) {
-    return '<i class="' + ace.icon + ' ' + value + '"></i>';
-  };
-  /*显示格式化*/
-  _this.showFormatter = function ( value, row, index ) {
-    if ( value == 1 ) {
-      return '<a href="" role="button" class="btn btn-minier btn-warning">显示</a>';
-    } else {
-      return '<a href="" role="button" class="btn btn-minier btn-danger">隐藏</a>';
+  /*格式化*/
+  _this.wbFormatter = {
+    operate: function ( value, row, index ) {
+      console.log( this );
+      return $( '#wb-action-formatter' ).html();
+    },
+    icon: function ( value, row, index ) {
+      return '<i class="' + ace.icon + ' ' + value + '"></i>';
+    },
+    status: function ( value, row, index ) {
+      if ( value == 1 ) {
+        return '<a href="" role="button" class="btn btn-minier btn-warning">启用</a>';
+      } else {
+        return '<a href="" role="button" class="btn btn-minier btn-danger">禁用</a>';
+      }
+    },
+    show: function ( value, row, index ) {
+      if ( value == 1 ) {
+        return '<a href="" role="button" class="btn btn-minier btn-warning">显示</a>';
+      } else {
+        return '<a href="" role="button" class="btn btn-minier btn-danger">隐藏</a>';
+      }
     }
   };
-  /*状态格式化*/
-  _this.statusFormatter = function ( value, row, index ) {
-    if ( value == 1 ) {
-      return '<a href="" role="button" class="btn btn-minier btn-warning">启用</a>';
-    } else {
-      return '<a href="" role="button" class="btn btn-minier btn-danger">禁用</a>';
+  /*格式化事件*/
+  _this.wbEvents = {
+    operate: {
+      'click .wb-btn-add-single': function ( e, value, row, index ) {
+        e.preventDefault();
+        console.log( $( this ).parents( 'table' ) );
+      }
     }
   };
-  /*格式化操作*/
-  _this.actionFormatter = function ( value, row, index ) {
-    return '<div class="btn-group btn-group-minier">' +
-      '<button type="button" class="btn btn-primary dropdown-toggle gzc-custom-action" data-toggle="dropdown">Action <span class="caret no-margin-top"></span> </button>' +
-      '</div>';
+  /*事件*/
+  _this.onCheck      = function ( row, $element ) {
+  };
+  _this.onUncheck    = function ( row, $element ) {
+  };
+  _this.onCheckAll   = function ( rows ) {
+  };
+  _this.onUncheckAll = function ( rows ) {
   };
   
 })( window, jQuery );
 
 /*ajax设置*/
-$(function (  ) {
-  $.ajaxSetup({
-    global:true,
-    traditional:true,
+$( function () {
+  $.ajaxSetup( {
+    global: true,
+    traditional: false,
     statusCode: {
       '404': function () {
       
       }
-    },
-  });
-});
+    }
+  } );
+} );
 
 /*事件绑定*/
 $( function () {
   
-  $( document ).on( 'click.wb', '.wb-btn-add-back', function ( e ) {
+  $( document ).on( 'click.wb', '.wb-btn-add-backup', function ( e ) {
     e.preventDefault();
     var _url = $( this ).attr( 'href' ) || $( this ).data( 'url' ) || $( this ).data( 'href' ) || '';
     if ( _url ) {
@@ -608,20 +816,13 @@ $( function () {
     var _url = getUrl( this );
     
     if ( _url ) {
-      //$pageContentArea.ace_ajax( 'loadAddr', _url );
-      window.location.hash = _url;
-      /*layer.open({
-       type:2,
-       content:_url,
-       maxmin:true,
-       btn:['yes','no']
-       });*/
+      if ( $( this ).hasClass( 'wb-btn-add-dialog' ) ) {
+        openDialog( _url );
+      } else {
+        openHash( _url );
+      }
     } else {
-      layer.open( {
-        type: 0,
-        icon: 0,
-        content: '无效地址'
-      } );
+      layer.alert( '无效地址', { icon: 0 } );
     }
   } );
   /*编辑、批量编辑*/
@@ -631,14 +832,14 @@ $( function () {
     var _url = getUrl( this );
     
     if ( _url ) {
-      window.location.hash = _url;
+      if ( $( this ).is( '.wb-btn-edit-dialog' ) ) {
       
+      } else {
+        //$pageContentArea.ace_ajax( 'loadAddr', _url );
+        window.location.hash = _url;
+      }
     } else {
-      layer.open( {
-        type: 0,
-        icon: 0,
-        content: '无效地址'
-      } );
+      layer.alert( '无效地址', { icon: 0 } );
     }
   } );
   /*查看*/
@@ -711,48 +912,34 @@ $( function () {
   $( document ).on( 'click.wb', '.wb-btn-checkall', function ( e ) {
     e.preventDefault();
     
-    var _url = getUrl( this );
-    
-    if ( _url ) {
-      window.location.hash = _url;
+    var _table = getTable( this );
+    if ( _table ) {
+      _table.bootstrapTable( 'checkAll' );
     } else {
-      layer.open( {
-        type: 0,
-        icon: 0,
-        content: '无效地址'
-      } );
+      layer.alert( '无效关联', { icon: 0 } );
     }
+    
   } );
   /*取消选择*/
   $( document ).on( 'click.wb', '.wb-btn-checknone', function ( e ) {
     e.preventDefault();
     
-    var _url = getUrl( this );
-    
-    if ( _url ) {
-      window.location.hash = _url;
+    var _table = getTable( this );
+    if ( _table ) {
+      _table.bootstrapTable( 'uncheckAll' );
     } else {
-      layer.open( {
-        type: 0,
-        icon: 0,
-        content: '无效地址'
-      } );
+      layer.alert( '无效关联', { icon: 0 } );
     }
   } );
   /*反选*/
   $( document ).on( 'click.wb', '.wb-btn-checkinvert', function ( e ) {
     e.preventDefault();
     
-    var _url = getUrl( this );
-    
-    if ( _url ) {
-      window.location.hash = _url;
+    var _table = getTable( this );
+    if ( _table ) {
+      _table.bootstrapTable( 'checkInvert' );
     } else {
-      layer.open( {
-        type: 0,
-        icon: 0,
-        content: '无效地址'
-      } );
+      layer.alert( '无效关联', { icon: 0 } );
     }
   } );
   
@@ -770,9 +957,59 @@ $( function () {
         dataType: 'json',
         async: true,
         data: [],
-        headers:{},
+        headers: {},
         processData: true,
         /*jquery.form参数 start*/
+        beforeSubmit: function ( data, form, options ) {
+          return form.isValid();
+        },
+        // beforeSerialize:function ( form,options ) {
+        //
+        // },
+        //clearForm: true,
+        //resetForm: true,
+        //target:'#id.class',
+        //replaceTarget:true,
+        /*jquery.form参数 end*/
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          if ( response.error_code === 0 ) {
+            layer.alert( response.msg, { icon: 6 } );
+          } else {
+            layer.alert( response.msg, { icon: 5 } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.alert( '请求错误', { icon: 5 } );
+        }
+      } );
+    } else {
+      layer.alert( '表单地址不存在', { icon: 0 } );
+    }
+  } );
+  /*表单直接提交*/
+  $( document ).on( 'click.wb', '.wb-btn-submit', function ( e ) {
+    e.preventDefault();
+    
+    var _url  = getUrl( this );
+    var _form = getForm( this );
+    
+    if ( _url && _form ) {
+      _form.ajaxSubmit( {
+        url: _url,
+        type: 'post',
+        dataType: 'json',
+        async: true,
+        data: [],
+        processData: true,
         beforeSubmit: function ( data, form, options ) {
           console.log( data );
           console.log( form );
@@ -780,14 +1017,6 @@ $( function () {
           
           return form.isValid();
         },
-        // beforeSerialize:function ( form,options ) {
-        //
-        // },
-        clearForm: true,
-        resetForm: true,
-        //target:'#id.class',
-        //replaceTarget:true,
-        /*jquery.form参数 end*/
         dataFilter: function ( resopnse, dataType ) {
           return resopnse;
         },
@@ -805,7 +1034,7 @@ $( function () {
         success: function ( response, textStatus, xhr ) {
           console.log( response );
           if ( response.code === 0 ) {
-            layer.open( {
+            var index = layer.open( {
               type: 0,//信息层
               icon: 6,
               skin: 'layui-layer-lan',
@@ -835,8 +1064,77 @@ $( function () {
       } );
     }
   } );
-  /*表单直接提交*/
-  $( document ).on( 'click.wb', '.wb-btn-submit', function ( e ) {
+  /*保存*/
+  $( document ).on( 'click.wb', '.wb-btn-save', function ( e ) {
+    e.preventDefault();
+    
+    var _url  = getUrl( this );
+    var _form = getForm( this );
+    
+    if ( _url && _form ) {
+      _form.ajaxSubmit( {
+        url: _url,
+        type: 'post',
+        dataType: 'json',
+        async: true,
+        data: [],
+        processData: true,
+        beforeSubmit: function ( data, form, options ) {
+          console.log( data );
+          console.log( form );
+          console.log( options );
+          
+          return form.isValid();
+        },
+        dataFilter: function ( resopnse, dataType ) {
+          return resopnse;
+        },
+        beforeSend: function ( XMLHttpRequest ) {
+        
+        },
+        statusCode: {
+          '404': function () {
+          
+          }
+        },
+        complete: function ( xhr, textStatus ) {
+        
+        },
+        success: function ( response, textStatus, xhr ) {
+          console.log( response );
+          if ( response.code === 0 ) {
+            var index = layer.open( {
+              type: 0,//信息层
+              icon: 6,
+              skin: 'layui-layer-lan',
+              content: response.data.username
+            } );
+          } else {
+            layer.open( {
+              type: 0,//信息层
+              icon: 5,
+              content: '无效响应'
+            } );
+          }
+        },
+        error: function ( xhr, textStatus, errorThrow ) {
+          layer.open( {
+            icon: 0,
+            type: 0,
+            content: '无效请求'
+          } );
+        }
+      } );
+    } else {
+      layer.open( {
+        type: 0,
+        icon: 0,
+        content: '无效地址'
+      } );
+    }
+  } );
+  /*更新*/
+  $( document ).on( 'click.wb', '.wb-btn-update', function ( e ) {
     e.preventDefault();
     
     var _url  = getUrl( this );

@@ -7,6 +7,10 @@
     height: 3px;
 }
 
+a.disabled,a[disabled]{
+    pointer-events: none;
+}
+
 
 /*按钮组样式*/
 .btn {
