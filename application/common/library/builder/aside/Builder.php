@@ -9,13 +9,13 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\common\builder\aside;
+namespace app\common\library\builder\aside;
 
-use app\common\builder\ZBuilder;
+use app\common\library\builder\ZBuilder;
 
 /**
  * 侧栏构建器
- * @package app\common\builder\sidebar
+ * @package app\common\library\builder\sidebar
  */
 class Builder extends ZBuilder
 {

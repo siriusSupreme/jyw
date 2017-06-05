@@ -9,15 +9,15 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\common\builder\table;
+namespace app\common\library\builder\table;
 
-use app\common\builder\ZBuilder;
+use app\common\library\builder\ZBuilder;
 use app\user\model\Role;
 use think\Cache;
 
 /**
  * 表格构建器
- * @package app\common\builder\table
+ * @package app\common\library\builder\table
  * @author 蔡伟明 <314013107@qq.com>
  */
 class Builder extends ZBuilder

@@ -9,7 +9,7 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\common\builder;
+namespace app\common\library\builder;
 
 
 use think\Controller;
@@ -17,7 +17,7 @@ use think\Exception;
 
 /**
  * 构建器
- * @package app\common\builder
+ * @package app\common\library\builder
  * @author 蔡伟明 <314013107@qq.com>
  */
 class ZBuilder extends Controller

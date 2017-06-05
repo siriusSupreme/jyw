@@ -12,6 +12,8 @@ use think\Validate;
  * Time: 15:05
  */
 class AdminBase extends Validate {
+  protected $params = [];
+
   /**
    * 检测所有客户端发来的参数是否符合验证类规则
    * 基类定义了很多自定义验证方法
@@ -20,13 +22,13 @@ class AdminBase extends Validate {
    * @return true
    */
   public
-  function goCheck( $scene = '', $batch = false ) {
+  function goCheck( $scene, $batch = false ) {
     //必须设置contetn-type:application/json
     $request = request();
-    $params = $request->param();
-    $params[ 'token' ] = $request->header( 'token' );
+    $this->params = $request->param();
+    $this->params[ 'token' ] = $request->header( 'token' );
 
-    if ( !$this->scene( $scene )->batch( $batch )->check( $params ) ) {
+    if ( !$this->scene( $scene )->batch( $batch )->check( $this->params ) ) {
       $exception = new ParameterException(
         [
           // $this->error有一个问题，并不是一定返回数组，需要判断
@@ -41,22 +43,29 @@ class AdminBase extends Validate {
   }
 
   /**
-   * @param array $arrays 通常传入request.post变量数组
+   * @param string $scene 验证场景
    *
    * @return array 按照规则key过滤后的变量数组
    * @throws ParameterException
    */
   public
-  function getDataByRule( $arrays ) {
-    if ( array_key_exists( 'user_id', $arrays ) | array_key_exists( 'uid', $arrays ) ) {
+  function getDataByScene( $scene ) {
+    $data = $this->params;
+
+    if ( array_key_exists( 'user_id', $data ) | array_key_exists( 'uid', $data ) ) {
       // 不允许包含user_id或者uid，防止恶意覆盖user_id外键
       throw new ParameterException( [
                                       'msg' => '参数中包含有非法的参数名user_id或者uid'
                                     ] );
     }
     $newArray = [];
-    foreach ( $this->rule as $key => $value ) {
-      $newArray[ $key ] = $arrays[ $key ];
+    $rule = $this->getScene( $scene );
+    if ( !empty( $rule ) ) {
+      foreach ( $rule as $value ) {
+        $newArray[ $value ] = isset( $data[ $value ] ) ? $data[ $value ] : '';
+      }
+    } else {
+      $newArray = $data;
     }
 
     return $newArray;

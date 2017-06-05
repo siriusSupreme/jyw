@@ -9,13 +9,13 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-namespace app\common\builder\form;
+namespace app\common\library\builder\form;
 
-use app\common\builder\ZBuilder;
+use app\common\library\builder\ZBuilder;
 
 /**
  * 表单构建器
- * @package app\common\builder\type
+ * @package app\common\library\builder\type
  * @author 蔡伟明 <314013107@qq.com>
  */
 class Builder extends ZBuilder
