@@ -80,7 +80,6 @@ $( function () {
         $this.ace_ajax( 'stopLoading', true );
       }
     } );
-    console.log( e.type );
     layer.open( {
       type: 0,
       icon: 5,
@@ -743,8 +742,13 @@ $( function () {
     global: true,
     traditional: false,
     statusCode: {
-      '404': function () {
-      
+      '400':function ( xhr, statusText, errorThrow ) {
+        var response = xhr.responseJSON;
+        layer.alert( response.msg, { icon: 5 } );
+      },
+      '404': function ( xhr, statusText, errorThrow) {
+        var response = xhr.responseJSON;
+        layer.alert( response.msg, { icon: 5 } );
       }
     }
   } );
@@ -771,10 +775,10 @@ $( function () {
         
         },
         
-        complete: function ( xhr, textStatus ) {
+        complete: function ( xhr, statusText ) {
         
         },
-        success: function ( response, textStatus, xhr ) {
+        success: function ( response, statusText, xhr ) {
           console.log( response );
           if ( response.code === 0 ) {
             var index = layer.open( {
@@ -795,7 +799,7 @@ $( function () {
             } );
           }
         },
-        error: function ( xhr, textStatus, errorThrow ) {
+        error: function ( xhr, statusText, errorThrow ) {
           layer.open( {
             icon: 0,
             type: 0,
@@ -977,18 +981,19 @@ $( function () {
         beforeSend: function ( XMLHttpRequest ) {
         
         },
-        complete: function ( xhr, textStatus ) {
+        complete: function ( xhr, statusText ) {
         
         },
-        success: function ( response, textStatus, xhr ) {
+        success: function ( response, statusText, xhr ) {
           if ( response.error_code === 0 ) {
             layer.alert( response.msg, { icon: 6 } );
           } else {
             layer.alert( response.msg, { icon: 5 } );
           }
         },
-        error: function ( xhr, textStatus, errorThrow ) {
-          layer.alert( '请求错误', { icon: 5 } );
+        error: function ( xhr, statusText, errorThrow ) {
+          var response=xhr.responseJSON;
+          layer.alert( response.msg, { icon: 5 } );
         }
       } );
     } else {
@@ -1028,10 +1033,10 @@ $( function () {
           
           }
         },
-        complete: function ( xhr, textStatus ) {
+        complete: function ( xhr, statusText ) {
         
         },
-        success: function ( response, textStatus, xhr ) {
+        success: function ( response, statusText, xhr ) {
           console.log( response );
           if ( response.code === 0 ) {
             var index = layer.open( {
@@ -1048,7 +1053,7 @@ $( function () {
             } );
           }
         },
-        error: function ( xhr, textStatus, errorThrow ) {
+        error: function ( xhr, statusText, errorThrow ) {
           layer.open( {
             icon: 0,
             type: 0,
@@ -1097,10 +1102,10 @@ $( function () {
           
           }
         },
-        complete: function ( xhr, textStatus ) {
+        complete: function ( xhr, statusText ) {
         
         },
-        success: function ( response, textStatus, xhr ) {
+        success: function ( response, statusText, xhr ) {
           console.log( response );
           if ( response.code === 0 ) {
             var index = layer.open( {
@@ -1117,7 +1122,7 @@ $( function () {
             } );
           }
         },
-        error: function ( xhr, textStatus, errorThrow ) {
+        error: function ( xhr, statusText, errorThrow ) {
           layer.open( {
             icon: 0,
             type: 0,
@@ -1166,10 +1171,10 @@ $( function () {
           
           }
         },
-        complete: function ( xhr, textStatus ) {
+        complete: function ( xhr, statusText ) {
         
         },
-        success: function ( response, textStatus, xhr ) {
+        success: function ( response, statusText, xhr ) {
           console.log( response );
           if ( response.code === 0 ) {
             var index = layer.open( {
@@ -1186,7 +1191,7 @@ $( function () {
             } );
           }
         },
-        error: function ( xhr, textStatus, errorThrow ) {
+        error: function ( xhr, statusText, errorThrow ) {
           layer.open( {
             icon: 0,
             type: 0,
