@@ -9,15 +9,21 @@ namespace app\admin\validate;
  */
 class AdminMenu extends AdminBase {
   protected $rule = [
-    'id'  => 'require|isPositiveInteger',
-    'pid' => 'require|integer'
+    'id'  => 'require',
+    'pid' => 'require|integer',
+    'name'=>'require'
   ];
+
+  protected $message=[];
+
+  protected $field=[];
 
   protected $scene = [
     'create' => [ 'pid' ],
-    'save'   => [ 'pid' ],
+    'save'   => [ 'pid', 'name', 'title', 'url', 'icon', 'target', 'status', 'params', 'list_order', 'is_need_check' ],
     'edit'   => [ 'id' ],
-    'update' => [ 'id', 'pid' ]
+    'update' => [ 'id','pid', 'name', 'title', 'url', 'icon', 'target', 'status', 'params', 'list_order', 'is_need_check' ],
+    'delete'=>['id']
   ];
 
 }

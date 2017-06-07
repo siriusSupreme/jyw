@@ -12,7 +12,8 @@ use think\Validate;
  * Time: 15:05
  */
 class AdminBase extends Validate {
-  protected $params = [];
+
+  private $params = [];
 
   /**
    * 检测所有客户端发来的参数是否符合验证类规则
@@ -22,7 +23,7 @@ class AdminBase extends Validate {
    * @return true
    */
   public
-  function goCheck( $scene, $batch = false ) {
+  function goCheck( $scene = '', $batch = false ) {
     //必须设置contetn-type:application/json
     $request = request();
     $this->params = $request->param();
@@ -43,13 +44,11 @@ class AdminBase extends Validate {
   }
 
   /**
-   * @param string $scene 验证场景
-   *
    * @return array 按照规则key过滤后的变量数组
    * @throws ParameterException
    */
   public
-  function getDataByScene( $scene ) {
+  function getDataByScene( $scene = '' ) {
     $data = $this->params;
 
     if ( array_key_exists( 'user_id', $data ) | array_key_exists( 'uid', $data ) ) {
@@ -58,14 +57,13 @@ class AdminBase extends Validate {
                                       'msg' => '参数中包含有非法的参数名user_id或者uid'
                                     ] );
     }
-    $newArray = [];
+
     $rule = $this->getScene( $scene );
-    if ( !empty( $rule ) ) {
-      foreach ( $rule as $value ) {
-        $newArray[ $value ] = isset( $data[ $value ] ) ? $data[ $value ] : '';
-      }
-    } else {
-      $newArray = $data;
+    $rule = empty( $rule ) ? array_keys( $this->rule ) : $rule;
+
+    $newArray = [];
+    foreach ( $rule as $value ) {
+      $newArray[ $value ] = isset( $data[ $value ] ) ? $data[ $value ] : '';
     }
 
     return $newArray;
@@ -83,7 +81,7 @@ class AdminBase extends Validate {
   protected
   function isNotEmpty( $value, $rule = '', $data = '', $field = '' ) {
     if ( empty( $value ) ) {
-      return $field . '不允许为空';
+      return false;
     } else {
       return true;
     }
