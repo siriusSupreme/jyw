@@ -1,5 +1,5 @@
-##把该文件放在需求去除BOM头的目录下跑一下却可。
 <?php
+//把该文件放在需求去除BOM头的目录下跑一下却可。
 if (isset ( $_GET ['dir'] )) { // config the basedir
     $basedir = $_GET ['dir'];
 } else {
