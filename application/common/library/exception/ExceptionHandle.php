@@ -47,7 +47,8 @@ class ExceptionHandle extends Handle {
     $result = [
       'msg'         => $this->msg,
       'error_code'  => $this->errorCode,
-      'request_url' => $request->url()
+      'request_url' => $request->url(),
+      'time'=>$_SERVER['REQUEST_TIME']
     ];
 
     return json( $result, $this->statusCode );

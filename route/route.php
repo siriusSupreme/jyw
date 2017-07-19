@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('think', function () {
+Rout::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
